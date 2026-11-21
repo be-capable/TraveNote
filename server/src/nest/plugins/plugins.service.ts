@@ -77,9 +77,9 @@ export interface PluginListItem {
   dependencies: PluginDependencies;
   /** Whether this plugin can currently activate, and why not if it can't. */
   dependencyStatus: PluginDependencyStatus;
-  /** The TREK range the plugin declares it supports; null if it declared none. */
+  /** The Wanderly range the plugin declares it supports; null if it declared none. */
   trekRange: string | null;
-  /** The running TREK, so the UI can say "needs X, you have Y" without doing semver. */
+  /** The running Wanderly, so the UI can say "needs X, you have Y" without doing semver. */
   hostVersion: string;
   /** The concrete blockers, so the UI can render chips + the resolve dialog. */
   dependencyIssues: { disabledAddons: string[]; missing: PluginDependency[]; versionMismatch: VersionMismatch[] };

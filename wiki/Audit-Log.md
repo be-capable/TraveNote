@@ -1,6 +1,6 @@
 # Audit Log
 
-The audit log records significant actions taken on your TREK instance. Use it to monitor logins, admin changes, and integration configuration.
+The audit log records significant actions taken on your Wanderly instance. Use it to monitor logins, admin changes, and integration configuration.
 
 ## Where to find it
 
@@ -115,7 +115,7 @@ The panel loads 100 entries at a time by default. Click **Load more** at the bot
 
 ## IP addresses
 
-The client IP is read from the `X-Forwarded-For` header. When TREK is behind a reverse proxy, set `TRUST_PROXY=1` (the number of proxy hops) so the header is trusted and the real client IP is recorded. Without this setting, the proxy's own IP is logged instead. See [Environment-Variables](Environment-Variables).
+The client IP is read from the `X-Forwarded-For` header. When Wanderly is behind a reverse proxy, set `TRUST_PROXY=1` (the number of proxy hops) so the header is trusted and the real client IP is recorded. Without this setting, the proxy's own IP is logged instead. See [Environment-Variables](Environment-Variables).
 
 ## Log file
 
@@ -131,7 +131,7 @@ Audit entries in the database are never automatically deleted. They accumulate a
 
 ## Plugin capability audit
 
-Separate from the instance audit log above, TREK keeps a dedicated **hash-chained capability audit** for installed plugins. Every host-mediated action a plugin takes — core-data reads, WebSocket broadcasts, notifications, AI calls, cross-plugin calls — is recorded at the point the plugin cannot reach, together with the acting user (bound by the host, never supplied by the plugin), the resource touched, and the outcome.
+Separate from the instance audit log above, Wanderly keeps a dedicated **hash-chained capability audit** for installed plugins. Every host-mediated action a plugin takes — core-data reads, WebSocket broadcasts, notifications, AI calls, cross-plugin calls — is recorded at the point the plugin cannot reach, together with the acting user (bound by the host, never supplied by the plugin), the resource touched, and the outcome.
 
 Each plugin's entries form a per-plugin hash chain (`hash = sha256(previous_hash + row)`), so the log is tamper-evident: any altered or removed entry breaks the chain. Older rows are pruned per plugin once the row cap is reached (default 20,000 rows/plugin, tunable via `TREK_PLUGIN_AUDIT_MAX_ROWS`; `0` disables pruning). Pruning keeps the retained window verifiable.
 

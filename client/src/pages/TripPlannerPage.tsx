@@ -253,10 +253,11 @@ export default function TripPlannerPage(): React.ReactElement | null {
         `}</style>
         <div style={{ marginBottom: 28 }}>
           <img
-            src={document.documentElement.classList.contains('dark') ? '/icons/trek-loading-light.gif' : '/icons/trek-loading-dark.gif'}
+            src="/icons/icon.svg"
             alt="Loading"
             width={64}
             height={64}
+            className="animate-pulse"
           />
         </div>
         <div className="text-content" style={{ fontSize: 'calc(20px * var(--fs-scale-title, 1))', fontWeight: 700, letterSpacing: '-0.3px', marginBottom: 6, animation: 'fadeInUp 0.5s ease-out' }}>

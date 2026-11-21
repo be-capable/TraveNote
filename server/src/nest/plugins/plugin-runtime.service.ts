@@ -89,14 +89,14 @@ export class PluginConsentRequired extends Error {
 export type PluginDependencyCode =
   | 'ADDON_DISABLED'
   | 'DEPENDENCY_MISSING'
-  /** The plugin's declared TREK range doesn't admit the running host. */
+  /** The plugin's declared Wanderly range doesn't admit the running host. */
   | 'TREK_VERSION_INCOMPATIBLE'
   /** The plugin never declared a range, so we can't know that it does. */
   | 'TREK_VERSION_UNKNOWN';
 
 /**
  * Thrown when a plugin can't activate because a required addon is disabled, a declared
- * plugin dependency is missing / version-mismatched, or it doesn't support this TREK.
+ * plugin dependency is missing / version-mismatched, or it doesn't support this Wanderly.
  * The controller maps it to a 409 carrying `code` + `detail` so the admin UI can offer
  * the right fix.
  *
@@ -353,7 +353,7 @@ export class PluginRuntimeService implements OnModuleInit, OnModuleDestroy {
       }
     }
 
-    // Fold in the host-side per-user data TREK stores itself (what erasePluginUserData
+    // Fold in the host-side per-user data Wanderly stores itself (what erasePluginUserData
     // deletes) so an access request isn't asymmetric with erasure: the user's plugin
     // settings (secret fields masked) and which plugins they OAuth-linked. Raw tokens
     // are never exported. This is supplementary to each plugin's own-db export above, so
@@ -463,7 +463,7 @@ export class PluginRuntimeService implements OnModuleInit, OnModuleDestroy {
 
   /**
    * Read-only activation gate for one plugin — throws (without mutating) if it may
-   * not activate. Checks run most- to least-severe: TREK-version compatibility →
+   * not activate. Checks run most- to least-severe: Wanderly-version compatibility →
    * permission re-consent → required addon disabled → missing/mismatched plugin dependency.
    */
   private assertActivatable(id: string, installed: Map<string, PluginDepRow>, consentWiden: boolean): void {
@@ -473,20 +473,20 @@ export class PluginRuntimeService implements OnModuleInit, OnModuleDestroy {
     if (!row) throw new Error(`plugin ${id} not found`);
 
     // This runs FIRST, and before the consent check in particular: a plugin that cannot
-    // run on this TREK must never be offered a permission dialog, because consenting to
+    // run on this Wanderly must never be offered a permission dialog, because consenting to
     // it would not make the plugin start. It is also the gate that catches the case
-    // install can't — TREK was upgraded PAST the plugin's declared upper bound, so code
+    // install can't — Wanderly was upgraded PAST the plugin's declared upper bound, so code
     // that was legitimately installed no longer supports the host it's sitting on.
     if (!row.trek_range) {
       throw new PluginDependencyError(
-        `plugin ${id} does not declare which TREK versions it supports`,
+        `plugin ${id} does not declare which Wanderly versions it supports`,
         'TREK_VERSION_UNKNOWN',
         { trekRange: null, hostVersion: hostVersion() },
       );
     }
     if (!hostSatisfies(row.trek_range)) {
       throw new PluginDependencyError(
-        `plugin ${id} requires TREK ${row.trek_range} — this is TREK ${hostVersion()}`,
+        `plugin ${id} requires Wanderly ${row.trek_range} — this is Wanderly ${hostVersion()}`,
         'TREK_VERSION_INCOMPATIBLE',
         { trekRange: row.trek_range, hostVersion: hostVersion() },
       );
@@ -631,7 +631,7 @@ export class PluginRuntimeService implements OnModuleInit, OnModuleDestroy {
     const wasEnabled = before.enabled === 1;
     const granted = new Set(parseArray(before.granted_permissions));
 
-    // Pick the newest version that this TREK can actually run, not simply the newest one
+    // Pick the newest version that this Wanderly can actually run, not simply the newest one
     // published. Taking the latest blindly is how an update BREAKS a working plugin: the
     // new release drops support for this host, the swap succeeds, and the activation gate
     // then refuses to restart it — leaving the admin worse off than not updating. Refusing
@@ -659,7 +659,7 @@ export class PluginRuntimeService implements OnModuleInit, OnModuleDestroy {
   }
 
   /**
-   * The version an "update" should install: the newest one compatible with this TREK.
+   * The version an "update" should install: the newest one compatible with this Wanderly.
    * Refuses when that is not actually newer than what's installed — a compatible-but-older
    * artifact is a DOWNGRADE, and silently rolling a plugin back under the word "update"
    * would be worse than doing nothing.
@@ -669,7 +669,7 @@ export class PluginRuntimeService implements OnModuleInit, OnModuleDestroy {
     const target = await this.registry.resolveVersion(id); // throws TREK_VERSION_INCOMPATIBLE if nothing fits
     if (installedVersion && semver.valid(installedVersion) && !semver.gt(target.version, installedVersion)) {
       throw new RegistryError(
-        `no update available for ${id} on TREK ${hostVersion()} — ${installedVersion} is already the newest compatible version`,
+        `no update available for ${id} on Wanderly ${hostVersion()} — ${installedVersion} is already the newest compatible version`,
         'NO_COMPATIBLE_UPDATE',
       );
     }
@@ -862,7 +862,7 @@ export class PluginRuntimeService implements OnModuleInit, OnModuleDestroy {
     // a scheduled callback for a plugin that no longer exists must never fire.
     db.prepare('DELETE FROM plugin_scheduled_tasks WHERE plugin_id = ?').run(id);
     // If it was a notification channel, retire the channel too. Unconditional, for the
-    // same reason as the settings fields: these are TREK's config ABOUT the plugin, and
+    // same reason as the settings fields: these are Wanderly's config ABOUT the plugin, and
     // leaving them means a later plugin that reuses this id silently inherits every
     // user's opt-outs and the admin's enablement.
     this.retireNotificationChannel(id);

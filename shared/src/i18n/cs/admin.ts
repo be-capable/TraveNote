@@ -240,7 +240,7 @@ const admin: TranslationStrings = {
   'admin.plugins.sourceRepo': 'Zdrojový repozitář',
   'admin.plugins.reportIssue': 'Nahlásit problém',
   'admin.plugins.homepage': 'Domovská stránka',
-  'admin.plugins.requiresTrek': 'Vyžaduje TREK {version}+',
+  'admin.plugins.requiresTrek': 'Vyžaduje Wanderly {version}+',
   'admin.plugins.reviewedOn': 'Zkontrolováno {date}',
   'admin.plugins.perm.db:own': 'Ukládat vlastní data v izolované databázi',
   'admin.plugins.perm.db:read:trips': 'Číst cesty, ke kterým má aktuální uživatel přístup',
@@ -336,26 +336,26 @@ const admin: TranslationStrings = {
   'admin.plugins.updateLater': 'Zatím ponechat vypnuté',
   'admin.plugins.updateKeptOff': 'Aktualizace nainstalována — zůstává vypnutá, dokud neschválíte nová oprávnění',
   'admin.plugins.reviewedMeaning':
-    '„Zkontrolováno“ znamená, že správce TREK prověřil tento plugin na škodlivý kód u každé verze — nikoli jeho kvalitu ani to, zda funguje. Není to záruka, že je plugin neškodný.',
+    '„Zkontrolováno“ znamená, že správce Wanderly prověřil tento plugin na škodlivý kód u každé verze — nikoli jeho kvalitu ani to, zda funguje. Není to záruka, že je plugin neškodný.',
   'admin.plugins.security.title': 'Jak jsou pluginy izolovány — a kde jsou hranice',
   'admin.plugins.security.isolationTitle': 'Každý plugin běží v izolaci',
   'admin.plugins.security.isolationBody':
-    'Plugin běží jako vlastní uzamčený proces, který může číst pouze své vlastní soubory. Nemůže číst vaši databázi, váš přihlašovací tajný klíč ani váš šifrovací klíč, nemůže spouštět jiné programy a nemůže nikam zapisovat soubory. Jeho rozhraní běží v uzavřeném rámci prohlížeče, který nemůže číst vaši session cookie ani zasahovat do okolní stránky TREK.',
+    'Plugin běží jako vlastní uzamčený proces, který může číst pouze své vlastní soubory. Nemůže číst vaši databázi, váš přihlašovací tajný klíč ani váš šifrovací klíč, nemůže spouštět jiné programy a nemůže nikam zapisovat soubory. Jeho rozhraní běží v uzavřeném rámci prohlížeče, který nemůže číst vaši session cookie ani zasahovat do okolní stránky Wanderly.',
   'admin.plugins.security.permsTitle': 'Co oprávnění znamenají',
   'admin.plugins.security.permsBody':
-    'Oprávnění zobrazená před instalací jsou pevný limit, který TREK vynucuje po celou dobu běhu pluginu — plugin doslova nemůže udělat nic, co není na seznamu. Říkají vám ale, co plugin může dělat, nikoli co skutečně dělá. Plugin, který smí číst vaše cesty a spojit se se serverem, může vaše cesty tomuto serveru odeslat, proto si přečtěte oprávnění i odchozí hostitele, nejen popis.',
+    'Oprávnění zobrazená před instalací jsou pevný limit, který Wanderly vynucuje po celou dobu běhu pluginu — plugin doslova nemůže udělat nic, co není na seznamu. Říkají vám ale, co plugin může dělat, nikoli co skutečně dělá. Plugin, který smí číst vaše cesty a spojit se se serverem, může vaše cesty tomuto serveru odeslat, proto si přečtěte oprávnění i odchozí hostitele, nejen popis.',
   'admin.plugins.security.limitsTitle': 'Co nemůžeme slíbit',
   'admin.plugins.security.limitsBody':
-    'Izolace je silná softwarová hranice, nikoli absolutní. Plugin jedná přesně s těmi právy, která schválíte, takže v jejich rámci se může chovat jinak, než naznačuje jeho popis, a může odeslat data, která oprávněně drží, hostitelům, které deklaroval. TREK nečte ani neposuzuje, co kód pluginu ve skutečnosti dělá.',
+    'Izolace je silná softwarová hranice, nikoli absolutní. Plugin jedná přesně s těmi právy, která schválíte, takže v jejich rámci se může chovat jinak, než naznačuje jeho popis, a může odeslat data, která oprávněně drží, hostitelům, které deklaroval. Wanderly nečte ani neposuzuje, co kód pluginu ve skutečnosti dělá.',
   'admin.plugins.security.worstTitle': 'Nejhorší případ',
   'admin.plugins.security.worstBody':
     'Škodlivý plugin, který zapnete, může zneužít data a připojení, jež jste mu udělili — například vynést cesty, které smí číst. Nemůže krást hesla, padělat přihlášení administrátora, spouštět příkazy na vašem serveru ani se dostat k datům, která jste neudělili. Škoda zůstává v rámci toho, co jste schválili, a vypnutí pluginu ji zastaví.',
   'admin.plugins.security.reviewedTitle': 'Co znamená „Zkontrolováno“',
   'admin.plugins.security.reviewedBody':
-    'Zkontrolovaný plugin ručně prověřil správce TREK na škodlivý kód u každé verze — kontroloval nepřátelský kód, nikoli to, zda dobře funguje. Není to slib, že je plugin neškodný.',
+    'Zkontrolovaný plugin ručně prověřil správce Wanderly na škodlivý kód u každé verze — kontroloval nepřátelský kód, nikoli to, zda dobře funguje. Není to slib, že je plugin neškodný.',
   'admin.plugins.security.signedTitle': 'Co znamená „Podepsáno“',
   'admin.plugins.security.signedBody':
-    'Kontrolní součet, který TREK ověřuje při každé instalaci, dokazuje, že soubory jsou přesně tím, za co se registr zaručuje. Podpis dokazuje něco jiného: že pocházejí od autora a jsou podepsané klíčem, který drží jen on. Podepsaný plugin má obojí. Nepodepsaný není nebezpečný — nese jen o jednu záruku méně a většina pluginů v registru dnes podepsaná není.',
+    'Kontrolní součet, který Wanderly ověřuje při každé instalaci, dokazuje, že soubory jsou přesně tím, za co se registr zaručuje. Podpis dokazuje něco jiného: že pocházejí od autora a jsou podepsané klíčem, který drží jen on. Podepsaný plugin má obojí. Nepodepsaný není nebezpečný — nese jen o jednu záruku méně a většina pluginů v registru dnes podepsaná není.',
   'admin.plugins.signed': 'Podepsáno',
   'admin.plugins.signedHint': 'Při instalaci ověřeno proti podpisovému klíči autora',
   'admin.plugins.unsigned': 'Nepodepsáno',
@@ -370,20 +370,20 @@ const admin: TranslationStrings = {
   'admin.plugins.sig.invalidBody':
     'Soubory neodpovídají podpisu autora. Nejsou tím, co autor podepsal — buď se poškodily, nebo do nich někdo zasáhl. Toto nelze obejít.',
   'admin.plugins.sig.missingBody':
-    'Tento plugin byl při instalaci podepsaný, ale nová verze žádný podpis nepřináší. TREK takové zhoršení tiše nepřijme. Toto nelze obejít.',
+    'Tento plugin byl při instalaci podepsaný, ale nová verze žádný podpis nepřináší. Wanderly takové zhoršení tiše nepřijme. Toto nelze obejít.',
   'admin.plugins.sig.incompleteBody':
     'Záznam v registru je podepsaný jen napůl: uvádí klíč autora, ale verze nenese žádný podpis (nebo naopak). To je chyba na straně pluginu. Toto nelze obejít.',
   'admin.plugins.sig.pinnedKey': 'Klíč, se kterým byl nainstalován',
   'admin.plugins.sig.newKey': 'Klíč, který nabízí nyní',
   'admin.plugins.sig.confirmOutOfBand':
-    'TREK nedokáže odlišit legitimní výměnu klíče od převzetí pluginu — odsud vypadají obě stejně. Než nový klíč přijmete, ověřte si ho u autora kanálem, kterému už důvěřujete. Jakmile to uděláte, plugin se aktualizuje a nový klíč si TREK zapamatuje.',
+    'Wanderly nedokáže odlišit legitimní výměnu klíče od převzetí pluginu — odsud vypadají obě stejně. Než nový klíč přijmete, ověřte si ho u autora kanálem, kterému už důvěřujete. Jakmile to uděláte, plugin se aktualizuje a nový klíč si Wanderly zapamatuje.',
   'admin.plugins.sig.retrustConfirm': 'Důvěřovat novému klíči a aktualizovat',
   'admin.plugins.sig.cancel': 'Nedůvěřovat',
   'admin.plugins.sig.consentUnsigned':
     'Tuto verzi nic nespojuje s jejím autorem — soubory odpovídají registru, ale nenesou podpis autora.',
   'admin.plugins.security.trustTitle': 'Závěrem',
   'admin.plugins.security.trustBody':
-    'Instalace pluginu je jako instalace jakékoli aplikace třetí strany: přidávejte pouze kód od autorů, kterým důvěřujete, a v případě pochybností si jej nejprve sami prohlédněte. TREK nenese žádnou odpovědnost za pluginy třetích stran.',
+    'Instalace pluginu je jako instalace jakékoli aplikace třetí strany: přidávejte pouze kód od autorů, kterým důvěřujete, a v případě pochybností si jej nejprve sami prohlédněte. Wanderly nenese žádnou odpovědnost za pluginy třetích stran.',
   'admin.plugins.runtimeOn': 'Běhové prostředí běží',
   'admin.plugins.tabDiscover': 'Objevit',
   'admin.plugins.searchPlaceholder': 'Hledat pluginy…',
@@ -440,8 +440,8 @@ const admin: TranslationStrings = {
   'admin.plugins.dep.download': 'Stáhnout',
   'admin.plugins.dep.update': 'Aktualizovat',
   'admin.plugins.dep.resolveHint': 'Stáhne nejnovější kompatibilní verzi včetně jejích vlastních závislostí.',
-  'admin.plugins.dep.trekIncompatible': 'Vyžaduje TREK {range} — tento server běží na {host}',
-  'admin.plugins.dep.trekUnknown': 'Neuvádí, které verze TREK podporuje',
+  'admin.plugins.dep.trekIncompatible': 'Vyžaduje Wanderly {range} — tento server běží na {host}',
+  'admin.plugins.dep.trekUnknown': 'Neuvádí, které verze Wanderly podporuje',
   'admin.plugins.installCompatible': 'Nainstalovat {version}',
   'admin.plugins.incompatible': 'Nekompatibilní',
   'admin.plugins.accessTitle': 'K čemu má přístup',
@@ -454,7 +454,7 @@ const admin: TranslationStrings = {
   'admin.plugins.metaReviewed': 'Zkontrolováno',
   'admin.plugins.downloads': 'Stažení',
   'admin.addons.title': 'Doplňky',
-  'admin.addons.subtitle': 'Zapněte nebo vypněte funkce a přizpůsobte si TREK.',
+  'admin.addons.subtitle': 'Zapněte nebo vypněte funkce a přizpůsobte si Wanderly.',
   'admin.addons.catalog.memories.name': 'Fotky (Immich)',
   'admin.addons.catalog.memories.description': 'Sdílejte cestovní fotky přes vaši instanci Immich',
   'admin.addons.catalog.packing.name': 'Seznamy',
@@ -534,11 +534,11 @@ const admin: TranslationStrings = {
   'admin.github.loading': 'Načítání...',
   'admin.github.error': 'Nepodařilo se načíst verze',
   'admin.github.by': 'od',
-  'admin.github.support': 'Pomáhá udržovat vývoj TREK',
+  'admin.github.support': 'Pomáhá udržovat vývoj Wanderly',
   'admin.weather.title': 'Data o počasí',
   'admin.weather.badge': 'Od 24. března 2026',
   'admin.weather.description':
-    'TREK používá Open-Meteo jako zdroj dat. Je to bezplatná open-source služba – není vyžadován API klíč.',
+    'Wanderly používá Open-Meteo jako zdroj dat. Je to bezplatná open-source služba – není vyžadován API klíč.',
   'admin.weather.forecast': 'Předpověď na 16 dní',
   'admin.weather.forecastDesc': 'Dříve 5 dní (OpenWeatherMap)',
   'admin.weather.climate': 'Historická klimatická data',
@@ -547,12 +547,12 @@ const admin: TranslationStrings = {
   'admin.weather.requestsDesc': 'Zdarma, bez nutnosti klíče',
   'admin.weather.locationHint': 'Počasí se určuje podle prvního místa se souřadnicemi v daném dni.',
   'admin.update.available': 'Dostupná aktualizace',
-  'admin.update.text': 'TREK {version} je k dispozici. Aktuálně používáte verzi {current}.',
+  'admin.update.text': 'Wanderly {version} je k dispozici. Aktuálně používáte verzi {current}.',
   'admin.update.button': 'Zobrazit na GitHubu',
   'admin.update.install': 'Instalovat aktualizaci',
   'admin.update.confirmTitle': 'Instalovat aktualizaci?',
   'admin.update.confirmText':
-    'TREK bude aktualizován z verze {current} na {version}. Server se poté automaticky restartuje.',
+    'Wanderly bude aktualizován z verze {current} na {version}. Server se poté automaticky restartuje.',
   'admin.update.dataInfo': 'Všechna vaše data (cesty, uživatelé, API klíče, soubory) budou zachována.',
   'admin.update.warning': 'Aplikace bude během restartu krátce nedostupná.',
   'admin.update.confirm': 'Aktualizovat nyní',
@@ -563,9 +563,9 @@ const admin: TranslationStrings = {
   'admin.update.backupLink': 'Přejít na zálohování',
   'admin.update.howTo': 'Jak aktualizovat',
   'admin.update.dockerText':
-    'Váš TREK běží v Dockeru. Pro aktualizaci na verzi {version} spusťte na svém serveru tyto příkazy:',
+    'Váš Wanderly běží v Dockeru. Pro aktualizaci na verzi {version} spusťte na svém serveru tyto příkazy:',
   'admin.update.nonDockerText':
-    'Tato instance TREK neběží v Dockeru. Pro aktualizaci na verzi {version} znovu spusťte instalační nebo aktualizační metodu, kterou jste použili — například u Proxmox Community Scripts spusťte aktualizaci z konzole LXC:',
+    'Tato instance Wanderly neběží v Dockeru. Pro aktualizaci na verzi {version} znovu spusťte instalační nebo aktualizační metodu, kterou jste použili — například u Proxmox Community Scripts spusťte aktualizaci z konzole LXC:',
   'admin.update.wikiLink': 'Otevřít průvodce aktualizací',
   'admin.update.reloadHint': 'Prosím obnovte stránku za několik sekund.',
   'admin.tabs.permissions': 'Oprávnění',

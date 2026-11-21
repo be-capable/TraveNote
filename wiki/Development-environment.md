@@ -19,8 +19,8 @@ Then clone your fork locally:
 
 ```bash
 # Clone your fork, checking out the dev branch
-git clone -b dev git@github.com:your-username/TREK.git
-cd TREK
+git clone -b dev git@github.com:your-username/Wanderly.git
+cd Wanderly
 ```
 
 ---
@@ -37,7 +37,7 @@ You should now have two remotes:
 
 | Remote     | URL                                          | Purpose                        |
 |------------|----------------------------------------------|--------------------------------|
-| `origin`   | `git@github.com:your-username/TREK.git`      | Your fork — push changes here  |
+| `origin`   | `git@github.com:your-username/Wanderly.git`      | Your fork — push changes here  |
 | `upstream` | `git@github.com:liketrek/TREK.git`         | Main repo — pull updates from here |
 
 ---

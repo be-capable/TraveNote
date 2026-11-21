@@ -242,7 +242,7 @@ const admin: TranslationStrings = {
   'admin.plugins.sourceRepo': 'Broncoderepository',
   'admin.plugins.reportIssue': 'Probleem melden',
   'admin.plugins.homepage': 'Homepage',
-  'admin.plugins.requiresTrek': 'Vereist TREK {version}+',
+  'admin.plugins.requiresTrek': 'Vereist Wanderly {version}+',
   'admin.plugins.reviewedOn': 'Beoordeeld op {date}',
   'admin.plugins.perm.db:own': 'Eigen gegevens opslaan in een geïsoleerde database',
   'admin.plugins.perm.db:read:trips': 'Reizen lezen waartoe de actieve gebruiker toegang heeft',
@@ -345,26 +345,26 @@ const admin: TranslationStrings = {
   'admin.plugins.updateLater': 'Voorlopig uit laten',
   'admin.plugins.updateKeptOff': 'Update geïnstalleerd — uit gelaten totdat je de nieuwe machtigingen goedkeurt',
   'admin.plugins.reviewedMeaning':
-    '"Beoordeeld" betekent dat een TREK-beheerder deze plugin bij elke versie op malware heeft gecontroleerd — niet op kwaliteit of op de vraag of hij werkt. Het is geen garantie dat een plugin ongevaarlijk is.',
+    '"Beoordeeld" betekent dat een Wanderly-beheerder deze plugin bij elke versie op malware heeft gecontroleerd — niet op kwaliteit of op de vraag of hij werkt. Het is geen garantie dat een plugin ongevaarlijk is.',
   'admin.plugins.security.title': 'Hoe plugins worden ingeperkt — en de grenzen',
   'admin.plugins.security.isolationTitle': 'Elke plugin draait afgeschermd',
   'admin.plugins.security.isolationBody':
-    "Een plugin draait als een eigen afgeschermd proces dat alleen zijn eigen bestanden kan lezen. Hij kan je database, je login-geheim of je versleutelingssleutel niet lezen, kan geen andere programma's starten en kan nergens bestanden wegschrijven. De interface draait in een afgesloten browserframe dat je sessiecookie niet kan lezen en de TREK-pagina eromheen niet kan aanraken.",
+    "Een plugin draait als een eigen afgeschermd proces dat alleen zijn eigen bestanden kan lezen. Hij kan je database, je login-geheim of je versleutelingssleutel niet lezen, kan geen andere programma's starten en kan nergens bestanden wegschrijven. De interface draait in een afgesloten browserframe dat je sessiecookie niet kan lezen en de Wanderly-pagina eromheen niet kan aanraken.",
   'admin.plugins.security.permsTitle': 'Wat de machtigingen betekenen',
   'admin.plugins.security.permsBody':
-    'De machtigingen die vóór het installeren worden getoond, zijn een harde grens die TREK afdwingt zolang de plugin draait — hij kan letterlijk niets doen wat niet op de lijst staat. Maar ze vertellen je wat een plugin kán doen, niet wat hij daadwerkelijk doet. Een plugin die je reizen mag lezen en een server mag bereiken, kan je reizen naar die server sturen; lees dus de machtigingen en de uitgaande hosts, niet alleen de beschrijving.',
+    'De machtigingen die vóór het installeren worden getoond, zijn een harde grens die Wanderly afdwingt zolang de plugin draait — hij kan letterlijk niets doen wat niet op de lijst staat. Maar ze vertellen je wat een plugin kán doen, niet wat hij daadwerkelijk doet. Een plugin die je reizen mag lezen en een server mag bereiken, kan je reizen naar die server sturen; lees dus de machtigingen en de uitgaande hosts, niet alleen de beschrijving.',
   'admin.plugins.security.limitsTitle': 'Wat we niet kunnen beloven',
   'admin.plugins.security.limitsBody':
-    'De isolatie is een sterke softwaregrens, geen absolute. Een plugin handelt met precies de rechten die je goedkeurt, dus binnen die rechten kan hij zich anders gedragen dan zijn beschrijving suggereert, en kan hij gegevens die hij rechtmatig bezit naar de door hem opgegeven hosts sturen. TREK leest of beoordeelt niet wat de code van een plugin daadwerkelijk doet.',
+    'De isolatie is een sterke softwaregrens, geen absolute. Een plugin handelt met precies de rechten die je goedkeurt, dus binnen die rechten kan hij zich anders gedragen dan zijn beschrijving suggereert, en kan hij gegevens die hij rechtmatig bezit naar de door hem opgegeven hosts sturen. Wanderly leest of beoordeelt niet wat de code van een plugin daadwerkelijk doet.',
   'admin.plugins.security.worstTitle': 'Het ergste geval',
   'admin.plugins.security.worstBody':
     "Een kwaadwillende plugin die je inschakelt, kan de gegevens en verbindingen die je hebt verleend misbruiken — bijvoorbeeld de reizen lekken die hij mag lezen. Hij kan geen wachtwoorden stelen, geen beheerderslogin vervalsen, geen commando's op je server uitvoeren en geen gegevens bereiken die je niet hebt verleend. De schade blijft binnen wat je hebt goedgekeurd, en de plugin uitschakelen stopt hem.",
   'admin.plugins.security.reviewedTitle': 'Wat "Beoordeeld" betekent',
   'admin.plugins.security.reviewedBody':
-    'Een beoordeelde plugin is bij elke versie handmatig door een TREK-beheerder op malware gecontroleerd — gecontroleerd op kwaadaardige code, niet op de vraag of hij goed werkt. Het is geen belofte dat de plugin ongevaarlijk is.',
+    'Een beoordeelde plugin is bij elke versie handmatig door een Wanderly-beheerder op malware gecontroleerd — gecontroleerd op kwaadaardige code, niet op de vraag of hij goed werkt. Het is geen belofte dat de plugin ongevaarlijk is.',
   'admin.plugins.security.signedTitle': 'Wat "Ondertekend" betekent',
   'admin.plugins.security.signedBody':
-    'De controlesom die TREK bij elke installatie verifieert, bewijst dat de bestanden precies zijn waarvoor de registry instaat. Een handtekening bewijst iets anders: dat ze van de auteur komen, ondertekend met een sleutel die alleen hij heeft. Een ondertekende plugin heeft beide. Een niet-ondertekende plugin is niet onveilig — hij draagt simpelweg één garantie minder, en de meeste plugins in de registry zijn vandaag niet ondertekend.',
+    'De controlesom die Wanderly bij elke installatie verifieert, bewijst dat de bestanden precies zijn waarvoor de registry instaat. Een handtekening bewijst iets anders: dat ze van de auteur komen, ondertekend met een sleutel die alleen hij heeft. Een ondertekende plugin heeft beide. Een niet-ondertekende plugin is niet onveilig — hij draagt simpelweg één garantie minder, en de meeste plugins in de registry zijn vandaag niet ondertekend.',
   'admin.plugins.signed': 'Ondertekend',
   'admin.plugins.signedHint': 'Bij de installatie geverifieerd tegen de ondertekeningssleutel van de auteur',
   'admin.plugins.unsigned': 'Niet ondertekend',
@@ -379,20 +379,20 @@ const admin: TranslationStrings = {
   'admin.plugins.sig.invalidBody':
     'De bestanden komen niet overeen met de handtekening van de auteur. Ze zijn niet wat de auteur heeft ondertekend — ze zijn beschadigd geraakt, of er is mee geknoeid. Dit kan niet worden genegeerd.',
   'admin.plugins.sig.missingBody':
-    'Deze plugin was ondertekend toen je hem installeerde, maar de nieuwe versie levert geen handtekening mee. TREK aanvaardt die stap terug niet stilzwijgend. Dit kan niet worden genegeerd.',
+    'Deze plugin was ondertekend toen je hem installeerde, maar de nieuwe versie levert geen handtekening mee. Wanderly aanvaardt die stap terug niet stilzwijgend. Dit kan niet worden genegeerd.',
   'admin.plugins.sig.incompleteBody':
     'Het registry-item is half ondertekend: het vermeldt een auteurssleutel, maar de versie draagt geen handtekening (of andersom). Dat is een fout aan de kant van de plugin. Dit kan niet worden genegeerd.',
   'admin.plugins.sig.pinnedKey': 'Sleutel waarmee hij is geïnstalleerd',
   'admin.plugins.sig.newKey': 'Sleutel die hij nu aanbiedt',
   'admin.plugins.sig.confirmOutOfBand':
-    'TREK kan een legitieme sleutelwissel niet onderscheiden van een overname — van hieruit zien ze er identiek uit. Bevestig de nieuwe sleutel bij de auteur via een kanaal dat je al vertrouwt voordat je hem accepteert. Zodra je dat doet, wordt de plugin bijgewerkt en wordt de nieuwe sleutel onthouden.',
+    'Wanderly kan een legitieme sleutelwissel niet onderscheiden van een overname — van hieruit zien ze er identiek uit. Bevestig de nieuwe sleutel bij de auteur via een kanaal dat je al vertrouwt voordat je hem accepteert. Zodra je dat doet, wordt de plugin bijgewerkt en wordt de nieuwe sleutel onthouden.',
   'admin.plugins.sig.retrustConfirm': 'Nieuwe sleutel vertrouwen en bijwerken',
   'admin.plugins.sig.cancel': 'Niet vertrouwen',
   'admin.plugins.sig.consentUnsigned':
     'Niets koppelt deze versie aan de auteur — de bestanden komen overeen met de registry, maar dragen geen handtekening van de auteur.',
   'admin.plugins.security.trustTitle': 'De conclusie',
   'admin.plugins.security.trustBody':
-    'Een plugin installeren is als het installeren van elke andere app van derden: voeg alleen code toe van auteurs die je vertrouwt en controleer deze bij twijfel eerst zelf. TREK aanvaardt geen enkele verantwoordelijkheid voor plugins van derden.',
+    'Een plugin installeren is als het installeren van elke andere app van derden: voeg alleen code toe van auteurs die je vertrouwt en controleer deze bij twijfel eerst zelf. Wanderly aanvaardt geen enkele verantwoordelijkheid voor plugins van derden.',
   'admin.plugins.runtimeOn': 'Runtime aan',
   'admin.plugins.tabDiscover': 'Ontdekken',
   'admin.plugins.searchPlaceholder': 'Plugins zoeken…',
@@ -449,8 +449,8 @@ const admin: TranslationStrings = {
   'admin.plugins.dep.download': 'Downloaden',
   'admin.plugins.dep.update': 'Bijwerken',
   'admin.plugins.dep.resolveHint': 'Downloadt de nieuwste compatibele versie, inclusief de eigen afhankelijkheden.',
-  'admin.plugins.dep.trekIncompatible': 'Vereist TREK {range} — deze server draait {host}',
-  'admin.plugins.dep.trekUnknown': 'Geeft niet aan welke TREK-versies worden ondersteund',
+  'admin.plugins.dep.trekIncompatible': 'Vereist Wanderly {range} — deze server draait {host}',
+  'admin.plugins.dep.trekUnknown': 'Geeft niet aan welke Wanderly-versies worden ondersteund',
   'admin.plugins.installCompatible': '{version} installeren',
   'admin.plugins.incompatible': 'Niet compatibel',
   'admin.plugins.accessTitle': 'Waartoe hij toegang heeft',
@@ -463,7 +463,7 @@ const admin: TranslationStrings = {
   'admin.plugins.metaReviewed': 'Beoordeeld op',
   'admin.plugins.downloads': 'Downloads',
   'admin.addons.title': 'Add-ons',
-  'admin.addons.subtitle': 'Schakel functies in of uit om je TREK-ervaring aan te passen.',
+  'admin.addons.subtitle': 'Schakel functies in of uit om je Wanderly-ervaring aan te passen.',
   'admin.addons.catalog.memories.name': "Foto's (Immich)",
   'admin.addons.catalog.memories.description': "Deel reisfoto's via je Immich-instantie",
   'admin.addons.catalog.mcp.name': 'MCP',
@@ -496,7 +496,7 @@ const admin: TranslationStrings = {
   'admin.weather.title': 'Weergegevens',
   'admin.weather.badge': 'Sinds 24 maart 2026',
   'admin.weather.description':
-    'TREK gebruikt Open-Meteo als weerbron. Open-Meteo is een gratis, open-source weerdienst — geen API-sleutel vereist.',
+    'Wanderly gebruikt Open-Meteo als weerbron. Open-Meteo is een gratis, open-source weerdienst — geen API-sleutel vereist.',
   'admin.weather.forecast': '16-daagse voorspelling',
   'admin.weather.forecastDesc': 'Voorheen 5 dagen (OpenWeatherMap)',
   'admin.weather.climate': 'Historische klimaatgegevens',
@@ -554,15 +554,15 @@ const admin: TranslationStrings = {
   'admin.github.hideDetails': 'Details verbergen',
   'admin.github.loadMore': 'Meer laden',
   'admin.github.loading': 'Laden...',
-  'admin.github.support': 'Helpt mij TREK verder te ontwikkelen',
+  'admin.github.support': 'Helpt mij Wanderly verder te ontwikkelen',
   'admin.github.error': 'Releases laden mislukt',
   'admin.github.by': 'door',
   'admin.update.available': 'Update beschikbaar',
-  'admin.update.text': 'TREK {version} is beschikbaar. Je draait {current}.',
+  'admin.update.text': 'Wanderly {version} is beschikbaar. Je draait {current}.',
   'admin.update.button': 'Bekijk op GitHub',
   'admin.update.install': 'Update installeren',
   'admin.update.confirmTitle': 'Update installeren?',
-  'admin.update.confirmText': 'TREK wordt bijgewerkt van {current} naar {version}. De server herstart automatisch.',
+  'admin.update.confirmText': 'Wanderly wordt bijgewerkt van {current} naar {version}. De server herstart automatisch.',
   'admin.update.dataInfo':
     'Al je gegevens (reizen, gebruikers, API-sleutels, uploads, Vacay, Atlas, budgetten) worden bewaard.',
   'admin.update.warning': 'De app is kort niet beschikbaar tijdens het herstarten.',
@@ -574,9 +574,9 @@ const admin: TranslationStrings = {
   'admin.update.backupLink': 'Naar back-up',
   'admin.update.howTo': 'Hoe bij te werken',
   'admin.update.dockerText':
-    "Je TREK-instantie draait in Docker. Om bij te werken naar {version}, voer de volgende commando's uit op je server:",
+    "Je Wanderly-instantie draait in Docker. Om bij te werken naar {version}, voer de volgende commando's uit op je server:",
   'admin.update.nonDockerText':
-    'Deze TREK-instantie draait niet in Docker. Om bij te werken naar {version}, voer de installatie- of updatemethode die je hebt gebruikt opnieuw uit — bij Proxmox Community Scripts voer je de update bijvoorbeeld uit vanuit de LXC-console:',
+    'Deze Wanderly-instantie draait niet in Docker. Om bij te werken naar {version}, voer de installatie- of updatemethode die je hebt gebruikt opnieuw uit — bij Proxmox Community Scripts voer je de update bijvoorbeeld uit vanuit de LXC-console:',
   'admin.update.wikiLink': 'Open de updatehandleiding',
   'admin.update.reloadHint': 'Herlaad de pagina over een paar seconden.',
   'admin.tabs.permissions': 'Rechten',

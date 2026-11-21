@@ -22,7 +22,7 @@ const notif: TranslationStrings = {
   'notif.packing_tagged.title': "Assignació d'equipatge",
   'notif.packing_tagged.text': '{actor} et va assignar a {category} a {trip}',
   'notif.version_available.title': 'Versió nova disponible',
-  'notif.version_available.text': 'TREK {version} ja està disponible',
+  'notif.version_available.text': 'Wanderly {version} ja està disponible',
   'notif.action.view_trip': 'Mostra el viatge',
   'notif.action.view_collab': 'Mostra els missatges',
   'notif.action.view_packing': "Mostra l'equipatge",

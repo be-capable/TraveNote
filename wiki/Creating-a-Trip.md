@@ -30,7 +30,7 @@ You cannot set only one date and leave the other blank via normal interaction �
 
 The trip's currency — its **accounting base**. Every expense in the Costs tab is converted into it, and every balance and settle-up suggestion is calculated in it. Defaults to **EUR**; 165 currencies are available.
 
-Pick the currency you will actually settle up in. It is not a cosmetic label, but it is not a one-way door either: you can change it later from the same dialog (with the `trip_edit` permission), and TREK re-bases the existing expenses so no money moves — see [Currencies → Changing the trip currency](Currencies#changing-the-trip-currency).
+Pick the currency you will actually settle up in. It is not a cosmetic label, but it is not a one-way door either: you can change it later from the same dialog (with the `trip_edit` permission), and Wanderly re-bases the existing expenses so no money moves — see [Currencies → Changing the trip currency](Currencies#changing-the-trip-currency).
 
 > This is **not** the same as the display currency in Settings → General, which only changes what *you* read. See [Currencies](Currencies).
 

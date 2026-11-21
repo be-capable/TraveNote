@@ -1,6 +1,6 @@
 # Appearance Settings
 
-Tune how TREK looks — colour mode, accent scheme, readability, and which dashboard widgets you see.
+Tune how Wanderly looks — colour mode, accent scheme, readability, and which dashboard widgets you see.
 
 ![Settings page on the Appearance tab showing the Light / Dark / Auto colour mode buttons, the eight colour scheme swatches, and the Readability section with transparency, reduce motion and density controls](assets/UsrSettingsAppearance.png)
 
@@ -22,7 +22,7 @@ Three segmented buttons: **Light**, **Dark**, and **Auto**. **Auto** follows you
 
 A grid of accent schemes, each with a colour dot that previews in your current mode:
 
-- **Default** — TREK's monochrome look.
+- **Default** — Wanderly's monochrome look.
 - **High contrast** — raises text and border contrast.
 - **Indigo**, **Teal**, **Rose**, **Amber**, **Violet** — coloured accents.
 - **Custom** — pick your own accent (below).
@@ -39,7 +39,7 @@ Next to the pickers, a live contrast badge evaluates the accent you are currentl
 - **Good contrast (n.n:1)** — the ratio meets WCAG AA for normal text (4.5:1 or better).
 - **Low contrast (n.n:1)** — below 4.5:1; white text on that accent will be hard to read.
 
-The badge is advisory. TREK will still let you apply a low-contrast accent.
+The badge is advisory. Wanderly will still let you apply a low-contrast accent.
 
 ## Readability
 

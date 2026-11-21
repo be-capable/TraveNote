@@ -352,17 +352,17 @@ export interface PhotoProvider {
  * A channel plugin never touches i18n — it only delivers.
  */
 export interface NotificationMessage {
-  /** The TREK event that produced this, e.g. `trip_invite`. */
+  /** The Wanderly event that produced this, e.g. `trip_invite`. */
   event: string;
   title: string;
   body: string;
-  /** Absolute deep link back into TREK, when the event has one. */
+  /** Absolute deep link back into Wanderly, when the event has one. */
   url?: string;
   tripName?: string;
 }
 
 /**
- * Deliver TREK notifications over a channel TREK doesn't ship (Gotify, Pushover, …).
+ * Deliver Wanderly notifications over a channel Wanderly doesn't ship (Gotify, Pushover, …).
  * Needs `hook:notification-channel`.
  *
  * Unlike every other hook, this one is HOST-initiated for an arbitrary recipient, so
@@ -392,12 +392,12 @@ export interface CalendarSource {
   getName(ctx: PluginContext): string;
   getEvents(userId: number, start: string, end: string, ctx: PluginContext): Promise<CalendarEvent[]>;
 }
-/** One row of extra place info TREK renders natively (reviews/ratings/links/…). */
+/** One row of extra place info Wanderly renders natively (reviews/ratings/links/…). */
 export interface PlaceDetailItem { label: string; value?: string; url?: string; }
 export interface PlaceDetailProvider {
   getDetails(placeId: number, ctx: PluginContext): Promise<PlaceDetailItem[]>;
 }
-/** A validation/warning a plugin raises on a trip; TREK surfaces it in the planner. */
+/** A validation/warning a plugin raises on a trip; Wanderly surfaces it in the planner. */
 export interface TripWarning { level: 'info' | 'warning' | 'error'; message: string; dayId?: number; placeId?: number; }
 export interface WarningProvider {
   getWarnings(tripId: number, ctx: PluginContext): Promise<TripWarning[]>;
@@ -483,7 +483,7 @@ export interface AtlasLayerProvider {
   getLayers(ctx: PluginContext): Promise<AtlasLayer[]>;
 }
 
-/** One row of extra info TREK renders under a journal entry (same shape as PlaceDetailItem). */
+/** One row of extra info Wanderly renders under a journal entry (same shape as PlaceDetailItem). */
 export interface JournalEntryRow { label: string; value?: string; url?: string; }
 export interface JournalEntryProvider {
   /** Return rows for a journal entry. Runs with the current user bound, on a short
@@ -537,7 +537,7 @@ export interface PluginDefinition {
   /** Handles a callback registered via ctx.scheduler (userless, like a job). The
    * `name` identifies which scheduled task fired; `payload` is what you passed. */
   scheduled?(input: { name: string; payload: unknown }, ctx: PluginContext): Promise<void> | void;
-  /** GDPR erasure: a TREK account was deleted — remove everything you hold about it
+  /** GDPR erasure: a Wanderly account was deleted — remove everything you hold about it
    * from your OWN db. Userless (no acting user). Needs `hook:user-data`. The host
    * calls this durably (queued, retried until it succeeds), so make it idempotent. */
   deleteUserData?(input: { userId: number }, ctx: PluginContext): Promise<void> | void;

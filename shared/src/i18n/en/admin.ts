@@ -293,7 +293,7 @@ const admin: TranslationStrings = {
   'admin.plugins.sourceRepo': 'Source repository',
   'admin.plugins.reportIssue': 'Report an issue',
   'admin.plugins.homepage': 'Homepage',
-  'admin.plugins.requiresTrek': 'Requires TREK {version}+',
+  'admin.plugins.requiresTrek': 'Requires Wanderly {version}+',
   'admin.plugins.reviewedOn': 'Reviewed {date}',
   'admin.plugins.perm.db:own': 'Store its own data in an isolated database',
   'admin.plugins.perm.db:read:trips': 'Read trips the acting user can access',
@@ -380,26 +380,26 @@ const admin: TranslationStrings = {
   'admin.plugins.updateLater': 'Keep off for now',
   'admin.plugins.updateKeptOff': 'Update installed — left off until you approve the new permissions',
   'admin.plugins.reviewedMeaning':
-    '"Reviewed" means a TREK maintainer scanned this plugin for malware on each version — not for quality or whether it works. It is not a guarantee that a plugin is harmless.',
+    '"Reviewed" means a Wanderly maintainer scanned this plugin for malware on each version — not for quality or whether it works. It is not a guarantee that a plugin is harmless.',
   'admin.plugins.security.title': 'How plugins are contained — and the limits',
   'admin.plugins.security.isolationTitle': 'Every plugin runs boxed in',
   'admin.plugins.security.isolationBody':
-    "A plugin runs as its own locked-down process that can only read its own files. It cannot read your database, your login secret or your encryption key, cannot start other programs, and cannot write files anywhere. Its interface runs in a sealed browser frame that can't read your session cookie or touch the TREK page around it.",
+    "A plugin runs as its own locked-down process that can only read its own files. It cannot read your database, your login secret or your encryption key, cannot start other programs, and cannot write files anywhere. Its interface runs in a sealed browser frame that can't read your session cookie or touch the Wanderly page around it.",
   'admin.plugins.security.permsTitle': 'What the permissions mean',
   'admin.plugins.security.permsBody':
-    "The permissions shown before you install are a hard limit that TREK enforces while the plugin runs — it literally cannot do anything that isn't on the list. But they tell you what a plugin can do, not what it actually does. A plugin allowed to read your trips and reach a server can send your trips to that server, so read the permissions and the outbound hosts, not just the description.",
+    "The permissions shown before you install are a hard limit that Wanderly enforces while the plugin runs — it literally cannot do anything that isn't on the list. But they tell you what a plugin can do, not what it actually does. A plugin allowed to read your trips and reach a server can send your trips to that server, so read the permissions and the outbound hosts, not just the description.",
   'admin.plugins.security.limitsTitle': "What we can't promise",
   'admin.plugins.security.limitsBody':
-    "The isolation is a strong software boundary, not an absolute one. A plugin acts with exactly the rights you approve, so within those rights it can behave differently than its description suggests, and it can send data it legitimately holds to the hosts it declared. TREK does not read or judge what a plugin's code actually does.",
+    "The isolation is a strong software boundary, not an absolute one. A plugin acts with exactly the rights you approve, so within those rights it can behave differently than its description suggests, and it can send data it legitimately holds to the hosts it declared. Wanderly does not read or judge what a plugin's code actually does.",
   'admin.plugins.security.worstTitle': 'The worst case',
   'admin.plugins.security.worstBody':
     "A hostile plugin you turn on can misuse the data and connections you granted it — for example, leak the trips it is allowed to read. It cannot steal passwords, forge an admin login, run commands on your server, or reach data you didn't grant. The damage stays inside what you approved, and turning the plugin off stops it.",
   'admin.plugins.security.reviewedTitle': 'What "Reviewed" means',
   'admin.plugins.security.reviewedBody':
-    'A reviewed plugin was manually scanned for malware by a TREK maintainer on each version — checked for hostile code, not for whether it works well. It is not a promise that the plugin is harmless.',
+    'A reviewed plugin was manually scanned for malware by a Wanderly maintainer on each version — checked for hostile code, not for whether it works well. It is not a promise that the plugin is harmless.',
   'admin.plugins.security.signedTitle': 'What "Signed" means',
   'admin.plugins.security.signedBody':
-    'The checksum TREK verifies on every install proves the files are exactly what the registry vouches for. A signature proves something different: that they came from the author, signed with a key only they hold. A signed plugin has both. An unsigned one is not unsafe — it simply carries one guarantee fewer, and most plugins in the registry are unsigned today.',
+    'The checksum Wanderly verifies on every install proves the files are exactly what the registry vouches for. A signature proves something different: that they came from the author, signed with a key only they hold. A signed plugin has both. An unsigned one is not unsafe — it simply carries one guarantee fewer, and most plugins in the registry are unsigned today.',
   'admin.plugins.signed': 'Signed',
   'admin.plugins.signedHint': "Verified against the author's signing key when it was installed",
   'admin.plugins.unsigned': 'Unsigned',
@@ -414,20 +414,20 @@ const admin: TranslationStrings = {
   'admin.plugins.sig.invalidBody':
     "The files do not match the author's signature. They are not what the author signed — either they were corrupted, or they were tampered with. This cannot be overridden.",
   'admin.plugins.sig.missingBody':
-    'This plugin was signed when you installed it, but the new version ships no signature. TREK will not quietly accept the downgrade. This cannot be overridden.',
+    'This plugin was signed when you installed it, but the new version ships no signature. Wanderly will not quietly accept the downgrade. This cannot be overridden.',
   'admin.plugins.sig.incompleteBody':
     'The registry entry is half-signed: it declares an author key but the version carries no signature (or the reverse). That is a mistake on the plugin side. This cannot be overridden.',
   'admin.plugins.sig.pinnedKey': 'Key it was installed with',
   'admin.plugins.sig.newKey': 'Key it is offering now',
   'admin.plugins.sig.confirmOutOfBand':
-    'TREK cannot tell a legitimate key rotation apart from a takeover — both look identical from here. Confirm the new key with the author through a channel you already trust before you accept it. Once you do, the plugin is updated and the new key is remembered.',
+    'Wanderly cannot tell a legitimate key rotation apart from a takeover — both look identical from here. Confirm the new key with the author through a channel you already trust before you accept it. Once you do, the plugin is updated and the new key is remembered.',
   'admin.plugins.sig.retrustConfirm': 'Trust the new key & update',
   'admin.plugins.sig.cancel': 'Do not trust it',
   'admin.plugins.sig.consentUnsigned':
     'Nothing ties this version to its author — the files match the registry, but they carry no author signature.',
   'admin.plugins.security.trustTitle': 'The bottom line',
   'admin.plugins.security.trustBody':
-    'Installing a plugin is like installing any third-party app: only add code from authors you trust, and when in doubt, inspect it yourself first. TREK takes no responsibility for third-party plugins.',
+    'Installing a plugin is like installing any third-party app: only add code from authors you trust, and when in doubt, inspect it yourself first. Wanderly takes no responsibility for third-party plugins.',
   'admin.plugins.runtimeOn': 'Runtime on',
   'admin.plugins.tabDiscover': 'Discover',
   'admin.plugins.searchPlaceholder': 'Search plugins…',
@@ -484,8 +484,8 @@ const admin: TranslationStrings = {
   'admin.plugins.dep.download': 'Download',
   'admin.plugins.dep.update': 'Update',
   'admin.plugins.dep.resolveHint': 'Downloads the latest compatible version, including its own dependencies.',
-  'admin.plugins.dep.trekIncompatible': 'Needs TREK {range} — this server runs {host}',
-  'admin.plugins.dep.trekUnknown': 'Does not say which TREK versions it supports',
+  'admin.plugins.dep.trekIncompatible': 'Needs Wanderly {range} — this server runs {host}',
+  'admin.plugins.dep.trekUnknown': 'Does not say which Wanderly versions it supports',
   'admin.plugins.installCompatible': 'Install {version}',
   'admin.plugins.incompatible': 'Incompatible',
   'admin.plugins.accessTitle': 'What it can access',
@@ -498,7 +498,7 @@ const admin: TranslationStrings = {
   'admin.plugins.metaReviewed': 'Reviewed on',
   'admin.plugins.downloads': 'Downloads',
   'admin.addons.title': 'Addons',
-  'admin.addons.subtitle': 'Enable or disable features to customize your TREK experience.',
+  'admin.addons.subtitle': 'Enable or disable features to customize your Wanderly experience.',
   'admin.addons.catalog.packing.name': 'Lists',
   'admin.addons.catalog.packing.description': 'Packing lists and to-do tasks for your trips',
   'admin.addons.catalog.budget.name': 'Costs',
@@ -531,7 +531,7 @@ const admin: TranslationStrings = {
   'admin.weather.title': 'Weather Data',
   'admin.weather.badge': 'Since March 24, 2026',
   'admin.weather.description':
-    'TREK uses Open-Meteo as its weather data source. Open-Meteo is a free, open-source weather service — no API key required.',
+    'Wanderly uses Open-Meteo as its weather data source. Open-Meteo is a free, open-source weather service — no API key required.',
   'admin.weather.forecast': '16-day forecast',
   'admin.weather.forecastDesc': 'Previously 5 days (OpenWeatherMap)',
   'admin.weather.climate': 'Historical climate data',
@@ -590,14 +590,14 @@ const admin: TranslationStrings = {
   'admin.github.loading': 'Loading...',
   'admin.github.error': 'Failed to load releases',
   'admin.github.by': 'by',
-  'admin.github.support': 'Helps me keep building TREK',
+  'admin.github.support': 'Helps me keep building Wanderly',
   'admin.update.available': 'Update available',
-  'admin.update.text': 'TREK {version} is available. You are running {current}.',
+  'admin.update.text': 'Wanderly {version} is available. You are running {current}.',
   'admin.update.button': 'View on GitHub',
   'admin.update.install': 'Install Update',
   'admin.update.confirmTitle': 'Install Update?',
   'admin.update.confirmText':
-    'TREK will be updated from {current} to {version}. The server will restart automatically afterwards.',
+    'Wanderly will be updated from {current} to {version}. The server will restart automatically afterwards.',
   'admin.update.dataInfo': 'All your data (trips, users, API keys, uploads, Vacay, Atlas, budgets) will be preserved.',
   'admin.update.warning': 'The app will be briefly unavailable during the restart.',
   'admin.update.confirm': 'Update Now',
@@ -608,9 +608,9 @@ const admin: TranslationStrings = {
   'admin.update.backupLink': 'Go to Backup',
   'admin.update.howTo': 'How to Update',
   'admin.update.dockerText':
-    'Your TREK instance runs in Docker. To update to {version}, run the following commands on your server:',
+    'Your Wanderly instance runs in Docker. To update to {version}, run the following commands on your server:',
   'admin.update.nonDockerText':
-    'This TREK instance is not running in Docker. To update to {version}, re-run the install or update method you used — for example, on Proxmox Community Scripts run the update from the LXC console:',
+    'This Wanderly instance is not running in Docker. To update to {version}, re-run the install or update method you used — for example, on Proxmox Community Scripts run the update from the LXC console:',
   'admin.update.wikiLink': 'Open the update guide',
   'admin.update.reloadHint': 'Please reload the page in a few seconds.',
   'admin.tabs.permissions': 'Permissions',

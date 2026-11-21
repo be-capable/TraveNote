@@ -29,7 +29,7 @@ Both views share a toolbar: a **Search plugins…** box, a **Type** filter (Widg
 2. Click a card to open the **pre-install review dialog** (see below).
 3. Click **Install**.
 
-If the newest release requires a newer TREK than you are running, the button changes: when an older release still fits you get **Install {version}** for that one; when nothing fits, the button reads **Incompatible** and is disabled. Either way the dialog explains why in an amber note — it does not hide the reason behind a tooltip.
+If the newest release requires a newer Wanderly than you are running, the button changes: when an older release still fits you get **Install {version}** for that one; when nothing fits, the button reads **Incompatible** and is disabled. Either way the dialog explains why in an amber note — it does not hide the reason behind a tooltip.
 
 A newly installed plugin is **off**. Nothing runs until you enable it.
 
@@ -40,7 +40,7 @@ Before installing, read these sections:
 - **What it can access** — the plugin's requested permissions, rendered as plain-language lines ("Read the trips…", "Create and edit places…"). Unknown permission codes appear verbatim. If it asks for nothing, this reads *Needs no special access.*
 - **Connects to** — every host the manifest declares it may reach, as monospace chips.
 - **Setup** — settings the plugin will ask you (or each user) to fill in, tagged **Instance-wide** or **Per user**, and **Required** where applicable.
-- **Details** — version, size, the TREK version range it requires, when it was reviewed, and total downloads.
+- **Details** — version, size, the Wanderly version range it requires, when it was reviewed, and total downloads.
 
 A footer links to the **Source repository**, **Report an issue**, and the plugin's **Homepage**.
 
@@ -72,7 +72,7 @@ The row's **⋯** menu offers **Restart** (active plugins only), **View error lo
 
 When a newer version exists, the row grows an **Update → v{version}** button, and a bar above the list reads *{count} updates available for your plugins.* with an **Update all** button.
 
-If the new version requests rights you have not granted, TREK installs it but leaves it off and shows **This update needs new permissions**:
+If the new version requests rights you have not granted, Wanderly installs it but leaves it off and shows **This update needs new permissions**:
 
 > *{name} v{version} is asking for rights you haven't granted yet. The new version is installed but stays off until you approve it.*
 
@@ -82,7 +82,7 @@ The dialog lists **Newly requested permissions** and **New outbound connections*
 
 If an author's signing key no longer matches the one pinned at install, the update is refused and the row shows **Update blocked — {reason}** with a **Review** link. The dialog then shows the pinned key fingerprint next to the offered one:
 
-> *TREK cannot tell a legitimate key rotation apart from a takeover — both look identical from here. Confirm the new key with the author through a channel you already trust before you accept it.*
+> *Wanderly cannot tell a legitimate key rotation apart from a takeover — both look identical from here. Confirm the new key with the author through a channel you already trust before you accept it.*
 
 Only a **changed key** can be overridden (**Trust the new key & update**). A signature that is invalid, missing, or half-declared gets an explanation and **no override button at all** — the server refuses those too.
 
@@ -92,11 +92,11 @@ Only a **changed key** can be overridden (**Trust the new key & update**). A sig
 
 ## Badges: what they do and do not guarantee
 
-- **Reviewed** — *"Reviewed" means a TREK maintainer scanned this plugin for malware on each version — not for quality or whether it works. It is not a guarantee that a plugin is harmless.*
+- **Reviewed** — *"Reviewed" means a Wanderly maintainer scanned this plugin for malware on each version — not for quality or whether it works. It is not a guarantee that a plugin is harmless.*
 - **Signed** — the files were verified against the author's signing key at install, and that key is pinned. A checksum already proves the files are what the *registry* vouches for; a signature proves they came from the *author*.
 - **Unsigned** — *The files match what the registry vouches for, but nothing ties them to the author. One guarantee fewer — not unsafe.* Most registry plugins are unsigned today, which is why this is an amber note rather than an alarm.
 
-Neither badge says anything about what the code *does*. A collapsible **How plugins are contained — and the limits** panel at the bottom of the tab spells out the isolation model, what permissions really constrain, what TREK cannot promise, and the worst case. Read it once.
+Neither badge says anything about what the code *does*. A collapsible **How plugins are contained — and the limits** panel at the bottom of the tab spells out the isolation model, what permissions really constrain, what Wanderly cannot promise, and the worst case. Read it once.
 
 ## Sideloading and dev-linking
 

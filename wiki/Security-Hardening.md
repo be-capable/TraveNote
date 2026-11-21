@@ -1,6 +1,6 @@
 # Security Hardening
 
-A production TREK deployment checklist. All items reference actual TREK configuration options.
+A production Wanderly deployment checklist. All items reference actual Wanderly configuration options.
 
 ## Encryption & Secrets
 
@@ -10,7 +10,7 @@ A production TREK deployment checklist. All items reference actual TREK configur
 
 ## HTTPS & Network
 
-- [ ] Run TREK behind a TLS-terminating reverse proxy (nginx, Caddy, Traefik). See [Reverse-Proxy](Reverse-Proxy).
+- [ ] Run Wanderly behind a TLS-terminating reverse proxy (nginx, Caddy, Traefik). See [Reverse-Proxy](Reverse-Proxy).
 - [ ] Set `TRUST_PROXY=1` so client IPs are captured correctly in the audit log. In `NODE_ENV=production` this defaults to `1` automatically, but set it explicitly if you use a non-standard proxy hop count.
 - [ ] Set `FORCE_HTTPS=true` to enable HSTS (`max-age=31536000`), redirect HTTP to HTTPS, and add `upgrade-insecure-requests` to the CSP. Requires `TRUST_PROXY` — omitting it causes a redirect loop.
 - [ ] Keep `ALLOW_INTERNAL_NETWORK=false` unless Immich or Synology is on your LAN. See [Internal-Network-Access](Internal-Network-Access). Note: loopback (`127.x`, `::1`) and link-local (`169.254.x`) addresses are always blocked regardless of this setting.
@@ -24,14 +24,14 @@ A production TREK deployment checklist. All items reference actual TREK configur
 
 ## Session Security
 
-TREK stores sessions as JWTs in an httpOnly `trek_session` cookie (SameSite=Lax, 24-hour expiry). The `secure` flag is set automatically when `NODE_ENV=production` or `FORCE_HTTPS=true`. Tokens are also accepted via `Authorization: Bearer` header for MCP and API clients.
+Wanderly stores sessions as JWTs in an httpOnly `trek_session` cookie (SameSite=Lax, 24-hour expiry). The `secure` flag is set automatically when `NODE_ENV=production` or `FORCE_HTTPS=true`. Tokens are also accepted via `Authorization: Bearer` header for MCP and API clients.
 
 - [ ] Ensure `FORCE_HTTPS=true` (or `NODE_ENV=production`) so the `trek_session` cookie carries the `secure` flag and is never sent over plain HTTP.
 - [ ] Set `COOKIE_SECURE=false` only as a temporary escape hatch for LAN testing without TLS — do not use in production.
 
 ## Password Policy
 
-TREK enforces a minimum password policy on all registrations and password changes:
+Wanderly enforces a minimum password policy on all registrations and password changes:
 
 - Minimum 8 characters
 - Must contain uppercase, lowercase, digit, and special character
@@ -51,7 +51,7 @@ Built-in in-memory rate limits protect authentication endpoints:
 | Password change | 5 attempts | 15 minutes |
 | MCP token creation | 5 attempts | 15 minutes |
 
-These limits are per source IP. If TREK is behind a reverse proxy, set `TRUST_PROXY` so the real client IP is used rather than the proxy's IP.
+These limits are per source IP. If Wanderly is behind a reverse proxy, set `TRUST_PROXY` so the real client IP is used rather than the proxy's IP.
 
 ## Content Security Policy
 
@@ -66,7 +66,7 @@ Helmet applies a strict CSP on all responses. Key directives:
 
 ## Plugin Runtime Hardening
 
-Installed plugins run **untrusted third-party code**. TREK contains a plugin in several independent layers so a hostile or buggy plugin can neither read TREK's data nor take the instance down. Nothing here needs configuration — it is all on by default — but the escape hatches below exist for tuning.
+Installed plugins run **untrusted third-party code**. Wanderly contains a plugin in several independent layers so a hostile or buggy plugin can neither read Wanderly's data nor take the instance down. Nothing here needs configuration — it is all on by default — but the escape hatches below exist for tuning.
 
 - [ ] Leave the plugin system's defaults in place. It is **on by default** but installed plugins still have to be **activated one by one**, so no third-party code runs until an admin turns a specific plugin on. Set `TREK_PLUGINS_ENABLED=false` (accepts `false`/`0`/`off`/`no`) to switch the whole system off — installed plugins stay on disk, deactivated, and the runtime is idle.
 - [ ] Keep the **OS permission jail** enabled (the default). In production each plugin runs in an isolated child process launched with Node's `--permission` model: filesystem **writes**, `child_process`, worker threads and native addons are denied outright, and reads are scoped to just the plugin's own code — so a plugin cannot read `trek.db` or the secret files, or shell out. The child's environment is scrubbed (no `JWT_SECRET`, no DB credentials). Setting `TREK_PLUGIN_PERMISSIONS=off` disables this jail (isolation then falls back to crash-only) and logs a loud warning — only ever do this on a machine you fully trust.
@@ -79,12 +79,12 @@ Installed plugins run **untrusted third-party code**. TREK contains a plugin in 
 ## Backups
 
 - [ ] Enable auto-backup with an appropriate retention window. See [Backups](Backups).
-- [ ] Store backups off-site — copy backup ZIPs to a separate location outside the TREK host.
+- [ ] Store backups off-site — copy backup ZIPs to a separate location outside the Wanderly host.
 
 ## Monitoring
 
 - [ ] Review the audit log periodically for unexpected logins or admin changes. See [Audit-Log](Audit-Log).
-- [ ] Check for TREK updates regularly. See [Admin-GitHub-Releases](Admin-GitHub-Releases) and [Updating](Updating).
+- [ ] Check for Wanderly updates regularly. See [Admin-GitHub-Releases](Admin-GitHub-Releases) and [Updating](Updating).
 
 ## See also
 

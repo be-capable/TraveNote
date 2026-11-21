@@ -78,7 +78,7 @@ Repo) and names the one command to run next; it is for orientation, so it never 
 
 Between them they now catch, **offline**, nearly everything the registry rejects for:
 
-- an `icon` that isn't a real lucide name (TREK falls back to `Blocks` silently, so a
+- an `icon` that isn't a real lucide name (Wanderly falls back to `Blocks` silently, so a
   typo is invisible locally — but CI rejects it)
 - a README missing any of the four required sections, still carrying scaffold
   placeholders, or under **400 characters** of real prose
@@ -87,7 +87,7 @@ Between them they now catch, **offline**, nearly everything the registry rejects
 - a permission your manifest declares but the README never explains
 - a `name`, `description` or `author` outside the registry's length limits, or a name
   that mixes Latin with Cyrillic/Greek look-alikes (a homoglyph spoof)
-- an `egress[]` host with no matching `http:outbound:<host>` permission — TREK builds
+- an `egress[]` host with no matching `http:outbound:<host>` permission — Wanderly builds
   the network allow-list and the iframe CSP from those permissions only and never reads
   `egress[]`, so such a host is silently unreachable at runtime
 
@@ -104,9 +104,9 @@ npm i -D playwright && npx playwright install chromium   # once — not an SDK d
 npx trek-plugin-sdk shot                                 # --dark for the dark theme
 ```
 
-`shot` boots the dev server, renders your plugin in the same themed frame TREK uses,
+`shot` boots the dev server, renders your plugin in the same themed frame Wanderly uses,
 and writes a 1600×900 `docs/screenshot.png`. An `integration` plugin has no UI to
-render, so `shot` can't help — screenshot the TREK surface your plugin changes instead.
+render, so `shot` can't help — screenshot the Wanderly surface your plugin changes instead.
 
 Commit the screenshot. The registry resolves it **at the pinned commit**, so an image
 that exists only in your working tree fails CI even though `status` was green.
@@ -123,7 +123,7 @@ npx trek-plugin-sdk pack . --json          # machine-readable result
 and **size** you'd otherwise compute by hand. It refuses to pack a plugin that could
 not *load* — a broken manifest, a missing `server/index.js`, a native binary — but it
 deliberately does **not** enforce the publish gates (an unwritten README, a missing
-screenshot), because packing is also how you sideload a plugin into a local TREK to try
+screenshot), because packing is also how you sideload a plugin into a local Wanderly to try
 it, and the docs only have to be there when you ship. `validate` is what gates those.
 It ships
 only what the runtime needs — `trek-plugin.json`, `README.md`, `LICENSE`,
@@ -167,12 +167,12 @@ npx trek-plugin-sdk entry \
 `entry` reads your manifest and `plugin.zip` and emits the complete entry —
 deriving `commitSha` (from `git rev-parse <tag>^{commit}`), `downloadUrl`,
 `sha256`, `size`, `apiVersion`, and **`trek`** — your manifest's range, verbatim.
-That range is the entry's only compatibility field: it is what TREK gates installs
+That range is the entry's only compatibility field: it is what Wanderly gates installs
 and activation on. (The older `minTrekVersion`/`maxTrekVersion` are **deprecated**
 and no longer emitted — the first merely restated the range's lower bound, and the
 second is *inclusive*, so it cannot express `<4.0.0` at all. Entries published
 before `trek` existed may still carry them.) `entry` refuses to build an entry for a
-manifest with no usable `trek` range, because TREK would refuse to install it. Flags: `--zip`
+manifest with no usable `trek` range, because Wanderly would refuse to install it. Flags: `--zip`
 (default `plugin.zip`), `--commit <sha>` to override commit resolution, `--asset`
 to name a differently-named release asset, `--merge` for updates (below), and
 `--out` to write a file.
@@ -266,9 +266,9 @@ declares (each permission string must appear in the README).
 ## Provenance & integrity
 
 - `commitSha` pins the exact source the maintainer reviewed (git tags are movable).
-- `sha256` pins the exact artifact bytes TREK will run (release assets are mutable).
+- `sha256` pins the exact artifact bytes Wanderly will run (release assets are mutable).
 
-TREK verifies the downloaded bytes against `sha256` and refuses to install on a
+Wanderly verifies the downloaded bytes against `sha256` and refuses to install on a
 mismatch. A `reviewedAt` date on your entry means a maintainer looked at that
 exact commit — it is **not** an ongoing guarantee. `reviewedAt` and `boundOwner`
 are maintained by CI on merge; don't set them yourself.
@@ -279,7 +279,7 @@ are maintained by CI on merge; don't set them yourself.
 signature additionally proves the bytes were signed by **you**, so a compromised
 registry can't ship attacker code under your name. The entry schema allows two
 optional fields — `authorPublicKey` on the entry and `signature` on each version.
-TREK verifies the signature offline (minisign / Ed25519, no external service) and
+Wanderly verifies the signature offline (minisign / Ed25519, no external service) and
 pins your key on first install (trust-on-first-use): a later release signed with a
 different key is refused until an admin re-trusts it.
 

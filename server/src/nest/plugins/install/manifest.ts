@@ -90,11 +90,11 @@ export interface PluginManifest {
   homepage?: string;
   icon?: string;
   type: 'integration' | 'page' | 'widget' | 'trip-page';
-  /** The raw semver RANGE of TREK versions this plugin supports (">=3.2.0 <4.0.0"). */
+  /** The raw semver RANGE of Wanderly versions this plugin supports (">=3.2.0 <4.0.0"). */
   trek?: string;
   /** Same range, normalized: a valid+satisfiable one, or null. What the host gates on. */
   trekRange: string | null;
-  /** The range's lower bound, for display ("Requires TREK 3.2.0+"). Derived, never authored. */
+  /** The range's lower bound, for display ("Requires Wanderly 3.2.0+"). Derived, never authored. */
   minTrekVersion?: string;
   nativeModules: boolean;
   permissions: string[];
@@ -145,7 +145,7 @@ export function parseJsonText(text: string): unknown {
  * Validate a manifest.
  *
  * `requireTrek` is the INSTALL front doors (registry, sideload, dev-link): a plugin
- * that doesn't say which TREK versions it supports may not be installed at all.
+ * that doesn't say which Wanderly versions it supports may not be installed at all.
  *
  * It is deliberately OFF for discovery, which is a reconciler, not a gate. Discovery's
  * failure path only logs and skips — it never touches the plugins row — so a plugin it
@@ -207,7 +207,7 @@ export function parseManifest(raw: unknown, opts?: { requireTrek?: boolean }): P
     throw new ManifestError(
       trek
         ? `invalid "trek" version range "${trek}" (expected a satisfiable semver range, e.g. ">=3.2.0 <4.0.0")`
-        : 'missing "trek" version range — declare the TREK versions this plugin supports, e.g. ">=3.2.0 <4.0.0"',
+        : 'missing "trek" version range — declare the Wanderly versions this plugin supports, e.g. ">=3.2.0 <4.0.0"',
     );
   }
   return {

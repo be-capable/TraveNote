@@ -10,7 +10,7 @@ import { pluginCodeDir } from './paths';
  * Serves a page/widget plugin's static client from /plugin-frame/:id/* (#plugins,
  * M3). The document is embedded in a sandbox WITHOUT allow-same-origin, so it
  * runs at an OPAQUE origin: it cannot read the trek_session cookie, cannot reach
- * the parent DOM, and its only channel to TREK is the postMessage bridge.
+ * the parent DOM, and its only channel to Wanderly is the postMessage bridge.
  *
  * Each response gets a locked-down, per-plugin CSP (default-src none; own scripts
  * only; connect-src limited to declared outbound hosts) and a strict path guard

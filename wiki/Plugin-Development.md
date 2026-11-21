@@ -2,7 +2,7 @@
 
 Build a plugin with the `trek-plugin-sdk` package. A plugin is a directory with a
 manifest (`trek-plugin.json`), a built server entry, and — for page/widget
-plugins — a static client bundle. TREK runs your server code in an **isolated
+plugins — a static client bundle. Wanderly runs your server code in an **isolated
 child process** and reaches it only over RPC; the browser part runs in a
 **sandboxed, opaque-origin iframe**. There is no other way in or out.
 
@@ -12,9 +12,9 @@ Two resources sit alongside this page:
 
 - **[Plugin-Skill](https://github.com/liketrek/Plugin-Skill)** — an agent skill
   that teaches Claude Code and other SKILL.md-compatible coding agents how to
-  build, test and publish a TREK plugin. It covers the same ground as this page,
+  build, test and publish a Wanderly plugin. It covers the same ground as this page,
   but the agent reads it instead of you. Add it to the repo you build your plugin
-  in and it loads automatically whenever the task touches TREK plugins.
+  in and it loads automatically whenever the task touches Wanderly plugins.
 - **[TREK-Plugins](https://github.com/liketrek/TREK-Plugins)** — the community
   registry. It is a static index with no server and no account: you list a plugin
   by opening a pull request that adds one JSON file. Your plugin's code stays in
@@ -22,7 +22,7 @@ Two resources sit alongside this page:
   [Plugin-Publishing](Plugin-Publishing) for the submission flow and the CI gates.
 
 Neither is required. You can build, install and run a plugin without touching
-either — the registry only matters when you want other people's TREK instances
+either — the registry only matters when you want other people's Wanderly instances
 to find it.
 
 ## Scaffold
@@ -65,10 +65,10 @@ npx trek-plugin-sdk dev        # http://localhost:4317
 ```
 
 `dev` works straight after `create` — no `npm install` needed, because it
-injects `require('trek-plugin-sdk')` from the CLI itself, exactly like TREK
+injects `require('trek-plugin-sdk')` from the CLI itself, exactly like Wanderly
 injects it in production. It loads your `server/index.js` through the same
 `definePlugin` contract the host uses and gives you a **real request loop
-without a full TREK**: a dashboard
+without a full Wanderly**: a dashboard
 listing your routes, the routes served under `/api/<path>`, your page/widget UI
 at `/ui`, a **themed host preview at `/preview`** (a real sandboxed frame with a
 theme/accent/appearance toggle, `trek.invoke()` proxied to your routes), and a reload
@@ -97,7 +97,7 @@ capability is served from your fixtures with the same rules as production.
 
 `dev` above is fast but its host data is **synthetic** (fixtures / a scratch
 `db:own`). When you need your plugin to run against **real** trips, places,
-reservations, costs and real membership/permissions, link it into a running TREK
+reservations, costs and real membership/permissions, link it into a running Wanderly
 instance instead of packing + uploading it every time.
 
 On the **server** (a local `trek-dev` or a dev instance — **never production**), set:
@@ -125,7 +125,7 @@ membership-gated data, the acting user resolved host-side, no impersonation — 
 origin never touches the security gate.
 
 **Hot-reload:** rebuild your plugin (e.g. `tsc --watch` emitting `server/index.js`)
-and TREK re-forks it automatically (a file-watch on the linked dir). To force it,
+and Wanderly re-forks it automatically (a file-watch on the linked dir). To force it,
 `POST /api/admin/plugins/:id/reload`, or just hit **Restart** in the admin UI —
 both re-fork the child, picking up the new code (a rebuilt manifest that widened
 permissions still requires explicit re-consent).
@@ -177,7 +177,7 @@ npm i -D trek-plugin-sdk
 ## Writing the server
 
 Your `server/index.js` exports a `definePlugin(...)` object. Everything reaches
-TREK through the `ctx` argument.
+Wanderly through the `ctx` argument.
 
 ```js
 const { definePlugin } = require('trek-plugin-sdk')
@@ -207,7 +207,7 @@ module.exports = definePlugin({
     }},
   ],
 
-  // Scheduled jobs — TREK owns the cron and calls your handler on the schedule.
+  // Scheduled jobs — Wanderly owns the cron and calls your handler on the schedule.
   // Requires the `jobs:run` permission (opt-in: scheduled work runs with NO user,
   // so its trip reads are refused — a job can only use ctx.db and declared egress).
   // An invalid cron expression is skipped; jobs stop when the plugin is deactivated.
@@ -311,7 +311,7 @@ cannot read another user's trips by passing an id.
 the acting user can **access** the trip AND holds the app's edit permission for that
 entity (`place_edit` / `day_edit` / `trip_edit`), exactly like the web UI. They run
 through the same services and broadcast the same events, so open sessions update
-live. Input is validated against TREK's own schemas (a bad payload is `BAD_PARAMS`),
+live. Input is validated against Wanderly's own schemas (a bad payload is `BAD_PARAMS`),
 and every write is recorded in the tamper-evident capability audit log against the
 acting user. A plugin can only change what its user could change by hand.
 
@@ -323,7 +323,7 @@ across every trip the acting user can access. `create/update/delete(tripId, …)
 trip's budget items — gated exactly like a normal budget write (the same model the planner
 write scopes `db:write:places`/`days`/`itinerary`/`trips` use): the acting user needs the
 **`budget_edit`** permission on that trip, the input is
-validated against TREK's budget schema, and a successful create broadcasts the same
+validated against Wanderly's budget schema, and a successful create broadcasts the same
 `budget:created` event the app emits. **Every `ctx.costs.*` call also requires the Costs
 (budget) addon to be enabled** — if the admin has turned it off, the call is refused with
 `RESOURCE_FORBIDDEN`.
@@ -339,7 +339,7 @@ only an explicit, credential-free **allowlist** — the common provider signatur
 event headers (`stripe-signature`, `x-hub-signature-256`, `svix-signature`,
 `x-gitlab-event`, `content-type`, `user-agent`, …). **`Cookie`, `Authorization`,
 `X-Socket-Id` and every session/forwarded-auth header are stripped** and never reach
-your code, so a forwarded header can't leak a TREK session. To trust a webhook,
+your code, so a forwarded header can't leak a Wanderly session. To trust a webhook,
 verify the provider's signature over the raw body against a secret you hold in
 `ctx.config` (admin-set instance setting) or `ctx.settings` (per-user).
 
@@ -347,7 +347,7 @@ verify the provider's signature over the raw body against a secret you hold in
 
 The iframe is served same-origin from `/plugin-frame/<id>/…` but sandboxed
 **without `allow-same-origin`**, so it runs at an **opaque origin**: it can't read
-cookies or the parent DOM. It talks to TREK only via `postMessage` (target origin
+cookies or the parent DOM. It talks to Wanderly only via `postMessage` (target origin
 must be `'*'` — an opaque frame has no nameable origin).
 
 Your whole `client/` directory is served (and shipped by `pack`) — not just
@@ -359,21 +359,21 @@ done. That includes React/Vue/Svelte builds — no more inlining the bundle into
 
 ### The design kit (recommended)
 
-Because the frame can't load TREK's stylesheet, we ship it. Drop **one line** in your
+Because the frame can't load Wanderly's stylesheet, we ship it. Drop **one line** in your
 `client/index.html` `<head>`:
 
 ```html
 <!-- trek:ui -->
 ```
 
-`dev` and `pack` expand that marker into the inlined **TREK design kit** — a
+`dev` and `pack` expand that marker into the inlined **Wanderly design kit** — a
 token-driven stylesheet plus a `window.trek` bridge. It costs nothing to keep the
 source a one-liner, and a rebuild always ships the current kit. The kit:
 
 - gives you native components — **glass panels, cards, buttons, inputs, chips, list
   rows, hover** — that swap correctly between light and dark;
 - follows the user's live **accent scheme, custom accent and high-contrast** (it
-  applies the tokens TREK sends);
+  applies the tokens Wanderly sends);
 - mirrors the host's **appearance flags** (reduced-motion, no-transparency, density);
 - **auto-reports your height** (widgets/pages self-size — no manual `trek:resize`);
 - installs `window.trek` so you never hand-roll `postMessage`.
@@ -443,7 +443,7 @@ All animations honour reduced motion: under `[data-reduce-motion]` or
 stops shimmering.
 
 **Selects are auto-upgraded.** With the kit inlined, every native `<select>` becomes
-a host-styled, keyboard-accessible dropdown that matches TREK — the OS-drawn popup
+a host-styled, keyboard-accessible dropdown that matches Wanderly — the OS-drawn popup
 can't be themed, so the kit replaces it while keeping the real `<select>` as the
 value/form source (it still fires `change`). Write a plain `<select>` and it just
 works. Add `data-trek-native` to a field to keep the browser default; `multiple` and
@@ -474,7 +474,7 @@ If you'd rather not use the kit, talk to the frame yourself. Announce readiness 
 handle messages:
 
 ```js
-window.parent.postMessage({ type: 'trek:ready' }, '*') // TREK replies with trek:context
+window.parent.postMessage({ type: 'trek:ready' }, '*') // Wanderly replies with trek:context
 window.addEventListener('message', (e) => {
   if (e.source !== window.parent) return          // opaque frame: trust the parent window
   const m = e.data
@@ -485,11 +485,11 @@ window.addEventListener('message', (e) => {
 window.parent.postMessage({ type: 'trek:invoke', requestId: '1', sub: '/status', method: 'GET' }, '*')
 ```
 
-**Messages you send to TREK:**
+**Messages you send to Wanderly:**
 
 | Message | Payload | Effect |
 |---|---|---|
-| `trek:ready` | — | TREK replies with `trek:context` |
+| `trek:ready` | — | Wanderly replies with `trek:context` |
 | `trek:context:request` | — | re-request the context |
 | `trek:navigate` | `{ to }` | in-app navigation (relative paths only) |
 | `trek:notify` | `{ level, message, duration? }` | toast; `level` = `info`/`success`/`warning`/`error`; `duration` in ms, clamped 1500–15000 |
@@ -498,7 +498,7 @@ window.parent.postMessage({ type: 'trek:invoke', requestId: '1', sub: '/status',
 | `trek:confirm` | `{ requestId, title?, message?, confirmLabel?, cancelLabel?, danger? }` | host-rendered ConfirmDialog; answered as `trek:confirm:result` |
 | `trek:openExternal` | `{ url }` | open an `http(s)` URL in a new `noopener` tab; anything else is dropped |
 
-**Messages TREK sends you:**
+**Messages Wanderly sends you:**
 
 | Message | Payload |
 |---|---|
@@ -529,10 +529,10 @@ declared), no popups.
 | `hostOrigin` | the app origin |
 | `user` | `{ name, avatar, isAdmin } \| null` — **never** an email; role only as a boolean |
 | `formats` | `{ locale, currency, timeFormat, distanceUnit, temperatureUnit, timezone }` |
-| `tokens` | TREK's resolved CSS design tokens for the current theme (see below) |
+| `tokens` | Wanderly's resolved CSS design tokens for the current theme (see below) |
 | `appearance` | `{ scheme, density: 'comfortable'\|'compact', reducedMotion, noTransparency }` |
 
-### Matching the TREK look by hand (`m.tokens`)
+### Matching the Wanderly look by hand (`m.tokens`)
 
 `tokens` is the whole global palette resolved for the **current** theme — surfaces
 (`--bg-card`, `--bg-hover`, …), text (`--text-primary`/`-secondary`/`-muted`/`-faint`),
@@ -564,7 +564,7 @@ transparent — the design kit reports your height for you.
 
 ## Settings
 
-Declare settings in the manifest; TREK renders the form (you write no settings
+Declare settings in the manifest; Wanderly renders the form (you write no settings
 UI). `scope: "instance"` settings are set once by the admin; `scope: "user"`
 settings are per-user. `secret: true` fields are stored encrypted and delivered
 decrypted through `ctx.config` (server-side only) — never to the iframe. Resolved
@@ -574,7 +574,7 @@ values arrive in `ctx.config`.
 
 When declared fields aren't enough — a picker with previews, anything visual —
 set `"capabilities": { "settingsUi": true }` and ship a `client/settings.html`.
-TREK frames it as a card on the user's **Settings → Plugins** page, in the same
+Wanderly frames it as a card on the user's **Settings → Plugins** page, in the same
 opaque-origin sandbox and postMessage bridge as your widget: it can only reach
 your own declared routes (`trek:invoke`), receives `trek:context`, and should
 report its height via `trek:resize`. Persist whatever it edits through one of
@@ -632,7 +632,7 @@ the plugin definition and grant the matching `hook:*` permission:
 module.exports = definePlugin({
   hooks: {
     placeDetailProvider: {
-      // Return extra rows TREK renders natively on a place. Runs with the current
+      // Return extra rows Wanderly renders natively on a place. Runs with the current
       // user bound, on a short timeout — a slow/failing call is skipped, never fatal.
       async getDetails(placeId, ctx) {
         return [{ label: 'Crowd', value: 'Quiet now' }, { label: 'Guide', url: 'https://…' }]
@@ -662,7 +662,7 @@ with **one exception**, the notification channel, which has no acting user at al
 
 ## Notification channels
 
-`hook:notification-channel` lets your plugin become a delivery channel alongside TREK's
+`hook:notification-channel` lets your plugin become a delivery channel alongside Wanderly's
 built-in email / webhook / ntfy — Gotify, Pushover, Telegram, whatever takes a message.
 
 Scaffold one with:
@@ -730,8 +730,8 @@ Notes:
   you need `http:outbound:<host>` per host (see below).
 - **For a self-hosted target, set `operatorEgress`** — see the next section. Your manifest can't
   name the operator's Gotify; the admin does it after install.
-- **Reaching a service on your own LAN** (a Gotify next to TREK) additionally needs
-  `TREK_PLUGIN_ALLOW_PRIVATE_EGRESS=on` on the TREK process — plugins may not reach private
+- **Reaching a service on your own LAN** (a Gotify next to Wanderly) additionally needs
+  `TREK_PLUGIN_ALLOW_PRIVATE_EGRESS=on` on the Wanderly process — plugins may not reach private
   addresses by default. It relaxes the policy for *every* installed plugin, so enable it only
   if you trust them all.
 
@@ -884,7 +884,7 @@ plugin to activate. If one is off, enabling the plugin is refused and the admin 
 names the addon to turn on. Turning a required addon **off** while the plugin is
 running **auto-disables the plugin** (and anything that depends on it) — a plugin
 never runs against a disabled addon. Ids are validated for shape only, so a plugin may
-name an addon a given TREK build doesn't have; it just stays un-activatable there.
+name an addon a given Wanderly build doesn't have; it just stays un-activatable there.
 
 ### `pluginDependencies`
 
@@ -984,7 +984,7 @@ module.exports = definePlugin({
   user** — but unlike them they **do** receive the emitter's payload. Delivery is
   fire-and-forget on a short timeout; a slow subscriber never blocks the emitter.
 
-## Testing without a running TREK
+## Testing without a running Wanderly
 
 `createMockHost` gives you a `ctx` that enforces the **same** permission model, so
 a test can prove your plugin degrades gracefully when a grant is missing:
@@ -1066,7 +1066,7 @@ what your manifest declares.
 - **No native modules** (`.node`, `binding.gyp`, `prebuilds/`) — rejected at pack
   and install time.
 - **Don't vendor `trek-plugin-sdk`** — it's injected at runtime (devDependency
-  only). Vendor any *other* runtime deps: TREK never runs `npm install` on a plugin.
+  only). Vendor any *other* runtime deps: Wanderly never runs `npm install` on a plugin.
 - **Ship built JS** in `server/index.js` and pre-built static files in `client/`.
   `.ts` and `.map` files are stripped by `pack`.
 - Declare every outbound host in `egress[]` whenever you use `http:outbound` — **and
@@ -1085,7 +1085,7 @@ what your manifest declares.
 | `version` | string, **required** | semver (`1.2.3`, optional pre-release). |
 | `apiVersion` | number | plugin API version (currently `1`; `PLUGIN_API_VERSION`). Defaults to `1`. |
 | `type` | string, **required** | `integration` \| `page` \| `widget` \| `trip-page`. |
-| `trek` | string, **required** | the TREK versions this plugin supports, as a semver **range**: `">=3.4.0 <4.0.0"` (what the scaffold writes). Must be *satisfiable* (`">=4.0.0 <3.0.0"` parses but nothing can satisfy it — rejected). **Enforced at install and at activation** (see below); it is copied verbatim onto the registry entry, which is the entry's only compatibility field. Keep it **bounded** — an unbounded range claims support for TREK versions that do not exist yet. |
+| `trek` | string, **required** | the Wanderly versions this plugin supports, as a semver **range**: `">=3.4.0 <4.0.0"` (what the scaffold writes). Must be *satisfiable* (`">=4.0.0 <3.0.0"` parses but nothing can satisfy it — rejected). **Enforced at install and at activation** (see below); it is copied verbatim onto the registry entry, which is the entry's only compatibility field. Keep it **bounded** — an unbounded range claims support for Wanderly versions that do not exist yet. |
 | `author` | string | shown in the store. |
 | `description` | string | one-line summary for the store. |
 | `icon` | string | lucide-react icon name (default `Blocks`); used for the page nav entry. |
@@ -1105,11 +1105,11 @@ what your manifest declares.
 | `pluginDependencies` | `{ id, version }[]` | other plugins (semver range) that must be installed + version-satisfied to activate. |
 | `settings` | array | setting fields (below). |
 
-#### TREK version compatibility (`trek`)
+#### Wanderly version compatibility (`trek`)
 
 The `trek` range is a **hard contract**, enforced in both directions:
 
-- **Install** is refused when the running TREK falls outside it — on every path:
+- **Install** is refused when the running Wanderly falls outside it — on every path:
   registry install, an explicitly pinned version, an update, a sideloaded archive,
   and a dev-link. A manifest with no range (or an unsatisfiable one) cannot be
   installed at all.
@@ -1122,8 +1122,8 @@ The `trek` range is a **hard contract**, enforced in both directions:
   does not work there — unlike a rotated signing key, there is nothing an operator
   could verify out-of-band and wave through.
 
-Two behaviours follow. "Install latest" resolves to the newest version *this* TREK
-can run rather than the newest published, so shipping a 2.0.0 that needs TREK 4
+Two behaviours follow. "Install latest" resolves to the newest version *this* Wanderly
+can run rather than the newest published, so shipping a 2.0.0 that needs Wanderly 4
 doesn't strand 3.x users. And an **update** that would move a working plugin out of
 compatibility is refused rather than performed.
 
@@ -1157,7 +1157,7 @@ guard optional `ctx.*` namespaces.
 | `ws:broadcast:trip` | `ctx.ws.broadcastToTrip` |
 | `ws:broadcast:user` | `ctx.ws.broadcastToUser` |
 | `http:outbound` or `http:outbound:<host>` | outbound HTTP to `egress[]` hosts |
-| `hook:place-detail-provider` | `hooks.placeDetailProvider` — extra place rows TREK renders (see [Provider hooks](#provider-hooks)) |
+| `hook:place-detail-provider` | `hooks.placeDetailProvider` — extra place rows Wanderly renders (see [Provider hooks](#provider-hooks)) |
 | `hook:trip-warning-provider` | `hooks.warningProvider` — validation warnings in the planner (see [Provider hooks](#provider-hooks)) |
 | `hook:table-contributor` | `hooks.tableContributor` — host-rendered columns/actions in the reservations, transports, places, day, costs, packing, files and todos views (see [Provider hooks](#provider-hooks)) |
 | `hook:map-marker-provider` | `hooks.mapMarkerProvider` — bounded markers on the trip map |
@@ -1187,7 +1187,7 @@ guard optional `ctx.*` namespaces.
 
 **Page nav:** the host builds a page plugin's nav entry from the top-level `name`
 and `icon` — the installed-manifest parser only consumes `capabilities.widget`, so
-there is nothing else to set. `icon` must be a real lucide name: TREK resolves it at
+there is nothing else to set. `icon` must be a real lucide name: Wanderly resolves it at
 render time and silently falls back to `Blocks`, which makes a typo invisible locally,
 so `validate` rejects one.
 
@@ -1213,7 +1213,7 @@ trek-plugin publish [dir] --repo owner/name --tag vX.Y.Z [--sign]
 ```
 
 `status` is the one to reach for when you are not sure what to do next. It runs every
-gate the TREK-Plugins registry enforces that can be answered **without a network** —
+gate the Wanderly-Plugins registry enforces that can be answered **without a network** —
 which is nearly all of them — and prints the whole journey as a checklist grouped by
 stage (Manifest, Code, Docs, Release, Repo), with the one command to run next. It never
 exits non-zero: it is for orientation, not for gating.

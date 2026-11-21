@@ -74,7 +74,7 @@ Reads need trip access; writes additionally need the entity's edit permission.
 
 **Needs:** `hook:place-detail-provider`
 
-Return rows and TREK draws them at the foot of the place panel — no iframe.
+Return rows and Wanderly draws them at the foot of the place panel — no iframe.
 
 ```js
 module.exports = {
@@ -172,14 +172,14 @@ subscriptions: [
 ],
 ```
 
-TREK auto-enables koffi before your plugin, routes the call (as your acting user),
+Wanderly auto-enables koffi before your plugin, routes the call (as your acting user),
 and refuses it if koffi isn't a satisfied dependency or doesn't export `convert`. See
 [[Plugin Development#talking-to-other-plugins|Plugin-Development]].
 
-## Match the TREK look
+## Match the Wanderly look
 
 Add `<!-- trek:ui -->` to your widget's `<head>`. The dev server and `pack` inline
-TREK's token-driven kit (glass surfaces, buttons, inputs, dark-mode) and a
+Wanderly's token-driven kit (glass surfaces, buttons, inputs, dark-mode) and a
 `window.trek` bridge with the live theme + tokens. See
 [[Plugin Development#the-design-kit-recommended|Plugin-Development]]. `window.trek.ui`
 gives you bundler-free, kit-styled DOM builders (`ui.el/button/card/chip/input/mount`).
@@ -380,7 +380,7 @@ Both jobs and scheduled tasks run with **no acting user** (trip reads are refuse
 
 ## Contribute native primitives to core views
 
-Six declarative hooks let a plugin push data into TREK's own screens — the host renders and sanitizes everything, so no iframe and no plugin JS on the canvas. Each needs its own `hook:*` permission, runs with the current user bound on a short timeout, and a slow or failing call is skipped (never fatal). The host caps counts and lengths.
+Six declarative hooks let a plugin push data into Wanderly's own screens — the host renders and sanitizes everything, so no iframe and no plugin JS on the canvas. Each needs its own `hook:*` permission, runs with the current user bound on a short timeout, and a slow or failing call is skipped (never fatal). The host caps counts and lengths.
 
 ```js
 hooks: {
@@ -424,7 +424,7 @@ hooks: {
 
 **Needs:** `hook:user-data`
 
-The host calls these when a TREK account is erased or its data is exported. Both are **userless** — you get only a `userId` and act on your OWN db, so the grant leaks no read into core data.
+The host calls these when a Wanderly account is erased or its data is exported. Both are **userless** — you get only a `userId` and act on your OWN db, so the grant leaks no read into core data.
 
 ```js
 module.exports = {
@@ -443,7 +443,7 @@ module.exports = {
 
 ## Write across every subsystem
 
-Beyond places/days/itinerary, TREK 3.3.0 opens create/update/delete on almost every trip subsystem. Each is membership-checked against the acting user and needs its `db:write:*` scope **plus** the app's edit permission — declare only what you use.
+Beyond places/days/itinerary, Wanderly 3.3.0 opens create/update/delete on almost every trip subsystem. Each is membership-checked against the acting user and needs its `db:write:*` scope **plus** the app's edit permission — declare only what you use.
 
 ```js
 // Bookings & lodging — needs 'reservation_edit' / 'day_edit'

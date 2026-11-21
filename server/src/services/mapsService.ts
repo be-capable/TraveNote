@@ -87,7 +87,7 @@ export function buildUserAgent(instanceUrl: string | undefined): string {
 // Computed once at load — getAppUrl() reads only env vars, which don't change at runtime.
 const UA = buildUserAgent(getAppUrl());
 
-// TREK's internal language codes mostly coincide with valid BCP-47 codes, but a
+// Wanderly's internal language codes mostly coincide with valid BCP-47 codes, but a
 // couple don't: 'br' is Brazilian Portuguese here (BCP-47 'pt-BR'; bare 'br' is
 // Breton) and 'gr' is Greek (BCP-47 'el'). Outbound geo APIs (Google Places,
 // Nominatim) expect BCP-47, so normalise before sending — otherwise names and
@@ -329,7 +329,7 @@ const DEFAULT_OVERPASS_MIRRORS = [
   'https://overpass.private.coffee/api/interpreter',
 ];
 
-// Operators behind locked-down egress — or running their own Overpass — can point TREK
+// Operators behind locked-down egress — or running their own Overpass — can point Wanderly
 // at one or more custom endpoints via OVERPASS_URL (comma-separated). When set it
 // REPLACES the public mirrors, so a firewalled cluster never reaches out to them and a
 // self-hosted instance is used exclusively (see #1309). Non-http(s) entries are dropped.
@@ -1213,7 +1213,7 @@ export async function resolveGoogleMapsUrl(
   if (!coords) {
     try {
       const pageRes = await followRedirects(resolvedUrl, {
-        headers: { 'User-Agent': 'TREK-Travel-Planner/1.0' },
+        headers: { 'User-Agent': 'Wanderly-Travel-Planner/1.0' },
       });
       coords = extractCoords(await pageRes.text());
     } catch (err) {
@@ -1237,7 +1237,7 @@ export async function resolveGoogleMapsUrl(
   // Reverse geocode to get address
   const nominatimRes = await fetch(
     `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`,
-    { headers: { 'User-Agent': 'TREK-Travel-Planner/1.0' }, signal: AbortSignal.timeout(8000) },
+    { headers: { 'User-Agent': 'Wanderly-Travel-Planner/1.0' }, signal: AbortSignal.timeout(8000) },
   );
   const nominatim = (await nominatimRes.json()) as {
     display_name?: string;

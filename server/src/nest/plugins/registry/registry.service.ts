@@ -16,7 +16,7 @@ import path from 'node:path';
 import semver from 'semver';
 
 /**
- * TREK-side of the plugin registry (#plugins, M5). Fetches the single aggregated
+ * Wanderly-side of the plugin registry (#plugins, M5). Fetches the single aggregated
  * dist/index.json (never per-plugin GitHub API calls — the HACS rate-limit
  * lesson), caches it briefly + soft-fails, and installs a pinned version through
  * the M4 pipeline: SSRF-safe download -> sha256 verify -> zip/tar-slip-safe
@@ -39,7 +39,7 @@ interface RegistryVersion {
   downloadUrl: string;
   sha256: string;
   /**
-   * The version's declared TREK range, mirroring its manifest's `trek`. Authoritative
+   * The version's declared Wanderly range, mirroring its manifest's `trek`. Authoritative
    * when present. `minTrekVersion`/`maxTrekVersion` are the legacy shape — a lower bound
    * plus an optional INCLUSIVE upper bound, which cannot express the exclusive `<4.0.0`
    * that a manifest actually declares — and stay only so entries published before this
@@ -91,12 +91,12 @@ interface Registry {
   plugins: RegistryEntry[];
 }
 
-/** A registry entry's standing against the running TREK, resolved server-side. */
+/** A registry entry's standing against the running Wanderly, resolved server-side. */
 export interface HostCompat {
-  /** The latest version's declared TREK range, or null for a legacy (min/max-only) entry. */
+  /** The latest version's declared Wanderly range, or null for a legacy (min/max-only) entry. */
   trek: string | null;
   hostVersion: string;
-  /** Whether the LATEST version can be installed on this TREK. */
+  /** Whether the LATEST version can be installed on this Wanderly. */
   compatible: boolean;
   /** Newest installable version — the latest one, or an older fallback, or null if none fits. */
   latestCompatible: string | null;
@@ -158,7 +158,7 @@ export class PluginRegistryService {
     if (force) _detailCache.clear();
     try {
       const url = force ? `${REGISTRY_URL}${REGISTRY_URL.includes('?') ? '&' : '?'}_=${Date.now()}` : REGISTRY_URL;
-      const headers: Record<string, string> = { 'User-Agent': 'TREK-Server' };
+      const headers: Record<string, string> = { 'User-Agent': 'Wanderly-Server' };
       if (force) {
         headers['Cache-Control'] = 'no-cache';
         headers.Pragma = 'no-cache';
@@ -224,11 +224,11 @@ export class PluginRegistryService {
   }
 
   /**
-   * How this entry stands against the running TREK, computed SERVER-side. The client has
+   * How this entry stands against the running Wanderly, computed SERVER-side. The client has
    * no semver dependency and must never grow a second implementation of range logic — a
    * UI that disagreed with the install gate would show an enabled button that 400s.
    *
-   * `latestCompatible` is the useful half: when the newest version has outrun this TREK,
+   * `latestCompatible` is the useful half: when the newest version has outrun this Wanderly,
    * an older one often still fits, so the UI can offer it instead of a dead grey button.
    */
   private hostCompat(entry: RegistryEntry): HostCompat {
@@ -304,7 +304,7 @@ export class PluginRegistryService {
 
   /**
    * Resolve which registry version of `id` to install: the highest that satisfies
-   * `constraint` (any version if omitted) AND is compatible with the running TREK
+   * `constraint` (any version if omitted) AND is compatible with the running Wanderly
    * version (`minTrekVersion`/`maxTrekVersion`). Throws if the plugin isn't in the
    * registry or nothing qualifies. Backs "download the latest compatible version".
    */
@@ -316,15 +316,15 @@ export class PluginRegistryService {
     if (!v) {
       throw new RegistryError(
         constraint
-          ? `no version of ${id} satisfies "${constraint}" and TREK ${hostVersion()}`
-          : `no version of ${id} is compatible with TREK ${hostVersion()}`,
+          ? `no version of ${id} satisfies "${constraint}" and Wanderly ${hostVersion()}`
+          : `no version of ${id} is compatible with Wanderly ${hostVersion()}`,
         'TREK_VERSION_INCOMPATIBLE',
       );
     }
     return v;
   }
 
-  /** The newest version of `entry` that satisfies `constraint` AND admits the running TREK. */
+  /** The newest version of `entry` that satisfies `constraint` AND admits the running Wanderly. */
   private latestCompatible(entry: RegistryEntry, constraint?: string): RegistryVersion | null {
     const host = normalizedHost();
     const candidates = entry.versions.filter((v) => {
@@ -340,7 +340,7 @@ export class PluginRegistryService {
    * path, which is the whole point. An explicit `version` and the bare "install latest"
    * both used to bypass the compat check entirely (only the `constraint` path went
    * through resolveVersion), so the admin UI's own Install button — which sends neither —
-   * happily installed a plugin that declared it doesn't support this TREK.
+   * happily installed a plugin that declared it doesn't support this Wanderly.
    */
   private selectVersion(entry: RegistryEntry, opts?: { version?: string; constraint?: string }): RegistryVersion {
     if (opts?.version) {
@@ -348,7 +348,7 @@ export class PluginRegistryService {
       if (!ver) throw new RegistryError(`version ${opts.version} not found for ${entry.id}`);
       if (!hostCompatible(ver, normalizedHost())) {
         throw new RegistryError(
-          `${entry.id} ${ver.version} requires TREK ${trekRequirement(ver)} — this is TREK ${hostVersion()}`,
+          `${entry.id} ${ver.version} requires Wanderly ${trekRequirement(ver)} — this is Wanderly ${hostVersion()}`,
           'TREK_VERSION_INCOMPATIBLE',
         );
       }
@@ -357,18 +357,18 @@ export class PluginRegistryService {
     const ver = this.latestCompatible(entry, opts?.constraint);
     if (ver) return ver;
     // Nothing compatible. Say WHY against the newest version the admin was actually
-    // shown, rather than a bare "not found" — the fix is a TREK upgrade, not a retry.
+    // shown, rather than a bare "not found" — the fix is a Wanderly upgrade, not a retry.
     const latest = entry.versions[0];
     if (latest && !opts?.constraint) {
       throw new RegistryError(
-        `${entry.id} ${latest.version} requires TREK ${trekRequirement(latest)} — this is TREK ${hostVersion()}`,
+        `${entry.id} ${latest.version} requires Wanderly ${trekRequirement(latest)} — this is Wanderly ${hostVersion()}`,
         'TREK_VERSION_INCOMPATIBLE',
       );
     }
     throw new RegistryError(
       opts?.constraint
-        ? `no version of ${entry.id} satisfies "${opts.constraint}" and TREK ${hostVersion()}`
-        : `no version of ${entry.id} is compatible with TREK ${hostVersion()}`,
+        ? `no version of ${entry.id} satisfies "${opts.constraint}" and Wanderly ${hostVersion()}`
+        : `no version of ${entry.id} is compatible with Wanderly ${hostVersion()}`,
       'TREK_VERSION_INCOMPATIBLE',
     );
   }
@@ -423,7 +423,7 @@ export class PluginRegistryService {
       // The artifact's OWN range is the authoritative compat check. The index metadata
       // gated above is only what the registry says about this version, and it is weaker:
       // published entries usually carry a lower bound and no upper one at all, so a
-      // plugin that declares "<4.0.0" passes the pre-download filter on TREK 4 and is
+      // plugin that declares "<4.0.0" passes the pre-download filter on Wanderly 4 and is
       // caught only here.
       assertHostCompatible(manifest.trekRange, id);
       if (scanForNativeBinaries(pluginRoot).length) throw new RegistryError('artifact contains native binaries');
@@ -671,7 +671,7 @@ function rawFileUrl(repo: string, commitSha: string, file: string): string {
 }
 
 /**
- * Whether a registry version admits the running TREK.
+ * Whether a registry version admits the running Wanderly.
  *
  * The version's `trek` range is authoritative when the entry carries one. Entries
  * published before that field existed only carry min/max bounds, so those remain the
@@ -689,17 +689,17 @@ function hostCompatible(v: RegistryVersion, host: string | null): boolean {
 }
 
 /**
- * Refuse an artifact whose declared TREK range doesn't admit the running host. Shared by
+ * Refuse an artifact whose declared Wanderly range doesn't admit the running host. Shared by
  * every install front door (registry, sideload, dev-link) so they all fail the same way,
  * with a code the admin UI can act on rather than prose it would have to string-match.
  */
 export function assertHostCompatible(range: string | null, id: string): void {
   if (hostSatisfies(range)) return;
-  throw new RegistryError(`${id} requires TREK ${range} — this is TREK ${hostVersion()}`, 'TREK_VERSION_INCOMPATIBLE');
+  throw new RegistryError(`${id} requires Wanderly ${range} — this is Wanderly ${hostVersion()}`, 'TREK_VERSION_INCOMPATIBLE');
 }
 
 /**
- * How a version's TREK requirement reads in an error/UI string. Each bound is optional —
+ * How a version's Wanderly requirement reads in an error/UI string. Each bound is optional —
  * an entry may declare only a ceiling, or (once `trek` is absent too) nothing at all — so
  * this composes whatever bounds exist rather than interpolating a missing one as "null".
  */

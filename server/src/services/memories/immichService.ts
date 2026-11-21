@@ -549,7 +549,7 @@ export async function uploadToImmich(userId: number, filePath: string, fileName:
       parts.push(Buffer.from(`--${boundary}\r\nContent-Disposition: form-data; name="${name}"\r\n\r\n${value}\r\n`));
     };
     addField('deviceAssetId', `trek-${Date.now()}`);
-    addField('deviceId', 'TREK');
+    addField('deviceId', 'Wanderly');
     addField('fileCreatedAt', now);
     addField('fileModifiedAt', now);
 

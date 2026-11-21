@@ -615,7 +615,7 @@ export function validateAuthorizeRequest(
     return { valid: false, error: 'invalid_redirect_uri', error_description: 'redirect_uri does not match any registered URI' };
   }
 
-  // RFC 8707 resource indicator: if provided, must identify the TREK
+  // RFC 8707 resource indicator: if provided, must identify the Wanderly
   // MCP endpoint exactly. If the client didn't supply `resource`, we
   // bind the token to the MCP endpoint by default — previously this
   // left `audience = null`, and the audience-bind check on MCP requests
@@ -625,7 +625,7 @@ export function validateAuthorizeRequest(
     ? params.resource.replace(/\/+$/, '')
     : mcpResource;
   if (resource !== mcpResource) {
-    return { valid: false, error: 'invalid_target', error_description: 'Requested resource must be the TREK MCP endpoint' };
+    return { valid: false, error: 'invalid_target', error_description: 'Requested resource must be the Wanderly MCP endpoint' };
   }
 
   const requestedScopes = (params.scope || '').split(' ').filter(Boolean);

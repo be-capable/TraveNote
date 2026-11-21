@@ -205,7 +205,7 @@ const journey: TranslationStrings = {
   'journey.public.sharedVia': 'Compartit mitjançant',
   'journey.public.madeWith': 'Fet amb',
   'journey.pdf.journeyBook': 'Llibre de travesia',
-  'journey.pdf.madeWith': 'Fet amb TREK',
+  'journey.pdf.madeWith': 'Fet amb Wanderly',
   'journey.pdf.day': 'Dia',
   'journey.pdf.theEnd': 'Fi',
   'journey.pdf.saveAsPdf': 'Desa com a PDF',

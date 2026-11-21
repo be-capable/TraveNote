@@ -241,7 +241,7 @@ const admin: TranslationStrings = {
   'admin.plugins.sourceRepo': 'Repositorio de código',
   'admin.plugins.reportIssue': 'Informar de un problema',
   'admin.plugins.homepage': 'Sitio web',
-  'admin.plugins.requiresTrek': 'Requiere TREK {version}+',
+  'admin.plugins.requiresTrek': 'Requiere Wanderly {version}+',
   'admin.plugins.reviewedOn': 'Revisado el {date}',
   'admin.plugins.perm.db:own': 'Almacenar sus propios datos en una base de datos aislada',
   'admin.plugins.perm.db:read:trips': 'Leer los viajes a los que el usuario activo tiene acceso',
@@ -347,26 +347,26 @@ const admin: TranslationStrings = {
   'admin.plugins.updateLater': 'Mantener desactivado por ahora',
   'admin.plugins.updateKeptOff': 'Actualización instalada — se deja desactivada hasta que apruebes los nuevos permisos',
   'admin.plugins.reviewedMeaning':
-    '"Revisado" significa que un responsable de TREK analizó este plugin en busca de malware en cada versión, no su calidad ni si funciona. No es una garantía de que un plugin sea inofensivo.',
+    '"Revisado" significa que un responsable de Wanderly analizó este plugin en busca de malware en cada versión, no su calidad ni si funciona. No es una garantía de que un plugin sea inofensivo.',
   'admin.plugins.security.title': 'Cómo se contienen los plugins — y sus límites',
   'admin.plugins.security.isolationTitle': 'Cada plugin se ejecuta aislado',
   'admin.plugins.security.isolationBody':
-    'Un plugin se ejecuta como su propio proceso confinado que solo puede leer sus propios archivos. No puede leer tu base de datos, tu secreto de inicio de sesión ni tu clave de cifrado, no puede iniciar otros programas y no puede escribir archivos en ningún sitio. Su interfaz se ejecuta en un marco de navegador sellado que no puede leer tu cookie de sesión ni tocar la página de TREK que la rodea.',
+    'Un plugin se ejecuta como su propio proceso confinado que solo puede leer sus propios archivos. No puede leer tu base de datos, tu secreto de inicio de sesión ni tu clave de cifrado, no puede iniciar otros programas y no puede escribir archivos en ningún sitio. Su interfaz se ejecuta en un marco de navegador sellado que no puede leer tu cookie de sesión ni tocar la página de Wanderly que la rodea.',
   'admin.plugins.security.permsTitle': 'Qué significan los permisos',
   'admin.plugins.security.permsBody':
-    'Los permisos que se muestran antes de instalar son un límite estricto que TREK aplica mientras el plugin se ejecuta: literalmente no puede hacer nada que no esté en la lista. Pero te indican lo que un plugin puede hacer, no lo que realmente hace. Un plugin con permiso para leer tus viajes y conectarse a un servidor puede enviar tus viajes a ese servidor, así que lee los permisos y los hosts salientes, no solo la descripción.',
+    'Los permisos que se muestran antes de instalar son un límite estricto que Wanderly aplica mientras el plugin se ejecuta: literalmente no puede hacer nada que no esté en la lista. Pero te indican lo que un plugin puede hacer, no lo que realmente hace. Un plugin con permiso para leer tus viajes y conectarse a un servidor puede enviar tus viajes a ese servidor, así que lee los permisos y los hosts salientes, no solo la descripción.',
   'admin.plugins.security.limitsTitle': 'Lo que no podemos garantizar',
   'admin.plugins.security.limitsBody':
-    'El aislamiento es una barrera de software sólida, pero no absoluta. Un plugin actúa exactamente con los permisos que apruebes, así que dentro de esos permisos puede comportarse de forma distinta a lo que sugiere su descripción y puede enviar los datos que posee legítimamente a los hosts que ha declarado. TREK no lee ni juzga lo que hace realmente el código de un plugin.',
+    'El aislamiento es una barrera de software sólida, pero no absoluta. Un plugin actúa exactamente con los permisos que apruebes, así que dentro de esos permisos puede comportarse de forma distinta a lo que sugiere su descripción y puede enviar los datos que posee legítimamente a los hosts que ha declarado. Wanderly no lee ni juzga lo que hace realmente el código de un plugin.',
   'admin.plugins.security.worstTitle': 'El peor de los casos',
   'admin.plugins.security.worstBody':
     'Un plugin malicioso que actives puede hacer un mal uso de los datos y las conexiones que le concediste — por ejemplo, filtrar los viajes que tiene permiso para leer. No puede robar contraseñas, falsificar un inicio de sesión de administrador, ejecutar comandos en tu servidor ni acceder a datos que no le concediste. El daño se limita a lo que aprobaste, y desactivar el plugin lo detiene.',
   'admin.plugins.security.reviewedTitle': 'Qué significa "Revisado"',
   'admin.plugins.security.reviewedBody':
-    'Un plugin revisado fue analizado manualmente en busca de malware por un responsable de TREK en cada versión — se comprobó que no tuviera código malicioso, no si funciona bien. No es una promesa de que el plugin sea inofensivo.',
+    'Un plugin revisado fue analizado manualmente en busca de malware por un responsable de Wanderly en cada versión — se comprobó que no tuviera código malicioso, no si funciona bien. No es una promesa de que el plugin sea inofensivo.',
   'admin.plugins.security.signedTitle': 'Qué significa "Firmado"',
   'admin.plugins.security.signedBody':
-    'La suma de comprobación que TREK verifica en cada instalación demuestra que los archivos son exactamente los que el registro avala. Una firma demuestra otra cosa: que provienen del autor, firmados con una clave que solo él posee. Un plugin firmado tiene ambas cosas. Uno sin firmar no es inseguro — simplemente lleva una garantía menos, y hoy la mayoría de los plugins del registro no están firmados.',
+    'La suma de comprobación que Wanderly verifica en cada instalación demuestra que los archivos son exactamente los que el registro avala. Una firma demuestra otra cosa: que provienen del autor, firmados con una clave que solo él posee. Un plugin firmado tiene ambas cosas. Uno sin firmar no es inseguro — simplemente lleva una garantía menos, y hoy la mayoría de los plugins del registro no están firmados.',
   'admin.plugins.signed': 'Firmado',
   'admin.plugins.signedHint': 'Verificado con la clave de firma del autor en el momento de la instalación',
   'admin.plugins.unsigned': 'Sin firmar',
@@ -381,20 +381,20 @@ const admin: TranslationStrings = {
   'admin.plugins.sig.invalidBody':
     'Los archivos no coinciden con la firma del autor. No son lo que el autor firmó — o se corrompieron, o fueron manipulados. Esto no se puede omitir.',
   'admin.plugins.sig.missingBody':
-    'Este plugin estaba firmado cuando lo instalaste, pero la nueva versión no incluye ninguna firma. TREK no aceptará esa degradación en silencio. Esto no se puede omitir.',
+    'Este plugin estaba firmado cuando lo instalaste, pero la nueva versión no incluye ninguna firma. Wanderly no aceptará esa degradación en silencio. Esto no se puede omitir.',
   'admin.plugins.sig.incompleteBody':
     'La entrada del registro está firmada a medias: declara una clave de autor pero la versión no lleva firma (o al revés). Es un error del lado del plugin. Esto no se puede omitir.',
   'admin.plugins.sig.pinnedKey': 'Clave con la que se instaló',
   'admin.plugins.sig.newKey': 'Clave que ofrece ahora',
   'admin.plugins.sig.confirmOutOfBand':
-    'TREK no puede distinguir una rotación de clave legítima de un secuestro — desde aquí ambas se ven idénticas. Confirma la nueva clave con el autor por un canal en el que ya confíes antes de aceptarla. Cuando lo hagas, el plugin se actualizará y la nueva clave quedará registrada.',
+    'Wanderly no puede distinguir una rotación de clave legítima de un secuestro — desde aquí ambas se ven idénticas. Confirma la nueva clave con el autor por un canal en el que ya confíes antes de aceptarla. Cuando lo hagas, el plugin se actualizará y la nueva clave quedará registrada.',
   'admin.plugins.sig.retrustConfirm': 'Confiar en la nueva clave y actualizar',
   'admin.plugins.sig.cancel': 'No confiar',
   'admin.plugins.sig.consentUnsigned':
     'Nada vincula esta versión con su autor — los archivos coinciden con el registro, pero no llevan ninguna firma del autor.',
   'admin.plugins.security.trustTitle': 'En resumen',
   'admin.plugins.security.trustBody':
-    'Instalar un plugin es como instalar cualquier aplicación de terceros: añade únicamente código de autores en los que confíes y, en caso de duda, inspecciónalo tú mismo primero. TREK no asume ninguna responsabilidad por los plugins de terceros.',
+    'Instalar un plugin es como instalar cualquier aplicación de terceros: añade únicamente código de autores en los que confíes y, en caso de duda, inspecciónalo tú mismo primero. Wanderly no asume ninguna responsabilidad por los plugins de terceros.',
   'admin.plugins.runtimeOn': 'Entorno de ejecución activo',
   'admin.plugins.tabDiscover': 'Descubrir',
   'admin.plugins.searchPlaceholder': 'Buscar plugins…',
@@ -451,8 +451,8 @@ const admin: TranslationStrings = {
   'admin.plugins.dep.download': 'Descargar',
   'admin.plugins.dep.update': 'Actualizar',
   'admin.plugins.dep.resolveHint': 'Descarga la última versión compatible, incluidas sus propias dependencias.',
-  'admin.plugins.dep.trekIncompatible': 'Necesita TREK {range} — este servidor ejecuta {host}',
-  'admin.plugins.dep.trekUnknown': 'No indica qué versiones de TREK admite',
+  'admin.plugins.dep.trekIncompatible': 'Necesita Wanderly {range} — este servidor ejecuta {host}',
+  'admin.plugins.dep.trekUnknown': 'No indica qué versiones de Wanderly admite',
   'admin.plugins.installCompatible': 'Instalar {version}',
   'admin.plugins.incompatible': 'Incompatible',
   'admin.plugins.accessTitle': 'A qué puede acceder',
@@ -465,7 +465,7 @@ const admin: TranslationStrings = {
   'admin.plugins.metaReviewed': 'Revisado el',
   'admin.plugins.downloads': 'Descargas',
   'admin.addons.title': 'Complementos',
-  'admin.addons.subtitle': 'Activa o desactiva funciones para personalizar tu experiencia en TREK.',
+  'admin.addons.subtitle': 'Activa o desactiva funciones para personalizar tu experiencia en Wanderly.',
   'admin.addons.subtitleBefore': 'Activa o desactiva funciones para personalizar tu experiencia en ',
   'admin.addons.subtitleAfter': '.',
   'admin.addons.enabled': 'Activo',
@@ -482,7 +482,7 @@ const admin: TranslationStrings = {
   'admin.weather.title': 'Datos meteorológicos',
   'admin.weather.badge': 'Desde el 24 de marzo de 2026',
   'admin.weather.description':
-    'TREK utiliza Open-Meteo como fuente de datos meteorológicos. Open-Meteo es un servicio meteorológico gratuito y de código abierto: no requiere clave API.',
+    'Wanderly utiliza Open-Meteo como fuente de datos meteorológicos. Open-Meteo es un servicio meteorológico gratuito y de código abierto: no requiere clave API.',
   'admin.weather.forecast': 'Pronóstico de 16 días',
   'admin.weather.forecastDesc': 'Antes eran 5 días (OpenWeatherMap)',
   'admin.weather.climate': 'Datos climáticos históricos',
@@ -540,16 +540,16 @@ const admin: TranslationStrings = {
   'admin.github.hideDetails': 'Ocultar detalles',
   'admin.github.loadMore': 'Cargar más',
   'admin.github.loading': 'Cargando...',
-  'admin.github.support': 'Ayuda a seguir desarrollando TREK',
+  'admin.github.support': 'Ayuda a seguir desarrollando Wanderly',
   'admin.github.error': 'No se pudieron cargar las versiones',
   'admin.github.by': 'por',
   'admin.update.available': 'Actualización disponible',
-  'admin.update.text': 'TREK {version} está disponible. Estás usando {current}.',
+  'admin.update.text': 'Wanderly {version} está disponible. Estás usando {current}.',
   'admin.update.button': 'Ver en GitHub',
   'admin.update.install': 'Instalar actualización',
   'admin.update.confirmTitle': '¿Instalar actualización?',
   'admin.update.confirmText':
-    'TREK se actualizará de {current} a {version}. Después, el servidor se reiniciará automáticamente.',
+    'Wanderly se actualizará de {current} a {version}. Después, el servidor se reiniciará automáticamente.',
   'admin.update.dataInfo':
     'Todos tus datos (viajes, usuarios, claves API, subidas, Vacay, Atlas, presupuestos) se conservarán.',
   'admin.update.warning': 'La app estará brevemente no disponible durante el reinicio.',
@@ -561,9 +561,9 @@ const admin: TranslationStrings = {
   'admin.update.backupLink': 'Ir a Copia de seguridad',
   'admin.update.howTo': 'Cómo actualizar',
   'admin.update.dockerText':
-    'Tu instancia de TREK se ejecuta en Docker. Para actualizar a {version}, ejecuta los siguientes comandos en tu servidor:',
+    'Tu instancia de Wanderly se ejecuta en Docker. Para actualizar a {version}, ejecuta los siguientes comandos en tu servidor:',
   'admin.update.nonDockerText':
-    'Esta instancia de TREK no se ejecuta en Docker. Para actualizar a {version}, vuelve a ejecutar el método de instalación o actualización que utilizaste; por ejemplo, en Proxmox Community Scripts ejecuta la actualización desde la consola LXC:',
+    'Esta instancia de Wanderly no se ejecuta en Docker. Para actualizar a {version}, vuelve a ejecutar el método de instalación o actualización que utilizaste; por ejemplo, en Proxmox Community Scripts ejecuta la actualización desde la consola LXC:',
   'admin.update.wikiLink': 'Abrir la guía de actualización',
   'admin.update.reloadHint': 'Recarga la página en unos segundos.',
   'admin.addons.catalog.memories.name': 'Fotos (Immich)',

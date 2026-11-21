@@ -3007,7 +3007,7 @@ function runMigrations(db: Database.Database): void {
       }
     },
     () => {
-      // AirTrail flight linkage on reservations (#214) — lets a TREK transport
+      // AirTrail flight linkage on reservations (#214) — lets a Wanderly transport
       // remember its AirTrail origin so the two-way sync can match + update it.
       // sync_enabled flips to 0 when the AirTrail flight is deleted (row kept).
       try {
@@ -3046,8 +3046,8 @@ function runMigrations(db: Database.Database): void {
       );
     },
     () => {
-      // Per-user opt-in for writing TREK edits back to AirTrail (#1240). Default
-      // off: AirTrail is the source of truth and TREK never writes unless asked.
+      // Per-user opt-in for writing Wanderly edits back to AirTrail (#1240). Default
+      // off: AirTrail is the source of truth and Wanderly never writes unless asked.
       try {
         db.exec('ALTER TABLE users ADD COLUMN airtrail_write_enabled INTEGER DEFAULT 0');
       } catch (err: any) {
@@ -3545,7 +3545,7 @@ function runMigrations(db: Database.Database): void {
       `);
       db.exec('CREATE INDEX IF NOT EXISTS idx_plugin_sched_due ON plugin_scheduled_tasks (due_at);');
     },
-    // Durable GDPR erasure queue (#plugins). When a TREK account is deleted, every
+    // Durable GDPR erasure queue (#plugins). When a Wanderly account is deleted, every
     // installed plugin holding `hook:user-data` gets a pending row here so its own
     // deleteUserData handler runs even if the plugin was offline at delete time —
     // erasure must not be lost across a restart, so it is persisted (unlike the
@@ -3647,10 +3647,10 @@ function runMigrations(db: Database.Database): void {
       }
     },
 
-    // The semver RANGE of TREK versions a plugin declares it supports (its manifest's
+    // The semver RANGE of Wanderly versions a plugin declares it supports (its manifest's
     // `trek`, e.g. ">=3.2.0 <4.0.0"). The existing `min_trek_version` only carries the
     // lower bound, so it cannot express "stops working at 4.0" — which is precisely the
-    // case the activation gate has to catch after a TREK upgrade. Kept nullable: a plugin
+    // case the activation gate has to catch after a Wanderly upgrade. Kept nullable: a plugin
     // installed before this column existed has no range recorded, and the gate refuses to
     // activate it rather than guessing (see TREK_VERSION_UNKNOWN).
     () => {

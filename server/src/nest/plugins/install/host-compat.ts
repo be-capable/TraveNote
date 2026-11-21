@@ -1,15 +1,15 @@
 import semver from 'semver';
 
 /**
- * Host-version compatibility for plugins (#plugins). A manifest declares the TREK
+ * Host-version compatibility for plugins (#plugins). A manifest declares the Wanderly
  * versions it supports as a semver RANGE (`"trek": ">=3.2.0 <4.0.0"`); this module
- * is the single place that answers "what TREK is running" and "does that range admit
+ * is the single place that answers "what Wanderly is running" and "does that range admit
  * it". Every install front door (registry, sideload, dev-link) and the activation
  * gate go through here, so a plugin can never run against a host it says it doesn't
  * support — and, just as importantly, they all answer the question the same way.
  */
 
-/** The running TREK version (same source as the rest of the app). */
+/** The running Wanderly version (same source as the rest of the app). */
 export function hostVersion(): string {
   return process.env.APP_VERSION || (require('../../../../package.json') as { version: string }).version;
 }
@@ -25,10 +25,10 @@ let warnedUnparseable = false;
  *
  *  - Plain `satisfies()` excludes a prerelease from any range that doesn't name one, so
  *    3.4.0-rc.1 would fail ">=3.2.0 <4.0.0" and EVERY plugin on the instance would go
- *    incompatible the moment TREK shipped a release candidate.
+ *    incompatible the moment Wanderly shipped a release candidate.
  *  - `includePrerelease` fixes that but orders 4.0.0-rc.1 BEFORE 4.0.0, so it satisfies
- *    "<4.0.0" — letting a plugin that disclaims TREK 4 load on a build that already
- *    carries TREK 4's breaking changes. That is the precise failure this gate exists to
+ *    "<4.0.0" — letting a plugin that disclaims Wanderly 4 load on a build that already
+ *    carries Wanderly 4's breaking changes. That is the precise failure this gate exists to
  *    prevent.
  *
  * Coercing to the release says the useful thing instead: for compatibility purposes, an
@@ -45,7 +45,7 @@ export function normalizedHost(): string | null {
   const coerced = semver.coerce(raw)?.version ?? null;
   if (!coerced && !warnedUnparseable) {
     warnedUnparseable = true;
-    console.warn(`[plugins] APP_VERSION "${raw}" is not a semver version — plugin TREK-compatibility checks are disabled`);
+    console.warn(`[plugins] APP_VERSION "${raw}" is not a semver version — plugin Wanderly-compatibility checks are disabled`);
   }
   return coerced;
 }
@@ -74,9 +74,9 @@ export function isValidTrekRange(r: unknown): r is string {
 }
 
 /**
- * The lowest TREK version a range admits — what the UI shows as "Requires TREK x+".
+ * The lowest Wanderly version a range admits — what the UI shows as "Requires Wanderly x+".
  * Undefined for a range with no real lower bound (`*`, `<4.0.0`), because "requires
- * TREK 0.0.0+" is noise rather than information.
+ * Wanderly 0.0.0+" is noise rather than information.
  */
 export function minTrekOf(range: string): string | undefined {
   if (!isValidTrekRange(range)) return undefined;
@@ -86,7 +86,7 @@ export function minTrekOf(range: string): string | undefined {
 }
 
 /**
- * Whether the running TREK satisfies `range`. The host arrives here already coerced to a
+ * Whether the running Wanderly satisfies `range`. The host arrives here already coerced to a
  * release triple (see {@link normalizedHost}), which is what makes a plain satisfies()
  * correct on both prerelease edges.
  *
@@ -98,7 +98,7 @@ export function minTrekOf(range: string): string | undefined {
 export function hostSatisfies(range: string | null | undefined, host: string | null = normalizedHost()): boolean {
   // Coerce again rather than trusting the argument: callers that pass a host explicitly
   // (the registry, tests) would otherwise skip the prerelease normalisation and get a
-  // different answer than the default path for the same TREK.
+  // different answer than the default path for the same Wanderly.
   const release = host === null ? null : (semver.coerce(host)?.version ?? null);
   if (release === null) return true; // unversioned build — never block
   if (!isValidTrekRange(range)) return false;

@@ -12,15 +12,15 @@ import { attachZodBodySchemas } from '../common/api-zod';
  *   /api/docs-json   raw OpenAPI 3 document (generated clients, Postman)
  *   /api/docs-yaml   same, as YAML
  *
- * The bearer button works with a plain TREK session JWT: extractToken
+ * The bearer button works with a plain Wanderly session JWT: extractToken
  * accepts `Authorization: Bearer` everywhere as the cookie fallback.
  */
 export function setupApiDocs(app: INestApplication): void {
   const version: string = process.env.APP_VERSION || (require('../../../package.json') as { version: string }).version;
   const config = new DocumentBuilder()
-    .setTitle('TREK API')
+    .setTitle('Wanderly API')
     .setDescription(
-      'The REST API the TREK web app itself runs on. Authenticate with a session JWT — '
+      'The REST API the Wanderly web app itself runs on. Authenticate with a session JWT — '
       + 'either the `trek_session` cookie (same browser) or an `Authorization: Bearer <jwt>` header.',
     )
     .setVersion(version)

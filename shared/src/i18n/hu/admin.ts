@@ -242,7 +242,7 @@ const admin: TranslationStrings = {
   'admin.plugins.sourceRepo': 'Forráskód-tároló',
   'admin.plugins.reportIssue': 'Probléma jelentése',
   'admin.plugins.homepage': 'Honlap',
-  'admin.plugins.requiresTrek': 'TREK {version}+ szükséges',
+  'admin.plugins.requiresTrek': 'Wanderly {version}+ szükséges',
   'admin.plugins.reviewedOn': 'Ellenőrizve: {date}',
   'admin.plugins.perm.db:own': 'Saját adatok tárolása elkülönített adatbázisban',
   'admin.plugins.perm.db:read:trips': 'Az aktuális felhasználó számára elérhető utazások olvasása',
@@ -350,26 +350,26 @@ const admin: TranslationStrings = {
   'admin.plugins.updateLater': 'Egyelőre kikapcsolva marad',
   'admin.plugins.updateKeptOff': 'Frissítés telepítve — kikapcsolva marad, amíg jóvá nem hagyod az új engedélyeket',
   'admin.plugins.reviewedMeaning':
-    'Az „Ellenőrizve" azt jelenti, hogy egy TREK karbantartó minden verziónál átvizsgálta ezt a plugint kártevők után — nem a minőségét vagy azt, hogy működik-e. Ez nem garancia arra, hogy a plugin ártalmatlan.',
+    'Az „Ellenőrizve" azt jelenti, hogy egy Wanderly karbantartó minden verziónál átvizsgálta ezt a plugint kártevők után — nem a minőségét vagy azt, hogy működik-e. Ez nem garancia arra, hogy a plugin ártalmatlan.',
   'admin.plugins.security.title': 'Hogyan vannak a pluginok elszigetelve — és mik a korlátok',
   'admin.plugins.security.isolationTitle': 'Minden plugin elszigetelten fut',
   'admin.plugins.security.isolationBody':
-    'A plugin saját, lezárt folyamatként fut, amely csak a saját fájljait olvashatja. Nem fér hozzá az adatbázisodhoz, a bejelentkezési titkodhoz vagy a titkosítási kulcsodhoz, nem indíthat más programokat, és sehová nem írhat fájlokat. A felülete egy lezárt böngészőkeretben fut, amely nem olvashatja a munkamenet-sütidet, és nem nyúlhat a körülötte lévő TREK oldalhoz.',
+    'A plugin saját, lezárt folyamatként fut, amely csak a saját fájljait olvashatja. Nem fér hozzá az adatbázisodhoz, a bejelentkezési titkodhoz vagy a titkosítási kulcsodhoz, nem indíthat más programokat, és sehová nem írhat fájlokat. A felülete egy lezárt böngészőkeretben fut, amely nem olvashatja a munkamenet-sütidet, és nem nyúlhat a körülötte lévő Wanderly oldalhoz.',
   'admin.plugins.security.permsTitle': 'Mit jelentenek az engedélyek',
   'admin.plugins.security.permsBody':
-    'A telepítés előtt megjelenített engedélyek szigorú korlátot jelentenek, amelyet a TREK a plugin futása közben kényszerít ki — szó szerint semmit sem tehet, ami nem szerepel a listán. De azt mutatják meg, mit tehet egy plugin, nem azt, hogy valójában mit tesz. Egy olyan plugin, amely olvashatja az utazásaidat és elérhet egy szervert, el is küldheti az utazásaidat arra a szerverre, ezért ne csak a leírást, hanem az engedélyeket és a kimenő kiszolgálókat is olvasd el.',
+    'A telepítés előtt megjelenített engedélyek szigorú korlátot jelentenek, amelyet a Wanderly a plugin futása közben kényszerít ki — szó szerint semmit sem tehet, ami nem szerepel a listán. De azt mutatják meg, mit tehet egy plugin, nem azt, hogy valójában mit tesz. Egy olyan plugin, amely olvashatja az utazásaidat és elérhet egy szervert, el is küldheti az utazásaidat arra a szerverre, ezért ne csak a leírást, hanem az engedélyeket és a kimenő kiszolgálókat is olvasd el.',
   'admin.plugins.security.limitsTitle': 'Mit nem ígérhetünk',
   'admin.plugins.security.limitsBody':
-    'Az elszigetelés erős szoftveres határ, de nem abszolút. A plugin pontosan azokkal a jogokkal működik, amelyeket jóváhagysz, így ezeken a jogokon belül a leírásától eltérően is viselkedhet, és a jogszerűen birtokolt adatokat elküldheti az általa bejelentett kiszolgálóknak. A TREK nem olvassa és nem ítéli meg, hogy egy plugin kódja valójában mit csinál.',
+    'Az elszigetelés erős szoftveres határ, de nem abszolút. A plugin pontosan azokkal a jogokkal működik, amelyeket jóváhagysz, így ezeken a jogokon belül a leírásától eltérően is viselkedhet, és a jogszerűen birtokolt adatokat elküldheti az általa bejelentett kiszolgálóknak. A Wanderly nem olvassa és nem ítéli meg, hogy egy plugin kódja valójában mit csinál.',
   'admin.plugins.security.worstTitle': 'A legrosszabb eset',
   'admin.plugins.security.worstBody':
     'Egy ellenséges plugin, amelyet bekapcsolsz, visszaélhet a neki megadott adatokkal és kapcsolatokkal — például kiszivárogtathatja azokat az utazásokat, amelyeket olvashat. Nem tud jelszavakat ellopni, admin bejelentkezést hamisítani, parancsokat futtatni a szervereden, vagy olyan adatokhoz hozzáférni, amelyeket nem engedélyeztél. A kár azon belül marad, amit jóváhagytál, és a plugin kikapcsolása leállítja.',
   'admin.plugins.security.reviewedTitle': 'Mit jelent az „Ellenőrizve"',
   'admin.plugins.security.reviewedBody':
-    'Egy ellenőrzött plugint egy TREK karbantartó minden verziónál kézzel átvizsgált kártevők után — ellenséges kód szempontjából ellenőrizte, nem pedig azt, hogy jól működik-e. Ez nem ígéret arra, hogy a plugin ártalmatlan.',
+    'Egy ellenőrzött plugint egy Wanderly karbantartó minden verziónál kézzel átvizsgált kártevők után — ellenséges kód szempontjából ellenőrizte, nem pedig azt, hogy jól működik-e. Ez nem ígéret arra, hogy a plugin ártalmatlan.',
   'admin.plugins.security.signedTitle': 'Mit jelent az „Aláírva"',
   'admin.plugins.security.signedBody':
-    'Az ellenőrzőösszeg, amelyet a TREK minden telepítéskor ellenőriz, azt bizonyítja, hogy a fájlok pontosan azok, amelyekért a jegyzék jótáll. Az aláírás mást bizonyít: azt, hogy a szerzőtől származnak, olyan kulccsal aláírva, amelyet csak ő birtokol. Egy aláírt plugin mindkettővel rendelkezik. Az aláírás nélküli nem veszélyes — egyszerűen eggyel kevesebb garanciát hordoz, és a jegyzékben ma a legtöbb plugin aláírás nélküli.',
+    'Az ellenőrzőösszeg, amelyet a Wanderly minden telepítéskor ellenőriz, azt bizonyítja, hogy a fájlok pontosan azok, amelyekért a jegyzék jótáll. Az aláírás mást bizonyít: azt, hogy a szerzőtől származnak, olyan kulccsal aláírva, amelyet csak ő birtokol. Egy aláírt plugin mindkettővel rendelkezik. Az aláírás nélküli nem veszélyes — egyszerűen eggyel kevesebb garanciát hordoz, és a jegyzékben ma a legtöbb plugin aláírás nélküli.',
   'admin.plugins.signed': 'Aláírva',
   'admin.plugins.signedHint': 'Telepítéskor ellenőrizve a szerző aláírókulcsával',
   'admin.plugins.unsigned': 'Aláírás nélkül',
@@ -384,20 +384,20 @@ const admin: TranslationStrings = {
   'admin.plugins.sig.invalidBody':
     'A fájlok nem egyeznek a szerző aláírásával. Nem azok, amiket a szerző aláírt — vagy megsérültek, vagy módosították őket. Ez nem hagyható figyelmen kívül.',
   'admin.plugins.sig.missingBody':
-    'Ez a plugin alá volt írva, amikor telepítetted, de az új verzió nem tartalmaz aláírást. A TREK nem fogadja el csendben ezt a visszalépést. Ez nem hagyható figyelmen kívül.',
+    'Ez a plugin alá volt írva, amikor telepítetted, de az új verzió nem tartalmaz aláírást. A Wanderly nem fogadja el csendben ezt a visszalépést. Ez nem hagyható figyelmen kívül.',
   'admin.plugins.sig.incompleteBody':
     'A jegyzékbeli bejegyzés félig aláírt: szerzői kulcsot deklarál, de a verzió nem hordoz aláírást (vagy fordítva). Ez a plugin oldalán elkövetett hiba. Ez nem hagyható figyelmen kívül.',
   'admin.plugins.sig.pinnedKey': 'A telepítéskor használt kulcs',
   'admin.plugins.sig.newKey': 'A most kínált kulcs',
   'admin.plugins.sig.confirmOutOfBand':
-    'A TREK nem tudja megkülönböztetni a jogos kulcscserét az átvételtől — innen nézve a kettő azonos. Erősítsd meg az új kulcsot a szerzőnél egy olyan csatornán, amelyben már megbízol, mielőtt elfogadod. Amint ezt megteszed, a plugin frissül, és a TREK megjegyzi az új kulcsot.',
+    'A Wanderly nem tudja megkülönböztetni a jogos kulcscserét az átvételtől — innen nézve a kettő azonos. Erősítsd meg az új kulcsot a szerzőnél egy olyan csatornán, amelyben már megbízol, mielőtt elfogadod. Amint ezt megteszed, a plugin frissül, és a Wanderly megjegyzi az új kulcsot.',
   'admin.plugins.sig.retrustConfirm': 'Új kulcs megbízhatónak jelölése és frissítés',
   'admin.plugins.sig.cancel': 'Ne bízz meg benne',
   'admin.plugins.sig.consentUnsigned':
     'Semmi sem köti ezt a verziót a szerzőjéhez — a fájlok megegyeznek a jegyzékkel, de nem hordoznak szerzői aláírást.',
   'admin.plugins.security.trustTitle': 'A lényeg',
   'admin.plugins.security.trustBody':
-    'Egy plugin telepítése olyan, mint bármely harmadik féltől származó alkalmazás telepítése: csak megbízható szerzőktől adj hozzá kódot, és kétség esetén előbb magad vizsgáld meg. A TREK semmilyen felelősséget nem vállal a harmadik féltől származó pluginokért.',
+    'Egy plugin telepítése olyan, mint bármely harmadik féltől származó alkalmazás telepítése: csak megbízható szerzőktől adj hozzá kódot, és kétség esetén előbb magad vizsgáld meg. A Wanderly semmilyen felelősséget nem vállal a harmadik féltől származó pluginokért.',
   'admin.plugins.runtimeOn': 'Futtatókörnyezet bekapcsolva',
   'admin.plugins.tabDiscover': 'Felfedezés',
   'admin.plugins.searchPlaceholder': 'Pluginok keresése…',
@@ -454,8 +454,8 @@ const admin: TranslationStrings = {
   'admin.plugins.dep.download': 'Letöltés',
   'admin.plugins.dep.update': 'Frissítés',
   'admin.plugins.dep.resolveHint': 'Letölti a legújabb kompatibilis verziót a saját függőségeivel együtt.',
-  'admin.plugins.dep.trekIncompatible': 'TREK {range} szükséges — ez a kiszolgáló {host} verziót futtat',
-  'admin.plugins.dep.trekUnknown': 'Nem adja meg, mely TREK-verziókat támogatja',
+  'admin.plugins.dep.trekIncompatible': 'Wanderly {range} szükséges — ez a kiszolgáló {host} verziót futtat',
+  'admin.plugins.dep.trekUnknown': 'Nem adja meg, mely Wanderly-verziókat támogatja',
   'admin.plugins.installCompatible': '{version} telepítése',
   'admin.plugins.incompatible': 'Nem kompatibilis',
   'admin.plugins.accessTitle': 'Mihez fér hozzá',
@@ -468,7 +468,7 @@ const admin: TranslationStrings = {
   'admin.plugins.metaReviewed': 'Ellenőrizve',
   'admin.plugins.downloads': 'Letöltések',
   'admin.addons.title': 'Bővítmények',
-  'admin.addons.subtitle': 'Funkciók engedélyezése vagy letiltása a TREK testreszabásához.',
+  'admin.addons.subtitle': 'Funkciók engedélyezése vagy letiltása a Wanderly testreszabásához.',
   'admin.addons.catalog.packing.name': 'Listák',
   'admin.addons.catalog.packing.description': 'Csomagolási listák és teendők az utazásaidhoz',
   'admin.addons.catalog.budget.name': 'Költségek',
@@ -501,7 +501,7 @@ const admin: TranslationStrings = {
   'admin.weather.title': 'Időjárás adatok',
   'admin.weather.badge': '2026. március 24. óta',
   'admin.weather.description':
-    'A TREK az Open-Meteo-t használja időjárás-adatforrásként. Az Open-Meteo egy ingyenes, nyílt forráskódú időjárás-szolgáltatás — nincs szükség API kulcsra.',
+    'A Wanderly az Open-Meteo-t használja időjárás-adatforrásként. Az Open-Meteo egy ingyenes, nyílt forráskódú időjárás-szolgáltatás — nincs szükség API kulcsra.',
   'admin.weather.forecast': '16 napos előrejelzés',
   'admin.weather.forecastDesc': 'Korábban 5 nap volt (OpenWeatherMap)',
   'admin.weather.climate': 'Történelmi klímaadatok',
@@ -561,14 +561,14 @@ const admin: TranslationStrings = {
   'admin.github.loading': 'Betöltés...',
   'admin.github.error': 'Nem sikerült betölteni a kiadásokat',
   'admin.github.by': 'készítette',
-  'admin.github.support': 'Segít fenntartani a TREK fejlesztését',
+  'admin.github.support': 'Segít fenntartani a Wanderly fejlesztését',
   'admin.update.available': 'Frissítés elérhető',
-  'admin.update.text': 'A TREK {version} elérhető. Jelenleg a {current} verziót használod.',
+  'admin.update.text': 'A Wanderly {version} elérhető. Jelenleg a {current} verziót használod.',
   'admin.update.button': 'Megtekintés a GitHubon',
   'admin.update.install': 'Frissítés telepítése',
   'admin.update.confirmTitle': 'Frissítés telepítése?',
   'admin.update.confirmText':
-    'A TREK frissítésre kerül {current} verzióról {version} verzióra. A szerver ezután automatikusan újraindul.',
+    'A Wanderly frissítésre kerül {current} verzióról {version} verzióra. A szerver ezután automatikusan újraindul.',
   'admin.update.dataInfo':
     'Minden adat (utazások, felhasználók, API kulcsok, feltöltések, Vacay, Atlas, költségvetések) megmarad.',
   'admin.update.warning': 'Az alkalmazás az újraindítás alatt rövid ideig nem lesz elérhető.',
@@ -580,9 +580,9 @@ const admin: TranslationStrings = {
   'admin.update.backupLink': 'Biztonsági mentéshez',
   'admin.update.howTo': 'Frissítési útmutató',
   'admin.update.dockerText':
-    'A TREK példányod Dockerben fut. A {version} verzióra frissítéshez futtasd a következő parancsokat a szervereden:',
+    'A Wanderly példányod Dockerben fut. A {version} verzióra frissítéshez futtasd a következő parancsokat a szervereden:',
   'admin.update.nonDockerText':
-    'Ez a TREK példány nem Dockerben fut. A {version} verzióra frissítéshez futtasd újra a telepítési vagy frissítési módszert, amelyet használtál — például Proxmox Community Scripts esetén futtasd a frissítést az LXC konzolból:',
+    'Ez a Wanderly példány nem Dockerben fut. A {version} verzióra frissítéshez futtasd újra a telepítési vagy frissítési módszert, amelyet használtál — például Proxmox Community Scripts esetén futtasd a frissítést az LXC konzolból:',
   'admin.update.wikiLink': 'Frissítési útmutató megnyitása',
   'admin.update.reloadHint': 'Kérjük, töltsd újra az oldalt néhány másodperc múlva.',
   'admin.tabs.permissions': 'Jogosultságok',

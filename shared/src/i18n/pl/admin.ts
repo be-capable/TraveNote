@@ -235,7 +235,7 @@ const admin: TranslationStrings = {
   'admin.plugins.sourceRepo': 'Repozytorium źródłowe',
   'admin.plugins.reportIssue': 'Zgłoś problem',
   'admin.plugins.homepage': 'Strona główna',
-  'admin.plugins.requiresTrek': 'Wymaga TREK {version}+',
+  'admin.plugins.requiresTrek': 'Wymaga Wanderly {version}+',
   'admin.plugins.reviewedOn': 'Zweryfikowano {date}',
   'admin.plugins.perm.db:own': 'Przechowywanie własnych danych w izolowanej bazie danych',
   'admin.plugins.perm.db:read:trips': 'Odczyt podróży, do których działający użytkownik ma dostęp',
@@ -342,26 +342,26 @@ const admin: TranslationStrings = {
   'admin.plugins.updateKeptOff':
     'Aktualizacja zainstalowana — pozostaje wyłączona, dopóki nie zatwierdzisz nowych uprawnień',
   'admin.plugins.reviewedMeaning':
-    '„Zweryfikowana” oznacza, że opiekun TREK przeskanował tę wtyczkę pod kątem złośliwego oprogramowania w każdej wersji — nie pod kątem jakości ani tego, czy działa. To nie jest gwarancja, że wtyczka jest nieszkodliwa.',
+    '„Zweryfikowana” oznacza, że opiekun Wanderly przeskanował tę wtyczkę pod kątem złośliwego oprogramowania w każdej wersji — nie pod kątem jakości ani tego, czy działa. To nie jest gwarancja, że wtyczka jest nieszkodliwa.',
   'admin.plugins.security.title': 'Jak wtyczki są izolowane — i jakie są tego granice',
   'admin.plugins.security.isolationTitle': 'Każda wtyczka działa w izolacji',
   'admin.plugins.security.isolationBody':
-    'Wtyczka działa jako własny, odizolowany proces, który może odczytywać wyłącznie swoje własne pliki. Nie może odczytać Twojej bazy danych, sekretu logowania ani klucza szyfrującego, nie może uruchamiać innych programów ani nigdzie zapisywać plików. Jej interfejs działa w zamkniętej ramce przeglądarki, która nie może odczytać Twojego pliku cookie sesji ani ingerować w otaczającą ją stronę TREK.',
+    'Wtyczka działa jako własny, odizolowany proces, który może odczytywać wyłącznie swoje własne pliki. Nie może odczytać Twojej bazy danych, sekretu logowania ani klucza szyfrującego, nie może uruchamiać innych programów ani nigdzie zapisywać plików. Jej interfejs działa w zamkniętej ramce przeglądarki, która nie może odczytać Twojego pliku cookie sesji ani ingerować w otaczającą ją stronę Wanderly.',
   'admin.plugins.security.permsTitle': 'Co oznaczają uprawnienia',
   'admin.plugins.security.permsBody':
-    'Uprawnienia pokazywane przed instalacją to twarda granica, którą TREK egzekwuje w trakcie działania wtyczki — dosłownie nie może ona zrobić niczego, czego nie ma na liście. Mówią one jednak, co wtyczka może robić, a nie co faktycznie robi. Wtyczka, która może odczytywać Twoje podróże i łączyć się z serwerem, może wysłać Twoje podróże na ten serwer, dlatego czytaj uprawnienia i hosty wychodzące, a nie tylko opis.',
+    'Uprawnienia pokazywane przed instalacją to twarda granica, którą Wanderly egzekwuje w trakcie działania wtyczki — dosłownie nie może ona zrobić niczego, czego nie ma na liście. Mówią one jednak, co wtyczka może robić, a nie co faktycznie robi. Wtyczka, która może odczytywać Twoje podróże i łączyć się z serwerem, może wysłać Twoje podróże na ten serwer, dlatego czytaj uprawnienia i hosty wychodzące, a nie tylko opis.',
   'admin.plugins.security.limitsTitle': 'Czego nie możemy obiecać',
   'admin.plugins.security.limitsBody':
-    'Izolacja to silna granica programowa, ale nie absolutna. Wtyczka działa dokładnie z tymi uprawnieniami, które zatwierdzisz, więc w ich ramach może zachowywać się inaczej, niż sugeruje jej opis, i może wysyłać dane, do których ma zgodny z uprawnieniami dostęp, do zadeklarowanych przez siebie hostów. TREK nie odczytuje ani nie ocenia tego, co faktycznie robi kod wtyczki.',
+    'Izolacja to silna granica programowa, ale nie absolutna. Wtyczka działa dokładnie z tymi uprawnieniami, które zatwierdzisz, więc w ich ramach może zachowywać się inaczej, niż sugeruje jej opis, i może wysyłać dane, do których ma zgodny z uprawnieniami dostęp, do zadeklarowanych przez siebie hostów. Wanderly nie odczytuje ani nie ocenia tego, co faktycznie robi kod wtyczki.',
   'admin.plugins.security.worstTitle': 'Najgorszy scenariusz',
   'admin.plugins.security.worstBody':
     'Wroga wtyczka, którą włączysz, może nadużyć danych i połączeń, które jej przyznałeś — na przykład ujawnić podróże, które może odczytywać. Nie może wykraść haseł, sfałszować logowania administratora, uruchamiać poleceń na Twoim serwerze ani sięgać po dane, których jej nie przyznałeś. Szkody pozostają w granicach tego, co zatwierdziłeś, a wyłączenie wtyczki je zatrzymuje.',
   'admin.plugins.security.reviewedTitle': 'Co oznacza „Zweryfikowana”',
   'admin.plugins.security.reviewedBody':
-    'Zweryfikowana wtyczka została ręcznie przeskanowana pod kątem złośliwego oprogramowania przez opiekuna TREK w każdej wersji — sprawdzona pod kątem wrogiego kodu, a nie tego, czy działa dobrze. To nie jest obietnica, że wtyczka jest nieszkodliwa.',
+    'Zweryfikowana wtyczka została ręcznie przeskanowana pod kątem złośliwego oprogramowania przez opiekuna Wanderly w każdej wersji — sprawdzona pod kątem wrogiego kodu, a nie tego, czy działa dobrze. To nie jest obietnica, że wtyczka jest nieszkodliwa.',
   'admin.plugins.security.signedTitle': 'Co oznacza „Podpisana”',
   'admin.plugins.security.signedBody':
-    'Suma kontrolna, którą TREK weryfikuje przy każdej instalacji, dowodzi, że pliki są dokładnie tym, za co ręczy rejestr. Podpis dowodzi czegoś innego: że pochodzą od autora i zostały podpisane kluczem, który ma tylko on. Podpisana wtyczka ma jedno i drugie. Wtyczka bez podpisu nie jest niebezpieczna — po prostu niesie o jedną gwarancję mniej, a większość wtyczek w rejestrze jest dziś niepodpisana.',
+    'Suma kontrolna, którą Wanderly weryfikuje przy każdej instalacji, dowodzi, że pliki są dokładnie tym, za co ręczy rejestr. Podpis dowodzi czegoś innego: że pochodzą od autora i zostały podpisane kluczem, który ma tylko on. Podpisana wtyczka ma jedno i drugie. Wtyczka bez podpisu nie jest niebezpieczna — po prostu niesie o jedną gwarancję mniej, a większość wtyczek w rejestrze jest dziś niepodpisana.',
   'admin.plugins.signed': 'Podpisana',
   'admin.plugins.signedHint': 'Zweryfikowana kluczem podpisującym autora w chwili instalacji',
   'admin.plugins.unsigned': 'Niepodpisana',
@@ -376,20 +376,20 @@ const admin: TranslationStrings = {
   'admin.plugins.sig.invalidBody':
     'Pliki nie zgadzają się z podpisem autora. Nie są tym, co autor podpisał — albo uległy uszkodzeniu, albo zostały zmodyfikowane. Tego nie można pominąć.',
   'admin.plugins.sig.missingBody':
-    'Ta wtyczka była podpisana, gdy ją instalowałeś, ale nowa wersja nie zawiera żadnego podpisu. TREK nie przyjmie po cichu takiego kroku wstecz. Tego nie można pominąć.',
+    'Ta wtyczka była podpisana, gdy ją instalowałeś, ale nowa wersja nie zawiera żadnego podpisu. Wanderly nie przyjmie po cichu takiego kroku wstecz. Tego nie można pominąć.',
   'admin.plugins.sig.incompleteBody':
     'Wpis w rejestrze jest podpisany połowicznie: deklaruje klucz autora, ale wersja nie ma podpisu (albo odwrotnie). To błąd po stronie wtyczki. Tego nie można pominąć.',
   'admin.plugins.sig.pinnedKey': 'Klucz, którym podpisano ją przy instalacji',
   'admin.plugins.sig.newKey': 'Klucz, który proponuje teraz',
   'admin.plugins.sig.confirmOutOfBand':
-    'TREK nie odróżni prawidłowej wymiany klucza od przejęcia wtyczki — stąd wyglądają identycznie. Zanim zaakceptujesz nowy klucz, potwierdź go u autora kanałem, któremu już ufasz. Gdy to zrobisz, wtyczka zostanie zaktualizowana, a nowy klucz zapamiętany.',
+    'Wanderly nie odróżni prawidłowej wymiany klucza od przejęcia wtyczki — stąd wyglądają identycznie. Zanim zaakceptujesz nowy klucz, potwierdź go u autora kanałem, któremu już ufasz. Gdy to zrobisz, wtyczka zostanie zaktualizowana, a nowy klucz zapamiętany.',
   'admin.plugins.sig.retrustConfirm': 'Zaufaj nowemu kluczowi i zaktualizuj',
   'admin.plugins.sig.cancel': 'Nie ufaj mu',
   'admin.plugins.sig.consentUnsigned':
     'Nic nie wiąże tej wersji z jej autorem — pliki zgadzają się z rejestrem, ale nie niosą podpisu autora.',
   'admin.plugins.security.trustTitle': 'Podsumowanie',
   'admin.plugins.security.trustBody':
-    'Instalacja wtyczki jest jak instalacja dowolnej aplikacji innych firm: dodawaj tylko kod od autorów, którym ufasz, a w razie wątpliwości najpierw samodzielnie go sprawdź. TREK nie ponosi żadnej odpowiedzialności za wtyczki innych firm.',
+    'Instalacja wtyczki jest jak instalacja dowolnej aplikacji innych firm: dodawaj tylko kod od autorów, którym ufasz, a w razie wątpliwości najpierw samodzielnie go sprawdź. Wanderly nie ponosi żadnej odpowiedzialności za wtyczki innych firm.',
   'admin.plugins.runtimeOn': 'Środowisko włączone',
   'admin.plugins.tabDiscover': 'Odkrywaj',
   'admin.plugins.searchPlaceholder': 'Szukaj wtyczek…',
@@ -446,8 +446,8 @@ const admin: TranslationStrings = {
   'admin.plugins.dep.download': 'Pobierz',
   'admin.plugins.dep.update': 'Aktualizuj',
   'admin.plugins.dep.resolveHint': 'Pobiera najnowszą zgodną wersję wraz z jej zależnościami.',
-  'admin.plugins.dep.trekIncompatible': 'Wymaga TREK {range} — ten serwer działa na {host}',
-  'admin.plugins.dep.trekUnknown': 'Nie określa, które wersje TREK obsługuje',
+  'admin.plugins.dep.trekIncompatible': 'Wymaga Wanderly {range} — ten serwer działa na {host}',
+  'admin.plugins.dep.trekUnknown': 'Nie określa, które wersje Wanderly obsługuje',
   'admin.plugins.installCompatible': 'Zainstaluj {version}',
   'admin.plugins.incompatible': 'Niezgodny',
   'admin.plugins.accessTitle': 'Do czego ma dostęp',
@@ -460,7 +460,7 @@ const admin: TranslationStrings = {
   'admin.plugins.metaReviewed': 'Zweryfikowano',
   'admin.plugins.downloads': 'Pobrania',
   'admin.addons.title': 'Dodatki',
-  'admin.addons.subtitle': 'Włączaj lub wyłączaj funkcje, aby dostosować swoje doświadczenie w TREK.',
+  'admin.addons.subtitle': 'Włączaj lub wyłączaj funkcje, aby dostosować swoje doświadczenie w Wanderly.',
   'admin.addons.catalog.packing.name': 'Listy',
   'admin.addons.catalog.packing.description': 'Listy pakowania i zadania do wykonania dla Twoich podróży',
   'admin.addons.catalog.budget.name': 'Koszty',
@@ -493,7 +493,7 @@ const admin: TranslationStrings = {
   'admin.weather.title': 'Dane pogodowe',
   'admin.weather.badge': 'Od 24 marca 2026',
   'admin.weather.description':
-    'TREK korzysta z Open-Meteo jako źródła danych pogodowych. Open-Meteo to darmowy, otwartoźródłowy serwis pogodowy — klucz API nie jest wymagany.',
+    'Wanderly korzysta z Open-Meteo jako źródła danych pogodowych. Open-Meteo to darmowy, otwartoźródłowy serwis pogodowy — klucz API nie jest wymagany.',
   'admin.weather.forecast': '16-dniowa prognoza',
   'admin.weather.forecastDesc': 'Wcześniej 5 dni (OpenWeatherMap)',
   'admin.weather.climate': 'Historyczne dane klimatyczne',
@@ -552,14 +552,14 @@ const admin: TranslationStrings = {
   'admin.github.loading': 'Ładowanie...',
   'admin.github.error': 'Nie udało się załadować wydań',
   'admin.github.by': 'przez',
-  'admin.github.support': 'Pomóż mi rozwijać TREK',
+  'admin.github.support': 'Pomóż mi rozwijać Wanderly',
   'admin.update.available': 'Dostępna aktualizacja',
-  'admin.update.text': 'Dostępna jest wersja TREK {version}. Używasz {current}.',
+  'admin.update.text': 'Dostępna jest wersja Wanderly {version}. Używasz {current}.',
   'admin.update.button': 'Zobacz na GitHubie',
   'admin.update.install': 'Zainstaluj aktualizację',
   'admin.update.confirmTitle': 'Zainstalować aktualizację?',
   'admin.update.confirmText':
-    'TREK zostanie zaktualizowany z {current} do {version}. Serwer zostanie automatycznie zrestartowany po zakończeniu.',
+    'Wanderly zostanie zaktualizowany z {current} do {version}. Serwer zostanie automatycznie zrestartowany po zakończeniu.',
   'admin.update.dataInfo':
     'Wszystkie twoje dane (podróże, użytkownicy, klucze API, przesłane pliki, urlopy, Atlas, budżety) zostaną zachowane.',
   'admin.update.warning': 'Aplikacja będzie niedostępna przez krótki czas podczas restartu.',
@@ -571,9 +571,9 @@ const admin: TranslationStrings = {
   'admin.update.backupLink': 'Zrób kopię zapasową',
   'admin.update.howTo': 'Jak zaktualizować',
   'admin.update.dockerText':
-    'Twoja instancja TREK działa w Dockerze. Aby zaktualizować do {version}, uruchom następujące polecenia na swoim serwerze:',
+    'Twoja instancja Wanderly działa w Dockerze. Aby zaktualizować do {version}, uruchom następujące polecenia na swoim serwerze:',
   'admin.update.nonDockerText':
-    'Ta instancja TREK nie działa w Dockerze. Aby zaktualizować do {version}, uruchom ponownie metodę instalacji lub aktualizacji, której użyłeś — na przykład w Proxmox Community Scripts uruchom aktualizację z konsoli LXC:',
+    'Ta instancja Wanderly nie działa w Dockerze. Aby zaktualizować do {version}, uruchom ponownie metodę instalacji lub aktualizacji, której użyłeś — na przykład w Proxmox Community Scripts uruchom aktualizację z konsoli LXC:',
   'admin.update.wikiLink': 'Otwórz przewodnik aktualizacji',
   'admin.update.reloadHint': 'Proszę odświeżyć stronę za kilka sekund.',
   'admin.notifications.title': 'Powiadomienia',

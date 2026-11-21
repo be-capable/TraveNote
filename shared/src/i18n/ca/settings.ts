@@ -167,9 +167,9 @@ const settings: TranslationStrings = {
   'settings.about.featureRequestHint': 'Suggereix una funció nova',
   'settings.about.wikiHint': 'Documentació i guies',
   'settings.about.supporters.badge': 'Patrocinadors Mensuals',
-  'settings.about.supporters.title': 'Companyia de viatge per a TREK',
+  'settings.about.supporters.title': 'Companyia de viatge per a Wanderly',
   'settings.about.supporters.subtitle':
-    'Mentre planifiques la teva pròxima ruta, aquestes persones ajuden a planificar el futur de TREK. La seva aportació mensual va directa al desenvolupament i a les hores reals invertides — perquè TREK continuï sent Open Source.',
+    'Mentre planifiques la teva pròxima ruta, aquestes persones ajuden a planificar el futur de Wanderly. La seva aportació mensual va directa al desenvolupament i a les hores reals invertides — perquè Wanderly continuï sent Open Source.',
   'settings.about.supporters.since': 'patrocinador des de {date}',
   'settings.about.supporters.tierEmpty': 'Sigues el primer',
   'settings.about.supporter.tier.noReturnTicket': 'No Return Ticket',
@@ -178,7 +178,7 @@ const settings: TranslationStrings = {
   'settings.about.supporter.tier.budgetTraveller': 'Budget Traveller',
   'settings.about.supporter.tier.hostelBunkmate': 'Hostel Bunkmate',
   'settings.about.description':
-    "TREK és un planificador de viatges autoallotjat que t'ajuda a organitzar els teus viatges des de la primera idea fins al darrer record. Planificació diària, pressupost, llistes d'equipatge, fotos i molt més — tot en un sol lloc, al teu propi servidor.",
+    "Wanderly és un planificador de viatges autoallotjat que t'ajuda a organitzar els teus viatges des de la primera idea fins al darrer record. Planificació diària, pressupost, llistes d'equipatge, fotos i molt més — tot en un sol lloc, al teu propi servidor.",
   'settings.about.madeWith': 'Fet amb',
   'settings.about.madeBy': 'per Maurice i una creixent comunitat de codi obert.',
   'settings.username': 'Usuari',

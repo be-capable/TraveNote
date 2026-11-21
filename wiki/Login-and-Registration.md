@@ -1,6 +1,6 @@
 # Login and Registration
 
-![TREK login page: the product splash panel on the left and the Sign In card on the right with email and password fields, a Remember me switch, a Forgot password? link and a Register link](assets/Registration.png)
+![Wanderly login page: the product splash panel on the left and the Sign In card on the right with email and password fields, a Remember me switch, a Forgot password? link and a Register link](assets/Registration.png)
 
 ## Signing in
 
@@ -52,7 +52,7 @@ If the token is invalid, expired, or exhausted, an error is shown.
 
 ## First user
 
-On a fresh TREK instance with no existing accounts, the registration form opens immediately. The first account created is automatically assigned the **admin** role.
+On a fresh Wanderly instance with no existing accounts, the registration form opens immediately. The first account created is automatically assigned the **admin** role.
 
 ## Rate limiting
 

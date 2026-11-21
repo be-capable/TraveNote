@@ -1,12 +1,12 @@
 # User Settings
 
-The Settings page lets you personalise every aspect of TREK — appearance, maps, notifications, offline behaviour, and your account.
+The Settings page lets you personalise every aspect of Wanderly — appearance, maps, notifications, offline behaviour, and your account.
 
 ## Navigating to Settings
 
 Open the user menu in the top navigation bar and select **Settings**. The page opens on the **General** tab by default.
 
-If your account requires MFA setup, TREK redirects you directly to the **Account** tab (via `?mfa=required`).
+If your account requires MFA setup, Wanderly redirects you directly to the **Account** tab (via `?mfa=required`).
 
 ## Tabs
 

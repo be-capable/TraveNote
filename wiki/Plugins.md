@@ -1,13 +1,13 @@
 # Plugins
 
-Plugins let anyone extend a self-hosted TREK instance with new features — a
+Plugins let anyone extend a self-hosted Wanderly instance with new features — a
 dashboard widget, a full page, a photo/calendar integration — **without touching
-TREK's source code**. They are developed by third parties, distributed from a
+Wanderly's source code**. They are developed by third parties, distributed from a
 public registry, and installed at the instance owner's discretion.
 
 > [!IMPORTANT]
 > **Plugins run arbitrary code, isolated but real.** Every plugin runs in its own
-> sandboxed child process with only the permissions you approve. TREK does not
+> sandboxed child process with only the permissions you approve. Wanderly does not
 > maintain, audit, or take responsibility for community plugins. Grant a plugin
 > only the access you'd trust it to have with your data, and prefer plugins
 > marked **Reviewed**.
@@ -21,12 +21,12 @@ A plugin declares one `type` in its manifest, which decides where it surfaces:
 | **widget** | On the dashboard — in the sidebar, as a boarding-pass style hero overlay (`slot: "hero"`), or docked into a **detail panel** inside the trip planner: the open place (`slot: "place-detail"`), day (`slot: "day-detail"`), or reservation (`slot: "reservation-detail"`) | At-a-glance info like flight status or weather; a detail-panel widget is scoped to just the one place/day/reservation you have open |
 | **page** | As its own entry in the top navigation | A full self-contained tool |
 | **trip-page** | As a tab **inside every trip planner** (alongside Plan / Transports / Files), scoped to the open trip | A tool that works against one trip at a time |
-| **integration** | Nowhere visible — registers into TREK via hooks (e.g. a photo provider, a calendar source, or a **notification channel**) | Feed data into existing TREK features |
+| **integration** | Nowhere visible — registers into Wanderly via hooks (e.g. a photo provider, a calendar source, or a **notification channel**) | Feed data into existing Wanderly features |
 
 ### Notification channels
 
 An `integration` plugin can add a whole new **notification channel** — Gotify, Pushover,
-Telegram, anything that takes a message — alongside TREK's built-in email, webhook and
+Telegram, anything that takes a message — alongside Wanderly's built-in email, webhook and
 ntfy.
 
 Once you install and enable such a plugin, switch its channel on in
@@ -39,7 +39,7 @@ Two guarantees hold for a plugin channel specifically:
 
 - **It is user-scoped.** Admin-only events (like *version available*) always go out over
   your built-in admin channels, never a plugin's.
-- **The plugin never sees anyone's trips.** TREK renders the notification — in the
+- **The plugin never sees anyone's trips.** Wanderly renders the notification — in the
   recipient's language, deep link already built — *before* handing it over. The plugin
   receives that finished message plus that user's own credentials for its service, and
   nothing else. It is given no acting user, so the trip-reading APIs other plugins use are
@@ -50,7 +50,7 @@ Two guarantees hold for a plugin channel specifically:
 A plugin can put **buttons on its own settings page** — a "Test connection", a "Sync now".
 Users find them under **Settings → Plugins**, beneath that plugin's fields. An action runs
 **as the user who clicked it**, so a "Test connection" checks *their* credentials and can
-never see anyone else's. TREK refuses any action the plugin didn't declare in its manifest.
+never see anyone else's. Wanderly refuses any action the plugin didn't declare in its manifest.
 
 ### Trip-page plugins: placement and tab takeover
 
@@ -93,12 +93,12 @@ Each active plugin runs as a **separate OS process**, started under Node's
 permission model (`--permission`) with filesystem reads scoped to just its own
 code:
 
-- It has **no** access to `JWT_SECRET`, the database connection, or any TREK
+- It has **no** access to `JWT_SECRET`, the database connection, or any Wanderly
   secret — those are simply not reachable by its process.
 - It **cannot** open `trek.db`, write files, spawn child processes, use worker
   threads, or load native addons. Its own data lives in a separate SQLite file it
-  reaches only through TREK.
-- It talks to TREK exclusively over an internal RPC channel, and TREK only
+  reaches only through Wanderly.
+- It talks to Wanderly exclusively over an internal RPC channel, and Wanderly only
   answers the capabilities the plugin's manifest **declares and you approve**.
   An ungranted call is refused, not merely ignored.
 - The RPC channel itself is **sealed off from plugin code**: even though the
@@ -108,9 +108,9 @@ code:
   table, spoof another request's identity) nor eavesdrop on other in-flight
   requests. Every interaction is forced through the capability-checked SDK.
 - A page/widget's interface runs in a **sealed browser frame** that can't read
-  your session cookie or touch the surrounding TREK page.
+  your session cookie or touch the surrounding Wanderly page.
 - If a plugin crashes, hangs, or runs out of memory, only *its* process dies —
-  TREK keeps running and can restart or disable it.
+  Wanderly keeps running and can restart or disable it.
 
 This means the permission list you approve is a **real boundary**, not a label.
 It bounds *what* a plugin can touch, not its intent within a grant: a plugin you
@@ -151,10 +151,10 @@ manifest (at the reviewed commit) and lays out:
 - **Connects to** — the outbound hosts it declared (`egress`).
 - **Setup** — configuration fields it will ask for, with scope (instance/user) and
   whether each is required.
-- **Details** — version, download size, minimum TREK version, review date, plus
+- **Details** — version, download size, minimum Wanderly version, review date, plus
   links to the source repo and homepage.
 
-A **Reviewed** badge means a TREK maintainer scanned that exact version's source
+A **Reviewed** badge means a Wanderly maintainer scanned that exact version's source
 for malware — **not** that it works well or is harmless. It is not an ongoing
 guarantee. Read the access list and outbound hosts, not just the description.
 
@@ -163,12 +163,12 @@ guarantee. Read the access list and outbound hosts, not just the description.
 Three ways, all from **Admin → Plugins**:
 
 1. **From the registry.** In **Discover**, open a plugin and click **Install**
-   (also available directly on the card). TREK downloads the pinned version, verifies
+   (also available directly on the card). Wanderly downloads the pinned version, verifies
    its SHA-256 against the registry (and an author signature if the plugin ships one),
    safely unpacks it, re-validates the manifest, and registers it — **inactive**.
    Nothing runs yet.
 2. **By upload (sideload).** Drag a plugin `.zip`/`.tar.gz` onto the panel, or use
-   the **Upload** button. TREK extracts it into staging with the same hard guards as
+   the **Upload** button. Wanderly extracts it into staging with the same hard guards as
    a registry install (slip/bomb-safe extract, strict manifest, no native binaries —
    only the registry SHA-256/signature checks don't apply, since there's no registry
    entry) and registers it **inactive**. A sideloaded plugin is marked **Sideloaded**,
@@ -178,7 +178,7 @@ Three ways, all from **Admin → Plugins**:
    (Max 50 MB, same ceiling as the SDK's `pack`.)
 3. **From disk.** Drop a plugin directory into the plugins code directory
    (`server/data/plugins`, or your `TREK_PLUGINS_DIR` volume) and click **Rescan**
-   (or restart). TREK discovers it and registers it inactive.
+   (or restart). Wanderly discovers it and registers it inactive.
 
 ## Activating a plugin
 
@@ -209,7 +209,7 @@ dependencies as chips (amber when one is missing, out of range, or its addon is 
   can't keep running with a dependency that's gone.
 
 Plugins that declare a dependency can also **call each other's functions and exchange
-events** at runtime — always mediated by TREK, and only along a declared dependency (a
+events** at runtime — always mediated by Wanderly, and only along a declared dependency (a
 plugin can't reach one it didn't declare). See
 [[Plugin Development|Plugin-Development#talking-to-other-plugins]].
 
@@ -232,7 +232,7 @@ Uptime Kuma — cannot know *your* hostname when it is published. Such a plugin 
 `operatorEgress`, and you supply the hosts yourself.
 
 The plugin card shows a **"+ hosts"** chip when it works this way. Open **⋯ → Allowed
-hosts** and add the hostname (e.g. `gotify.mydomain.com`). TREK restarts the plugin so it
+hosts** and add the hostname (e.g. `gotify.mydomain.com`). Wanderly restarts the plugin so it
 picks up the new list.
 
 What this does *not* let anyone do:
@@ -246,7 +246,7 @@ What this does *not* let anyone do:
   Remove a host and the plugin loses it immediately (it restarts again).
 - Uninstalling drops the hosts, so a later plugin reusing the id can't inherit them.
 
-If the service runs on the **same machine or LAN** as TREK (a `localhost` or `192.168.x.x`
+If the service runs on the **same machine or LAN** as Wanderly (a `localhost` or `192.168.x.x`
 address), you also need `TREK_PLUGIN_ALLOW_PRIVATE_EGRESS=on` — plugins may not reach
 private addresses by default. That relaxes the policy for *every* installed plugin, so
 only enable it if you trust them all.
@@ -256,9 +256,9 @@ only enable it if you trust them all.
 Every user can see exactly what plugins have done **in their name**. Under
 **Settings → Plugins**, the **activity log** lists every host-mediated action a
 plugin took while acting for you — across all plugins, newest first: each trip or
-cost it read, each place it wrote, each outbound call TREK made on its behalf.
+cost it read, each place it wrote, each outbound call Wanderly made on its behalf.
 
-This is the user-facing half of TREK's tamper-evident (hash-chained) plugin
+This is the user-facing half of Wanderly's tamper-evident (hash-chained) plugin
 audit: admins see the per-plugin view in **Admin → Plugins**, while this view is
 **never admin-gated** — anyone can review what was done with their own data. It's
 what keeps a plugin's deliberately broad read grants accountable to the person
@@ -272,7 +272,7 @@ the row, and an **Update all** bar summarises how many are available.
 
 Updating swaps in the new code and, by default, transparently restarts the plugin
 on it. But if the new version declares **more permissions or new outbound hosts**,
-TREK installs the new code and **leaves the plugin off**, then shows a
+Wanderly installs the new code and **leaves the plugin off**, then shows a
 **re-consent dialog** listing exactly the new permissions and hosts. The plugin
 only runs again once you approve — an update can never silently widen what a
 plugin may do. Choosing "Later" keeps the new code installed but inactive.

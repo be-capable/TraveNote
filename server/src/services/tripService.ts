@@ -688,7 +688,7 @@ export function exportICS(tripId: string | number): { ics: string; filename: str
   const usedZones = new Map<string, string>();
 
   // Emit a DTSTART/DTEND line, attaching TZID when the event's zone is known so
-  // subscribers see the time in TREK's zone. Falls back to a floating local time
+  // subscribers see the time in Wanderly's zone. Falls back to a floating local time
   // (unchanged behavior) when no zone resolves or the value is not a date-time.
   const dtLine = (
     prop: 'DTSTART' | 'DTEND',
@@ -704,8 +704,8 @@ export function exportICS(tripId: string | number): { ics: string; filename: str
     return `${prop}:${val}\r\n`;
   };
 
-  let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//TREK//Travel Planner//EN\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n';
-  ics += `X-WR-CALNAME:${esc(trip.title || 'TREK Trip')}\r\n`;
+  let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Wanderly//Travel Planner//EN\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n';
+  ics += `X-WR-CALNAME:${esc(trip.title || 'Wanderly Trip')}\r\n`;
 
   // Trip as all-day event. DTEND is exclusive, so it must be the day *after* the last
   // day. addDays() stays in UTC — building a local-time Date here dropped the trip's

@@ -1059,7 +1059,7 @@ export class PluginRpcHost {
       this.methods.set('notify.send', (p, uid) => {
         const actor = this.requireActor(uid, 'notification');
         const input = asPayload(p.input);
-        // Emoji-stripped so a bell/push notification matches TREK's lucide-only UI (also
+        // Emoji-stripped so a bell/push notification matches Wanderly's lucide-only UI (also
         // trims + collapses whitespace). An all-emoji title collapses to '' → rejected.
         const title = typeof input.title === 'string' ? stripEmoji(input.title) : '';
         const body = typeof input.body === 'string' ? stripEmoji(input.body) : '';

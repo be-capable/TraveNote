@@ -367,7 +367,7 @@ export function saveDemoBaseline(): { error?: string; status?: number; message?:
 export async function getGithubReleases(perPage: string = '10', page: string = '1') {
   try {
     const resp = await fetch(`https://api.github.com/repos/liketrek/TREK/releases?per_page=${perPage}&page=${page}`, {
-      headers: { Accept: 'application/vnd.github.v3+json', 'User-Agent': 'TREK-Server' },
+      headers: { Accept: 'application/vnd.github.v3+json', 'User-Agent': 'Wanderly-Server' },
     });
     if (!resp.ok) return [];
     const data = await resp.json();
@@ -413,7 +413,7 @@ export async function checkVersion(): Promise<VersionInfo> {
     if (isPrerelease) {
       // Fetch release list and find the newest prerelease
       const resp = await fetch('https://api.github.com/repos/liketrek/TREK/releases?per_page=100', {
-        headers: { Accept: 'application/vnd.github.v3+json', 'User-Agent': 'TREK-Server' },
+        headers: { Accept: 'application/vnd.github.v3+json', 'User-Agent': 'Wanderly-Server' },
       });
       if (!resp.ok) {
         return fallback;
@@ -438,7 +438,7 @@ export async function checkVersion(): Promise<VersionInfo> {
       };
     } else {
       const resp = await fetch('https://api.github.com/repos/liketrek/TREK/releases/latest', {
-        headers: { Accept: 'application/vnd.github.v3+json', 'User-Agent': 'TREK-Server' },
+        headers: { Accept: 'application/vnd.github.v3+json', 'User-Agent': 'Wanderly-Server' },
       });
       if (!resp.ok) {
         return fallback;

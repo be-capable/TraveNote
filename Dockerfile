@@ -7,20 +7,22 @@ RUN CGO_ENABLED=0 GOBIN=/out go install github.com/tianon/gosu@latest
 
 # ── Stage 1: shared ──────────────────────────────────────────────────────────
 FROM node:24-alpine AS shared-builder
+ARG NPM_REGISTRY=https://registry.npmjs.org
 WORKDIR /app
 COPY package.json package-lock.json ./
 COPY shared/package.json ./shared/
-RUN npm ci --workspace=shared
+RUN npm ci --workspace=shared --registry=$NPM_REGISTRY
 COPY shared/ ./shared/
 RUN npm run build --workspace=shared
 
 # ── Stage 2: client ──────────────────────────────────────────────────────────
 FROM node:24-alpine AS client-builder
+ARG NPM_REGISTRY=https://registry.npmjs.org
 WORKDIR /app
 COPY package.json package-lock.json ./
 COPY shared/package.json ./shared/
 COPY client/package.json ./client/
-RUN npm ci --workspace=client
+RUN npm ci --workspace=client --registry=$NPM_REGISTRY
 COPY --from=shared-builder /app/shared/dist ./shared/dist
 COPY client/ ./client/
 RUN npm run build --workspace=client
@@ -28,17 +30,19 @@ RUN npm run build --workspace=client
 # ── Stage 3: server ──────────────────────────────────────────────────────────
 # --ignore-scripts skips native builds (better-sqlite3); they happen in the production stage.
 FROM node:24-alpine AS server-builder
+ARG NPM_REGISTRY=https://registry.npmjs.org
 WORKDIR /app
 COPY package.json package-lock.json ./
 COPY shared/package.json ./shared/
 COPY server/package.json ./server/
-RUN npm ci --workspace=server --ignore-scripts
+RUN npm ci --workspace=server --ignore-scripts --registry=$NPM_REGISTRY
 COPY --from=shared-builder /app/shared/dist ./shared/dist
 COPY server/ ./server/
 RUN npm run build --workspace=server
 
 # ── Stage 4: production runtime ──────────────────────────────────────────────
 FROM node:24-trixie-slim
+ARG NPM_REGISTRY=https://registry.npmjs.org
 WORKDIR /app
 
 # Workspace manifests only — source never enters this stage.
@@ -49,7 +53,7 @@ COPY server/package.json ./server/
 RUN apt-get update && \
     apt-get install -y --no-install-recommends tzdata dumb-init wget ca-certificates python3 build-essential \
     libkitinerary-bin && \
-    npm ci --workspace=server --omit=dev && \
+    npm ci --workspace=server --omit=dev --registry=$NPM_REGISTRY && \
     ln -sf "$(find /usr/lib -name kitinerary-extractor -type f | head -1)" /usr/local/bin/kitinerary-extractor; \
     apt-get purge -y python3 build-essential && \
     apt-get autoremove -y && \

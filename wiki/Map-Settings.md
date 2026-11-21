@@ -1,6 +1,6 @@
 # Map Settings
 
-The Map tab controls which map engine and tile source TREK uses in the Trip Planner and Journey maps.
+The Map tab controls which map engine and tile source Wanderly uses in the Trip Planner and Journey maps.
 
 > **Note:** The Atlas view always uses Leaflet regardless of this setting.
 
@@ -98,7 +98,7 @@ The **3D Buildings & Terrain** and **High Quality Mode** toggles are Mapbox-only
 
 There is **no** default map center or zoom setting — it was removed in v3.4.0. Instead, every map works out its own opening camera from the places it is about to draw, so a trip in Japan opens on Japan instead of starting on the world view and then flying across the planet.
 
-For each map, TREK takes the coordinates it is given and computes the center and zoom that frame them all:
+For each map, Wanderly takes the coordinates it is given and computes the center and zoom that frame them all:
 
 - **Several places** — the camera fits their bounding box. The zoom is capped (16 on Leaflet, 15 on the GL renderers) so a tight cluster does not open absurdly far in, and the center is taken in projected (Mercator) space rather than as an average of the latitudes, so the northernmost place does not fall out of frame.
 - **A single place** (or several stacked on the same spot) — there is no extent to fit, so it opens at city level: zoom 12 on Leaflet, 11 on the GL renderers.

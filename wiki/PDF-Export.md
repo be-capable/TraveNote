@@ -1,6 +1,6 @@
 # PDF Export
 
-TREK can generate two kinds of PDFs from your trip data: a structured **Trip Plan PDF** and a photo-book-style **Journey Book PDF**. Both render as HTML in a sandboxed iframe and open the browser's native print/save dialog — no server-side processing is involved.
+Wanderly can generate two kinds of PDFs from your trip data: a structured **Trip Plan PDF** and a photo-book-style **Journey Book PDF**. Both render as HTML in a sandboxed iframe and open the browser's native print/save dialog — no server-side processing is involved.
 
 ![PDF Export](assets/PDFTrip.png)
 
@@ -37,7 +37,7 @@ Below the header:
 
 ### Footer
 
-Every printed page carries a small "made with TREK" logo at the bottom.
+Every printed page carries a small "made with Wanderly" logo at the bottom.
 
 ### Font
 
@@ -45,7 +45,7 @@ Poppins, loaded from Google Fonts at render time.
 
 ### Plugin sections
 
-Installed plugins can append their own sections to the Trip Plan PDF via the `pdfSectionProvider` hook. A plugin returns plain text — a title, paragraphs, and an optional simple table (headers plus rows) — and TREK escapes and lays it out itself. Sections are text-only and additive: a plugin never renders into the document, and one that errors or is slow contributes nothing.
+Installed plugins can append their own sections to the Trip Plan PDF via the `pdfSectionProvider` hook. A plugin returns plain text — a title, paragraphs, and an optional simple table (headers plus rows) — and Wanderly escapes and lays it out itself. Sections are text-only and additive: a plugin never renders into the document, and one that errors or is slow contributes nothing.
 
 > **Plugins:** requires the `hook:pdf-section-provider` permission. See [Plugin-Development](Plugin-Development) for the hook contract.
 

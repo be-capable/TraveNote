@@ -11,7 +11,7 @@ import {
 } from '../../services/wikiService';
 
 /**
- * /api/help — embedded TREK wiki, served from the `wiki/` directory that ships
+ * /api/help — embedded Wanderly wiki, served from the `wiki/` directory that ships
  * with the app (see wikiService for the GitHub fallback). Content is public docs,
  * so these endpoints are unauthenticated; that also lets <img> tags load the
  * proxied assets without sending credentials.

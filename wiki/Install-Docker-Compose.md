@@ -18,7 +18,7 @@ The compose file ships with several hardening options enabled by default:
 | `cap_add: [CHOWN, SETUID, SETGID]` | Adds back only the capabilities needed for the entrypoint to drop privileges to the `node` user |
 | `tmpfs: /tmp:noexec,nosuid,size=64m` | Mounts a 64 MB in-memory `/tmp`; required because the container root is read-only |
 
-> **Note (Docker from snap):** If you installed Docker via `snap` (config under `/var/snap/docker/...`), `no-new-privileges:true` will prevent the container from starting with `exec /usr/bin/dumb-init: operation not permitted`. This is a [snap/AppArmor limitation](https://bugs.launchpad.net/snapd/+bug/1908448), not a TREK issue — install Docker from the [official apt repository](https://docs.docker.com/engine/install/ubuntu/) instead, or remove `no-new-privileges`. See [Troubleshooting](Troubleshooting#container-wont-start-exec-usrbindumb-init-operation-not-permitted).
+> **Note (Docker from snap):** If you installed Docker via `snap` (config under `/var/snap/docker/...`), `no-new-privileges:true` will prevent the container from starting with `exec /usr/bin/dumb-init: operation not permitted`. This is a [snap/AppArmor limitation](https://bugs.launchpad.net/snapd/+bug/1908448), not a Wanderly issue — install Docker from the [official apt repository](https://docs.docker.com/engine/install/ubuntu/) instead, or remove `no-new-privileges`. See [Troubleshooting](Troubleshooting#container-wont-start-exec-usrbindumb-init-operation-not-permitted).
 
 ## Volumes
 
@@ -77,7 +77,7 @@ image: mauriceboe/trek:3        # track major version 3
 image: mauriceboe/trek:3.4.0   # pin to exact release
 ```
 
-## Start TREK
+## Start Wanderly
 
 ```bash
 docker compose up -d
@@ -91,7 +91,7 @@ docker compose logs -f
 
 ## HTTPS and Reverse Proxy
 
-This compose file is designed for deployments where a reverse proxy (nginx, Caddy, Traefik) terminates TLS in front of TREK. To enable HTTPS redirects and secure cookies, uncomment `FORCE_HTTPS=true` and `TRUST_PROXY=1`.
+This compose file is designed for deployments where a reverse proxy (nginx, Caddy, Traefik) terminates TLS in front of Wanderly. To enable HTTPS redirects and secure cookies, uncomment `FORCE_HTTPS=true` and `TRUST_PROXY=1`.
 
 See [Reverse-Proxy](Reverse-Proxy) for complete proxy configuration examples.
 

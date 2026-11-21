@@ -8,7 +8,7 @@ import { apiDocsEnabled } from './nest/common/api-docs.kill-switch';
 import { setupApiDocs } from './nest/platform/api-docs';
 
 /**
- * Builds the unified TREK NestJS application that serves the ENTIRE surface — the
+ * Builds the unified Wanderly NestJS application that serves the ENTIRE surface — the
  * former Express app is gone. One builder is shared by the production bootstrap
  * (index.ts) and the integration-test harness so the two can never drift.
  *
