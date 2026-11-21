@@ -1,4 +1,4 @@
-# @trek/shared
+# @wanderly/shared
 
 Single source of truth for TREK's API contracts, expressed as [Zod](https://zod.dev) schemas
 and consumed by **both** the server (request validation + inferred DTO types) and the client
@@ -18,7 +18,7 @@ importing it — adding it changes nothing for users.
 
 ## Consumption (dev)
 
-Both apps resolve `@trek/shared` to this package's TypeScript source:
+Both apps resolve `@wanderly/shared` to this package's TypeScript source:
 
 - **Server** (`tsx`): via `paths` in `server/tsconfig.json`.
 - **Client** (`vite`): via `resolve.alias` in `client/vite.config.ts` (+ `paths` for the type-checker).

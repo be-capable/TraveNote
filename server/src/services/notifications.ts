@@ -5,13 +5,13 @@ import { logInfo, logDebug, logError } from './auditLog';
 // ── Types ──────────────────────────────────────────────────────────────────
 
 import type { NotifEventType } from './notificationPreferencesService';
-import { EMAIL_I18N as I18N, EVENT_TEXTS, PASSWORD_RESET_I18N } from '@trek/shared/i18n/externalNotifications';
+import { EMAIL_I18N as I18N, EVENT_TEXTS, PASSWORD_RESET_I18N } from '@wanderly/shared/i18n/externalNotifications';
 import type {
   EmailStrings,
   EventText,
   PasswordResetStrings,
   NotificationEventKey,
-} from '@trek/shared/i18n/externalNotifications';
+} from '@wanderly/shared/i18n/externalNotifications';
 
 import nodemailer from 'nodemailer';
 
@@ -146,9 +146,9 @@ export function getAdminWebhookUrl(): string | null {
   return value ? decrypt_api_key(value) : null;
 }
 
-// ── Email i18n strings — imported from @trek/shared/i18n/externalNotifications ──
+// ── Email i18n strings — imported from @wanderly/shared/i18n/externalNotifications ──
 
-// EVENT_TEXTS imported from @trek/shared/i18n/externalNotifications
+// EVENT_TEXTS imported from @wanderly/shared/i18n/externalNotifications
 
 // Get localized event text
 export function getEventText(lang: string, event: NotifEventType, params: Record<string, string>): EventText {
@@ -216,7 +216,7 @@ export function buildEmailHtml(
 
 // ── Password reset email ───────────────────────────────────────────────────
 
-// PASSWORD_RESET_I18N imported from @trek/shared/i18n/externalNotifications
+// PASSWORD_RESET_I18N imported from @wanderly/shared/i18n/externalNotifications
 
 function buildPasswordResetHtml(
   subject: string,

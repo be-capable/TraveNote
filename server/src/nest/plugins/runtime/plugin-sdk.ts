@@ -1,6 +1,6 @@
 /**
  * The plugin-author-facing SDK surface (#plugins, M1) — the minimal in-repo
- * version. The published `@trek/plugin-sdk` (M6) will re-export these types; for
+ * version. The published `@wanderly/plugin-sdk` (M6) will re-export these types; for
  * now the runtime ships its own copy so the child has zero external deps.
  *
  * PURE — no server imports. This runs inside the isolated child. Every ctx

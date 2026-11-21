@@ -265,7 +265,7 @@ export function createMockHost(opts: MockHostOptions = {}): MockHost {
   const assertRight = (t: { can?: Record<string, boolean> }, right: string, tripId: number) => {
     if (t.can?.[right] === false) throw new Error(`RESOURCE_FORBIDDEN: no permission to edit trip ${tripId}`);
   };
-  // Same field caps the host applies over the open @trek/shared write schemas.
+  // Same field caps the host applies over the open @wanderly/shared write schemas.
   const capStrings = (input: Record<string, unknown>, limits: Record<string, number>) => {
     for (const [field, max] of Object.entries(limits)) {
       const v = input[field];

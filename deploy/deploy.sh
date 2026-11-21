@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # 用法: bash deploy.sh [user@host]   默认 root@81.70.239.202 (deepsong.top)
-# 将 deepsong-site.tar.gz 上传并替换 nginx 站点根目录内容（旧内容自动备份，可回滚）
+# 将 deepsong-site.tar.gz 上传并替换 nginx 站点根目录内容（旧内容直接删除，不留备份）
 set -euo pipefail
 HOST="${1:-root@81.70.239.202}"
 DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -16,14 +16,17 @@ for f in $CONF; do
   [ -n "$ROOT" ] && break
 done
 ROOT="${ROOT:-/usr/share/nginx/html}"
-STAMP="$(date +%Y%m%d-%H%M%S)"
-BACKUP="/var/backups/deepsong/site-$STAMP"
-mkdir -p "$BACKUP" /tmp/deepsong-new
+case "$ROOT" in /*/*) ;; *) echo "refusing unsafe site root: $ROOT"; exit 1;; esac
+mkdir -p /tmp/deepsong-new
 tar -xzf /tmp/deepsong-site.tar.gz -C /tmp/deepsong-new
-find "$ROOT" -mindepth 1 -maxdepth 1 -exec mv {} "$BACKUP"/ \;
+find "$ROOT" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
 cp -a /tmp/deepsong-new/. "$ROOT"/
+chown -R root:root "$ROOT"
+find "$ROOT" -name '._*' -delete
+find "$ROOT" -type d -exec chmod 755 {} +
+find "$ROOT" -type f -exec chmod 644 {} +
 rm -rf /tmp/deepsong-new /tmp/deepsong-site.tar.gz
 nginx -t
 nginx -s reload
-echo "DEPLOYED to $ROOT (old content backed up at $BACKUP)"
+echo "DEPLOYED to $ROOT (old content removed)"
 EOF

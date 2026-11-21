@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # 用法: bash app-deploy.sh [user@host]   默认 root@81.70.239.202
-# 在服务器上从源码构建漫涂 Wanderly 镜像并以 Docker 部署到 wanderly.deepsong.top
+# 在服务器上从源码构建漫途 Wanderly 镜像并以 Docker 部署到 wanderly.deepsong.top
 set -euo pipefail
 HOST="${1:-root@81.70.239.202}"
 DIR="$(cd "$(dirname "$0")" && pwd)"

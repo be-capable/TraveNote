@@ -177,56 +177,6 @@
     });
   }
 
-  // product tour lightbox
-  var shots = Array.prototype.slice.call(document.querySelectorAll(".shot"));
-  var lb = document.getElementById("lightbox");
-  if (lb && shots.length) {
-    var lbImg = document.getElementById("lb-img");
-    var lbT = document.getElementById("lb-t");
-    var lbD = document.getElementById("lb-d");
-    var lbN = document.getElementById("lb-n");
-    var idx = 0, lastFocus = null;
-
-    function show(i) {
-      idx = (i + shots.length) % shots.length;
-      var f = shots[idx];
-      var img = f.querySelector("img");
-      lbImg.src = img.getAttribute("src");
-      lbImg.alt = img.getAttribute("alt") || "";
-      lbT.textContent = f.querySelector("figcaption b").textContent;
-      lbD.textContent = f.querySelector("figcaption span").textContent;
-      lbN.textContent = (idx + 1) + " / " + shots.length;
-    }
-    function openLb(i) {
-      lastFocus = document.activeElement;
-      show(i);
-      lb.hidden = false;
-      document.body.style.overflow = "hidden";
-      lb.querySelector(".lb-close").focus();
-    }
-    function closeLb() {
-      lb.hidden = true;
-      document.body.style.overflow = "";
-      if (lastFocus && lastFocus.focus) lastFocus.focus();
-    }
-    shots.forEach(function (f, i) {
-      f.addEventListener("click", function () { openLb(i); });
-      f.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLb(i); }
-      });
-    });
-    lb.querySelector(".lb-close").addEventListener("click", closeLb);
-    lb.querySelector(".lb-prev").addEventListener("click", function () { show(idx - 1); });
-    lb.querySelector(".lb-next").addEventListener("click", function () { show(idx + 1); });
-    lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
-    document.addEventListener("keydown", function (e) {
-      if (lb.hidden) return;
-      if (e.key === "Escape") closeLb();
-      else if (e.key === "ArrowLeft") show(idx - 1);
-      else if (e.key === "ArrowRight") show(idx + 1);
-    });
-  }
-
   // footer year
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();

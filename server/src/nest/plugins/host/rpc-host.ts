@@ -10,7 +10,7 @@ import {
   packingCreateItemRequestSchema, packingUpdateItemRequestSchema,
   collectionCreateRequestSchema, collectionUpdateRequestSchema,
   collectionSavePlaceRequestSchema, collectionCopyToTripRequestSchema,
-} from '@trek/shared';
+} from '@wanderly/shared';
 import {
   KNOWN_METHODS,
   type KnownMethod,
@@ -272,13 +272,13 @@ const str = (v: unknown, name: string): string => {
 };
 export class BadParams extends Error {}
 
-// Mirrors the STRING_LIMITS the places REST controller enforces (the @trek/shared
+// Mirrors the STRING_LIMITS the places REST controller enforces (the @wanderly/shared
 // schema doesn't), so the plugin write path rejects the same oversized fields.
 const PLACE_STR_LIMITS: Record<string, number> = { name: 200, description: 2000, address: 500, notes: 2000 };
 // Core entities a plugin may attach its own db:meta to. Each maps to an owning
 // trip (metaEntityTrip) so the membership + edit gates are the standard ones.
 const META_ENTITY_TYPES: ReadonlySet<string> = new Set(['trip', 'place', 'day', 'reservation', 'accommodation']);
-// Same idea for trips — the @trek/shared schema leaves the title/description open,
+// Same idea for trips — the @wanderly/shared schema leaves the title/description open,
 // so mirror the REST controller's field limits on the plugin write path too.
 const TRIP_STR_LIMITS: Record<string, number> = { title: 200, description: 2000 };
 
@@ -669,7 +669,7 @@ export class PluginRpcHost {
     }
 
     // --- Core planner writes (#1429). Each mirrors costs.create: validate the
-    // input against the SAME @trek/shared schema the web app uses, then gate on
+    // input against the SAME @wanderly/shared schema the web app uses, then gate on
     // trip access + the entity's edit permission for the HOST-bound acting user
     // (a job/onLoad has no user, so its writes are refused). The delegating deps
     // reuse the real services + broadcast the same events, so the app stays live. ---
@@ -1195,7 +1195,7 @@ export class PluginRpcHost {
   }
 
   /**
-   * The @trek/shared write schemas don't carry the string-length caps the REST
+   * The @wanderly/shared write schemas don't carry the string-length caps the REST
    * controllers add, so mirror those caps here — otherwise a plugin could write a
    * field the web app would reject with 400 (e.g. a 100k-char place name).
    */

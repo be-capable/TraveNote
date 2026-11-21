@@ -60,7 +60,7 @@ import {
   type CollectionInviteCancelRequest,
   type CollectionRemoveMemberRequest,
   type CollectionSetMemberRoleRequest,
-} from '@trek/shared';
+} from '@wanderly/shared';
 
 const MAX_COVER_SIZE = 20 * 1024 * 1024;
 const coversDir = path.join(__dirname, '../../../uploads/covers');

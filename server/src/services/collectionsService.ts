@@ -18,7 +18,7 @@ import type {
   CollectionCopyToTripRequest,
   CollectionStatus,
   CollectionLabel,
-} from '@trek/shared';
+} from '@wanderly/shared';
 
 /** Links are stored as a JSON TEXT column; parse on read, stringify on write. */
 function parseLinks(raw: unknown): CollectionLink[] | undefined {
@@ -524,7 +524,7 @@ export function saveFromTripPlaces(
   return { copied, skipped };
 }
 
-export function updatePlace(userId: number, placeId: number, body: import('@trek/shared').CollectionPlaceUpdateRequest, socketId?: string): CollectionPlace {
+export function updatePlace(userId: number, placeId: number, body: import('@wanderly/shared').CollectionPlaceUpdateRequest, socketId?: string): CollectionPlace {
   const currentCollection = collectionIdOfPlace(placeId);
   assertCanEdit(userId, currentCollection);
 
